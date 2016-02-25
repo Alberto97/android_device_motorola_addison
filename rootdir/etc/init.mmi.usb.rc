@@ -444,14 +444,3 @@ on property:sys.usb.tethering=true
 
 on property:sys.usb.tethering=false
     write /sys/class/net/rmnet_data0/queues/rx-0/rps_cpus ${sys.rmnet_vnd.rps_mask}
-
-# DHCP service for Ethernet
-service dhcpcd_eth0 /system/bin/dhcpcd -G
-    class late_start
-    disabled
-    oneshot
-
-service iprenew_eth0 /system/bin/dhcpcd -nBK
-    class late_start
-    disabled
-    oneshot
