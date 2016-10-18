@@ -184,6 +184,36 @@ on boot
     # bond0 used by FST Manager
     chown wifi wifi /sys/class/net/bond0/bonding/queue_id
 
+    # Display
+    chown system graphics /sys/class/graphics/fb1/hpd
+    chmod 0664 /sys/class/graphics/fb1/hpd
+    chown system graphics /sys/class/graphics/fb1/res_info
+    chmod 0664 /sys/class/graphics/fb1/res_info
+    chown system graphics /sys/class/graphics/fb1/video_mode
+    chmod 0664 /sys/class/graphics/fb1/video_mode
+    chown system graphics /sys/class/graphics/fb1/cec/enable
+    chmod 0664 /sys/class/graphics/fb1/cec/enable
+    chown system graphics /sys/class/graphics/fb1/cec/logical_addr
+    chmod 0664 /sys/class/graphics/fb1/cec/logical_addr
+    chown system graphics /sys/class/graphics/fb1/cec/rd_msg
+    chmod 0664 /sys/class/graphics/fb1/cec/rd_msg
+    chown system graphics /sys/class/graphics/fb1/cec/wr_msg
+    chmod 0600 /sys/class/graphics/fb1/cec/wr_msg
+
+    chown system graphics /sys/class/graphics/fb0/idle_time
+    chmod 0664 /sys/class/graphics/fb0/idle_time
+    chown system graphics /sys/class/graphics/fb0/dyn_pu
+    chmod 0664 /sys/class/graphics/fb0/dyn_pu
+    chown system graphics /sys/class/graphics/fb0/modes
+    chmod 0664 /sys/class/graphics/fb0/modes
+    chown system graphics /sys/class/graphics/fb0/mode
+    chmod 0664 /sys/class/graphics/fb0/mode
+    chown system graphics /sys/class/graphics/fb0/msm_cmd_autorefresh_en
+    chmod 0664 /sys/class/graphics/fb0/msm_cmd_autorefresh_en
+
+    setprop debug.gralloc.enable_fb_ubwc 1
+    setprop debug.gralloc.gfx_ubwc_disable 0
+
 # msm specific files that need to be created on /data
 on post-fs-data
     #Create directories for Fingerprint
@@ -414,19 +444,6 @@ service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     group bluetooth system
     oneshot
 
-service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
-
-on property:bluetooth.hciattach=true
-    start hciattach
-
-on property:bluetooth.hciattach=false
-    setprop bluetooth.status off
-
 service netmgrd /system/bin/netmgrd
     class main
 
@@ -562,11 +579,6 @@ on property:crypto.driver.load=1
      insmod /system/lib/modules/qce.ko
      insmod /system/lib/modules/qcedev.ko
 
-service qcom-sh /system/bin/sh /init.qcom.sh
-    class late_start
-    user root
-    oneshot
-
 service hostapd /system/bin/hostapd -dd /data/misc/wifi/hostapd.conf
     class late_start
     user root
@@ -611,7 +623,6 @@ service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqb
     class core
     user root
     group root
-    disabled
 
 on charger
     setprop persist.sys.usb.config charging

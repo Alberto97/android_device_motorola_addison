@@ -11,6 +11,15 @@ notice()
 	echo "$scriptname: $*" > /dev/kmsg
 }
 
+
+start_copying_prebuilt_qcril_db()
+{
+    if [ -f /system/vendor/qcril.db -a ! -f /data/misc/radio/qcril.db ]; then
+        cp /system/vendor/qcril.db /data/misc/radio/qcril.db
+        chown -h radio.radio /data/misc/radio/qcril.db
+    fi
+}
+
 # We take this from cpuinfo because hex "letters" are lowercase there
 set -A cinfo `cat /proc/cpuinfo | /system/bin/grep Revision`
 hw=${cinfo[2]#?}
@@ -149,8 +158,9 @@ then
 	fi
 fi
 
-if [ -e /dev/vfsspi ]
-then
-	setprop ro.mot.hw.fingerprint 1
-fi
+#
+# Copy qcril.db if needed for RIL
+#
+start_copying_prebuilt_qcril_db
+echo 1 > /data/misc/radio/db_check_done
 
