@@ -72,11 +72,6 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
 on init
    write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 
-#service qfp-daemon /system/bin/qfp-daemon
-#   class late_start
-#   user system
-#   group system drmrpc
-
 # Allow usb charging to be disabled peristently
 on property:persist.usb.chgdisabled=1
     write /sys/class/power_supply/battery/charging_enabled 0
@@ -84,34 +79,10 @@ on property:persist.usb.chgdisabled=1
 on property:persist.usb.chgdisabled=0
     write /sys/class/power_supply/battery/charging_enabled 1
 
-#service qrngd /system/bin/qrngd -f
-#   class main
-#   user root
-#   group root
-
-#service qrngp /system/bin/qrngp -f
-#   class main
-#   user root
-#   group root
-#   oneshot
-#   disabled
-
-#on property:sys.boot_completed=1
-#   start qrngp
-
 service qseecomd /system/bin/qseecomd
    class core
    user root
    group root
-
-#service aostlmd /system/bin/aostlmd
-#   class late_start
-#   user system
-#   group system net_raw
-
-#service mpdecision /system/bin/mpdecision --avg_comp
-#   user root
-#   disabled
 
 service perfd /system/vendor/bin/perfd
    class main
@@ -139,7 +110,7 @@ service audiod /system/bin/audiod
 on boot
     start rmt_storage
     insmod /system/lib/modules/adsprpc.ko
-# access permission for secure touch
+    # access permission for secure touch
     chmod 0660 /sys/devices/soc/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch_enable
     chmod 0440 /sys/devices/soc/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
     chmod 0660 /sys/devices/soc/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch_enable
@@ -148,31 +119,6 @@ on boot
     chown system drmrpc /sys/devices/soc/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
     chown system drmrpc /sys/devices/soc/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch_enable
     chown system drmrpc /sys/devices/soc/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch
-
-service ppd /system/vendor/bin/mm-pp-dpps
-    class late_start
-    disabled
-    user system
-    socket pps stream 0660 system system
-    group system graphics
-
-on property:init.svc.surfaceflinger=stopped
-    stop ppd
-
-on property:init.svc.surfaceflinger=running
-    start ppd
-
-on property:init.svc.surfaceflinger=restarting
-    stop ppd
-
-on property:init.svc.zygote=stopped
-    stop ppd
-
-on property:init.svc.zygote=running
-    start ppd
-
-on property:init.svc.zygote=restarting
-    stop ppd
 
 service wcnss-service /system/bin/wcnss_service
     class main
@@ -189,64 +135,10 @@ on charger
     start qcom-post-boot
     setprop persist.sys.usb.config mass_storage
 
-#service imsqmidaemon /system/bin/imsqmidaemon
-#    class main
-#    user system
-#    socket ims_qmid stream 0660 system radio
-#    group radio net_raw log diag
-
-#service imsdatadaemon /system/bin/imsdatadaemon
-#    class main
-#    user system
-#    socket ims_datad stream 0660 system radio
-#    group system wifi radio inet net_raw log diag net_admin
-#    disabled
-
-#on property:sys.ims.QMI_DAEMON_STATUS=1
-#    start imsdatadaemon
-
-#service ims_rtp_daemon /system/bin/ims_rtp_daemon
-#   class main
-#   user system
-#   socket ims_rtpd stream 0660 system radio
-#   group radio net_raw diag diag inet log
-#   disabled
-
-#service imscmservice /system/bin/imscmservice
-#   class main
-#   user system
-#   group radio net_raw diag diag log
-#   disabled
-
-#on property:sys.ims.DATA_DAEMON_STATUS=1
-#    start ims_rtp_daemon
-#    start imscmservice
-
-#service hbtp /system/vendor/bin/hbtp_daemon
-#    class main
-#    user system
-#    group system
-#    disabled
-
-#service dts_configurator /system/bin/dts_configurator
-#    class late_start
-#    user system
-#    group media audio
-#    oneshot
-
-#service dtseagleservice /system/bin/dts_eagle_service
-#    class late_start
-#    user system
-#    group audio media
-#    disabled
-
 service adsprpcd /system/bin/adsprpcd
     class main
     user media
     group media
-
-#on property:init.svc.dts_configurator=stopped
-#    start dtseagleservice
 
 service per_mgr /system/bin/pm-service
     class core
@@ -264,17 +156,6 @@ on property:init.svc.per_mgr=running
 
 on property:sys.shutdown.requested=*
     stop per_proxy
-
-service energy-awareness /system/bin/energy-awareness
-    class main
-    user root
-    group system
-    oneshot
-
-#service mdtpd /system/vendor/bin/mdtpd
-#    class late_start
-#    user root
-#    group system radio drmrpc
 
 on boot
     write /sys/devices/soc/78b8000.i2c/i2c-4/4-0020/input/input0/fw_name PR1702898-s3528t_00260005_00380008.img
