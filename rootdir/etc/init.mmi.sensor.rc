@@ -1,0 +1,32 @@
+on boot
+    # STML4 driver parameter permissions
+    chown root mot_tcmd /sys/module/motosh/parameters/irq_disable
+    chmod 0660 /sys/module/motosh/parameters/irq_disable
+
+    #STML4 device permissions
+    chown system compass /dev/motosh
+    chmod 0660 /dev/motosh
+    chown compass compass /dev/motosh_as
+    chmod 0660 /dev/motosh_as
+    chown compass compass /dev/motosh_ms
+    chmod 0660 /dev/motosh_ms
+    chown compass compass /sys/devices/virtual/motosh/motosh_as/timestamp_time_ns
+    chmod 0440 /sys/devices/virtual/motosh/motosh_as/timestamp_time_ns
+    chown compass compass /sys/devices/virtual/motosh/motosh_as/rv_6axis_update_rate
+    chmod 0660 /sys/devices/virtual/motosh/motosh_as/rv_6axis_update_rate
+    chown compass compass /sys/devices/virtual/motosh/motosh_as/rv_9axis_update_rate
+    chmod 0660 /sys/devices/virtual/motosh/motosh_as/rv_9axis_update_rate
+    chown compass compass /sys/devices/virtual/motosh/motosh_as/game_rv_update_rate
+    chmod 0660 /sys/devices/virtual/motosh/motosh_as/game_rv_update_rate
+    chown compass compass /sys/devices/virtual/motosh/motosh_as/gravity_update_rate
+    chmod 0660 /sys/devices/virtual/motosh/motosh_as/gravity_update_rate
+    chown compass compass /sys/devices/virtual/motosh/motosh_as/linear_accel_update_rate
+    chmod 0660 /sys/devices/virtual/motosh/motosh_as/linear_accel_update_rate
+
+# Start Sensor daemon
+service motosh /system/bin/motosh boot
+
+    class late_start
+    user compass
+    group compass misc input
+    oneshot

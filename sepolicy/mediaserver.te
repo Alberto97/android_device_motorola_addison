@@ -1,0 +1,2 @@
+allow mediaserver persist_audio_file:dir search;
+allow mediaserver persist_audio_file:file { read getattr open };
