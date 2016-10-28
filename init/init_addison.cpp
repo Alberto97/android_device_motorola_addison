@@ -34,27 +34,18 @@
 #include "log.h"
 #include "util.h"
 
-#define ISMATCH(a,b)    (!strncmp(a,b,PROP_VALUE_MAX))
-
 void vendor_load_properties()
 {
-    char device[PROP_VALUE_MAX];
-    char dualsim[PROP_VALUE_MAX];
-    char platform[PROP_VALUE_MAX];
-    char radio[PROP_VALUE_MAX];
-    char sku[PROP_VALUE_MAX];
-    int rc;
-
-    rc = property_get("ro.board.platform", platform);
-    if (!rc || !ISMATCH(platform, ANDROID_TARGET))
+    std::string platform = property_get("ro.board.platform");
+    if (platform != ANDROID_TARGET)
         return;
 
-    property_get("ro.boot.hardware.sku", sku);
-    property_set("ro.product.model", sku);
+    std::string sku = property_get("ro.boot.hardware.sku");
+    property_set("ro.product.model", sku.c_str());
 
     // rmt_storage
-    property_get("ro.boot.device", device);
-    property_get("ro.boot.radio", radio);
-    property_set("ro.hw.device", device);
-    property_set("ro.hw.radio", radio);
+    std::string device = property_get("ro.boot.device");
+    std::string radio = property_get("ro.boot.radio");
+    property_set("ro.hw.device", device.c_str());
+    property_set("ro.hw.radio", radio.c_str());
 }
