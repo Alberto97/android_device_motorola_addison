@@ -96,8 +96,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/camera/ov16860_chromatix.xml:system/etc/camera/ov16860_chromatix.xml
 
 # CMActions
-#PRODUCT_PACKAGES += \
-#    CMActions
+PRODUCT_PACKAGES += \
+    CMActions
 
 # Display
 PRODUCT_PACKAGES += \
