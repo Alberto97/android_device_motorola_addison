@@ -18,10 +18,11 @@ LOCAL_PATH := $(call my-dir)
 # Camera
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := \
+    GraphicBuffer.cpp \
     SensorManager.cpp \
     moto_camera_misc.c
 
-LOCAL_SHARED_LIBRARIES := libutils libgui liblog libbinder
+LOCAL_SHARED_LIBRARIES := libutils libgui liblog libbinder libui
 LOCAL_MODULE := libshim_camera
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_SHARED_LIBRARY)
