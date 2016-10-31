@@ -125,6 +125,10 @@
 #define AID_POWER         9017  /* power management */
 #define AID_ITSON         9018  /* itson permission  */
 #define AID_MOT_DTV       9019  /* dtv */
+#define AID_MOT_MOD       9020  /* can interact with motorola mod HW */
+
+#define AID_MOT_SHARED    9323 /* motorola shared uid, IKSWM-342 */
+#define AID_MOT_COMMON    9341 /* motorola common uid, IKSWM-342 */
 /* Motorola IDs */
 
 #define AID_EVERYBODY     9997  /* shared between all apps in the same profile */
@@ -217,19 +221,23 @@ static const struct android_id_info android_ids[] = {
 
     { "rfs",           AID_RFS, },
     { "rfs_shared",    AID_RFS_SHARED, },
+    { "everybody",     AID_EVERYBODY, },
+    { "misc",          AID_MISC, },
+    { "nobody",        AID_NOBODY, },
+
     /* Motorola IDs */
-    { "mot_accy",      AID_MOT_ACCY, },
-    { "mot_pwric",     AID_MOT_PWRIC, },
-    { "mot_usb",       AID_MOT_USB, },
-    { "mot_drm",       AID_MOT_DRM, },
-    { "mot_tcmd",      AID_MOT_TCMD, },
-    { "mot_sec_rtc",   AID_MOT_SEC_RTC, },
-    { "mot_tombstone", AID_MOT_TOMBSTONE, },
-    { "mot_tpapi",     AID_MOT_TPAPI, },
-    { "mot_secclkd",   AID_MOT_SECCLKD, },
-    { "mot_whisper",   AID_MOT_WHISPER, },
-    { "mot_caif",      AID_MOT_CAIF, },
-    { "mot_dlna",      AID_MOT_DLNA, },
+    { "mot_accy",	AID_MOT_ACCY, },
+    { "mot_pwric",	AID_MOT_PWRIC, },
+    { "mot_usb",	AID_MOT_USB, },
+    { "mot_drm",	AID_MOT_DRM, },
+    { "mot_tcmd",	AID_MOT_TCMD, },
+    { "mot_sec_rtc",	AID_MOT_SEC_RTC, },
+    { "mot_tombstone",	AID_MOT_TOMBSTONE, },
+    { "mot_tpapi",	AID_MOT_TPAPI, },
+    { "mot_secclkd",	AID_MOT_SECCLKD, },
+    { "mot_whisper",	AID_MOT_WHISPER, },
+    { "mot_caif",	AID_MOT_CAIF, },
+    { "mot_dlna",	AID_MOT_DLNA, },
     { "mot_atvc",      AID_MOT_ATVC, },
     { "sprint_extension", AID_SPRINT_EXTENSION, },
     { "mot_dbvc",      AID_MOT_DBVC, },
@@ -238,10 +246,10 @@ static const struct android_id_info android_ids[] = {
     { "power",         AID_POWER, },
     { "itson",         AID_ITSON, },
     { "mot_dtv",       AID_MOT_DTV, },
+    { "mot_shared",    AID_MOT_SHARED, },
+    { "mot_common",    AID_MOT_COMMON, },
+    { "mot_mod",       AID_MOT_MOD, },
     /* Motorola IDs */
-    { "everybody",     AID_EVERYBODY, },
-    { "misc",          AID_MISC, },
-    { "nobody",        AID_NOBODY, },
 };
 
 #define android_id_count \
