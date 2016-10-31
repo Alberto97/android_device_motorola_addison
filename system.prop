@@ -20,8 +20,7 @@ persist.audio.calfile4=/etc/acdbdata/Hdmi_cal.acdb
 persist.audio.calfile5=/etc/acdbdata/Headset_cal.acdb
 persist.audio.calfile6=/etc/acdbdata/Speaker_cal.acdb
 
-persist.audio.dualmic.config=endfire
-#persist.audio.fluence.mode=endfire -> for oss audio HAL
+persist.audio.fluence.mode=endfire
 persist.audio.fluence.speaker=true
 persist.audio.fluence.voicecall=true
 ro.qc.sdk.audio.fluencetype=none
