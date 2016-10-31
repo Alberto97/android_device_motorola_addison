@@ -27,11 +27,7 @@ etc/acdbdata/Hdmi_cal.acdb
 etc/acdbdata/Headset_cal.acdb
 etc/acdbdata/Speaker_cal.acdb
 lib/hw/audio.motvr.default.so
-lib/hw/audio.primary.default.so
-lib/hw/audio.primary.msm8953.so
-lib/hw/audio_policy.default.so
 lib/libmotaudioutils.so
-lib/libtinyalsa.so
 lib/libunshorten.so
 vendor/lib/soundfx/libqcbassboost.so
 vendor/lib/soundfx/libqcreverb.so

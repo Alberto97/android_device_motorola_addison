@@ -674,32 +674,6 @@
 		<path name="voice-call mod-int" />
 	</path>
 
-	<!-- CM Audio Call fix -->
-	<path name="voicemmode1-call">
-		<path name="voice-call" />
-	</path>
-
-	<path name="voicemmode1-call bt-sco">
-		<path name="voice-call bt-sco" />
-	</path>
-
-	<path name="voicemmode1-call bt-sco-wb">
-		<path name="voice-call bt-sco-wb" />
-	</path>
-
-	<path name="voicemmode1-call usb-headphones">
-		<path name="voice-call afe-proxy" />
-	</path>
-
-	<path name="voicemmode1-call afe-proxy">
-		<path name="voicemmode1-call usb-headphones" />
-	</path>
-
-	<path name="voicemmode1-call hdmi">
-		<path name="voice-call hdmi" />
-	</path>
-	<!-- end CM Audio Call fix -->
-
 	<path name="voice2-call">
 		<ctl name="SLIM_0_RX_Voice Mixer VoiceMMode2" value="1" />
 		<ctl name="VoiceMMode2_Tx Mixer SLIM_0_TX_MMode2" value="1" />
@@ -742,6 +716,56 @@
 		<ctl name="Mods Enable Input Devices" value="8" />
 		<path name="voice2-call mod-int" />
 	</path>
+
+	<!-- InCall Audio fix -->
+	<path name="voicemmode1-call">
+		<path name="voice-call" />
+	</path>
+
+	<path name="voicemmode1-call bt-sco">
+		<path name="voice-call bt-sco" />
+	</path>
+
+	<path name="voicemmode1-call bt-sco-wb">
+		<path name="voice-call bt-sco-wb" />
+	</path>
+
+	<path name="voicemmode1-call usb-headphones">
+		<path name="voice-call afe-proxy" />
+	</path>
+
+	<path name="voicemmode1-call afe-proxy">
+		<path name="voicemmode1-call usb-headphones" />
+	</path>
+
+	<path name="voicemmode1-call hdmi">
+		<path name="voice-call hdmi" />
+	</path>
+
+	<path name="voicemmode2-call">
+		<path name="voice2-call" />
+	</path>
+
+	<path name="voicemmode2-call bt-sco">
+		<path name="voice2-call bt-sco" />
+	</path>
+
+	<path name="voicemmode2-call bt-sco-wb">
+		<path name="voice2-call bt-sco-wb" />
+	</path>
+
+	<path name="voicemmode2-call usb-headphones">
+		<path name="voice2-call afe-proxy" />
+	</path>
+
+	<path name="voicemmode2-call afe-proxy">
+		<path name="voicemmode2-call usb-headphones" />
+	</path>
+
+	<path name="voicemmode2-call hdmi">
+		<path name="voice2-call hdmi" />
+	</path>
+	<!-- end InCall Audio fix -->
 
 	<path name="incall-rec-uplink">
 		<ctl name="MultiMedia1 Mixer VOC_REC_UL" value="1" />
