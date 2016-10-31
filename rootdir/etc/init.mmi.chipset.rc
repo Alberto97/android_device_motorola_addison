@@ -45,6 +45,7 @@ on post-fs-data
 
 # Start Sensor daemon
 service motosh /system/bin/motosh boot
+    seclabel u:r:sensor_hub_exec:s0
     class late_start
     user compass
     group compass misc input

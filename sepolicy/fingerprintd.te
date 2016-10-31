@@ -1,0 +1,2 @@
+allow fingerprintd firmware_file:file { getattr open read };
+allow fingerprintd tee_device:chr_file { ioctl open read write };
