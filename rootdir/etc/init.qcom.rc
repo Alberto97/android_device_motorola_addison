@@ -379,6 +379,11 @@ on post-fs-data
     write /sys/bus/msm_subsys/devices/subsys3/restart_level related
     write /sys/bus/msm_subsys/devices/subsys4/restart_level related
 
+service charger /charger
+    class charger
+    group log
+    seclabel u:r:healthd:s0
+
 service perfd /system/vendor/bin/perfd
    class main
    user root

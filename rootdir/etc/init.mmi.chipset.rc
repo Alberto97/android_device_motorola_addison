@@ -69,7 +69,6 @@ on moto-charger
     trigger firmware_mounts_complete
     start  qcom-post-boot
     start gbmodinstall
-    start charge_only_mode
     start batt_health
     start thermal-com
 

@@ -256,11 +256,6 @@ service mmi-touch-sh /system/bin/init.mmi.touch.sh
     user root
     oneshot
 
-service charge_only_mode /system/bin/charge_only_mode
-    user root
-    group graphics system input
-    disabled
-
 service thermal-com /system/vendor/bin/thermal-engine --minimode
     class main
     user root
