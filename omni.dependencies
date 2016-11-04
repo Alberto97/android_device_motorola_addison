@@ -1,0 +1,14 @@
+[
+  {
+    "remote":      "github",
+    "repository":  "Alberto97/android_kernel_motorola_msm8916",
+    "target_path": "kernel/motorola/msm8953",
+    "revision":    "cm-13.0"
+  },
+  {
+    "remote":      "github",
+    "repository":  "lj50036/android_device_qcom_common",
+    "target_path": "device/qcom/common",
+    "revision":    "cm-13.0"
+  }
+]
