@@ -34,7 +34,7 @@ on early-init
 
 on init
     # Symbols required for motorola blobs
-    export LD_SHIM_LIBS /system/lib/libjustshoot.so|libshim_camera.so:/system/lib/libjscore.so|libshim_camera.so:/system/vendor/lib/libmot_gpu_mapper.so|libshim_camera.so
+    export LD_SHIM_LIBS /system/lib/libjustshoot.so|libshim_camera.so:/system/lib/libjscore.so|libshim_camera.so:/system/vendor/lib/libmot_gpu_mapper.so|libshim_camera.so:/system/vendor/lib/libwvm.so|libshims_wvm.so
 
     # Set permissions for persist partition
     mkdir /persist 0771 system system
