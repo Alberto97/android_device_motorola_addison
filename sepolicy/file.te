@@ -1,6 +1,2 @@
-# Persist file types
-type persist_audio_file, file_type;
-type persist_camera_file, file_type;
-
 # FSG
 type fsg_file, fs_type, contextmount_type;
