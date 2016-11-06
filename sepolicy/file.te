@@ -1,2 +1,5 @@
 # FSG
 type fsg_file, fs_type, contextmount_type;
+
+# sysfs
+type sysfs_mmi_touch, fs_type, sysfs_type;

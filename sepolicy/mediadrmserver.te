@@ -1,0 +1,1 @@
+allow mediadrmserver firmware_file:file { getattr open read };

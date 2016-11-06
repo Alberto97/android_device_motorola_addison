@@ -1,1 +1,2 @@
 hw.motosh.booted    u:object_r:motosh_prop:s0
+hw.touch.status     u:object_r:touch_prop:s0

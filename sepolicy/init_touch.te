@@ -1,3 +1,0 @@
-type init_touch, domain;
-type init_touch_exec, exec_type, file_type;
-init_daemon_domain(init_touch)
