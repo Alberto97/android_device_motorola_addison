@@ -109,8 +109,7 @@ PRODUCT_PACKAGES += \
 
 # DRM
 PRODUCT_PACKAGES += \
-    libprotobuf-cpp-lite \
-    libshims_wvm
+    libprotobuf-cpp-lite
 
 # Ebtables
 PRODUCT_PACKAGES += \
