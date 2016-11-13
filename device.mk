@@ -180,23 +180,19 @@ PRODUCT_PACKAGES += \
     power.msm8953
 
 # Ramdisk
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,${LOCAL_PATH}/rootdir/etc,root)
-
 PRODUCT_PACKAGES += \
     init.mmi.touch.sh \
     init.qcom.bt.sh \
     init.qcom.ril.sh
 
-#PRODUCT_PACKAGES += \
-#    fstab.qcom \
-#    init.mmi.boot.sh \
-#   init.mmi.laser.sh \
-#    init.mmi.rc \
-#    init.mmi.usb.rc \
-#    init.qcom.rc \
-#    init.qcom.sensors.sh \
-#    ueventd.qcom.rc
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    init.mmi.boot.sh \
+    init.mmi.laser.sh \
+    init.mmi.rc \
+    init.mmi.usb.rc \
+    init.qcom.rc \
+    ueventd.qcom.rc
 
 # RIL
 PRODUCT_PACKAGES += \
