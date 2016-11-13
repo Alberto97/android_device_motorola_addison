@@ -356,6 +356,9 @@ bin/hardware_revisions.sh
 # NFC
 vendor/firmware/libpn548ad_fw.so
 
+# IPA
+bin/ipacm-diag
+
 # Qualcomm framework
 bin/irsc_util
 vendor/lib/hw/keystore.msm8953.so

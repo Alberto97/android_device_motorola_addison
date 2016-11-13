@@ -126,6 +126,11 @@ PRODUCT_PACKAGES += \
 #PRODUCT_PACKAGES += \
 #    gps.msm8916
 
+# IPA Manager
+PRODUCT_PACKAGES += \
+    ipacm \
+    IPACM_cfg.xml
+
 # IRSC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
