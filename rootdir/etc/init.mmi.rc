@@ -1,6 +1,3 @@
-# Chipset-specific file
-import init.mmi.chipset.rc
-
 # Moto USB configuration
 import init.mmi.usb.rc
 
@@ -56,7 +53,6 @@ on post-fs
 
     swapon_all fstab.qcom
     write /proc/sys/vm/page-cluster 0
-    write /proc/sys/vm/swappiness 100
 
 on post-fs-data
 
@@ -168,8 +164,6 @@ on boot
 
    # Change ownership for Dynamic-CABC feature
    chown system system /sys/class/graphics/fb0/cabc_mode
-   # Change ownership for for HBM feature
-   chown system system /sys/class/graphics/fb0/hbm
    # Change ownership for for ACL feature
    chown system system /sys/class/graphics/fb0/acl_mode
 
@@ -237,12 +231,6 @@ on boot
    # Quiet binder logs
    write /sys/module/binder/parameters/debug_mask 0x5
 
-service mmi-block-perm /init.mmi.block_perm.sh
-    seclabel u:r:init_block_perm:s0
-    class main
-    user root
-    oneshot
-
 on charger
     trigger early-fs
     trigger fs
@@ -255,32 +243,22 @@ on charger
 on moto-charger
     setprop ro.board.platform msm8953
     trigger firmware_mounts_complete
-    start  qcom-post-boot
-    start gbmodinstall
     start batt_health
     start thermal-com
 
-# Start Sensor daemon
-service motosh /system/bin/motosh boot
-    class late_start
-    user compass
-    group compass misc input
-    oneshot
-    seclabel u:r:sensor_hub:s0
+on property:ro.boot.dualsim=true
+   setprop persist.radio.multisim.config dsds
+   setprop ro.telephony.default_network 10,10
 
-service fingerprintd /system/bin/fingerprintd
-    class late_start
-    user system
-    group input
+on property:ro.boot.dualsim=false
+   setprop persist.radio.multisim.config ""
+   setprop ro.telephony.default_network 10
 
-service emmc_ffu /system/bin/emmc_ffu.sh
-    user root
-    class core
-    oneshot
-    disabled
-
-on property:sys.boot_completed=1
-   start emmc_ffu
+service adspd /system/bin/adspd
+   class main
+   socket adspdsock stream 0660 system audio
+   user audio
+   group audio input diag
 
 service batt_health /system/bin/batt_health
     class late_start
@@ -291,30 +269,21 @@ service batt_health /system/bin/batt_health
 on property:sys.boot_completed=1 && property:ro.boot.secure_hardware=0
     start batt_health
 
-service mmi-boot-sh /init.mmi.boot.sh
-    seclabel u:r:mmi_boot:s0
-    class core
-    user root
-    oneshot
-
-# translate to qcom property name in order to keep the consistent with
-# our legacy property
-on property:persist.sys.qc.sub.rdump.on=*
-   setprop persist.sys.ssr.enable_ramdumps ${persist.sys.qc.sub.rdump.on}
-
-# translate MMI property in order to keep the consistent with QCOM
-on property:ro.boot.dualsim=true
-   setprop persist.radio.multisim.config dsds
-   setprop ro.telephony.default_network 10,10
-
-on property:ro.boot.dualsim=false
-   setprop persist.radio.multisim.config ""
-   setprop ro.telephony.default_network 10
+service fingerprintd /system/bin/fingerprintd
+    class late_start
+    user system
+    group input
 
 service hw_revs /system/bin/hardware_revisions.sh
     class late_start
     user system
     group system
+    oneshot
+
+service mmi-boot-sh /init.mmi.boot.sh
+    seclabel u:r:mmi_boot:s0
+    class core
+    user root
     oneshot
 
 service mmi-laser-sh /init.mmi.laser.sh
@@ -328,16 +297,18 @@ service mmi-touch-sh /system/bin/init.mmi.touch.sh
     user root
     oneshot
 
+# Start Sensor daemon
+service motosh /system/bin/motosh boot
+    class late_start
+    user compass
+    group compass misc input
+    oneshot
+    seclabel u:r:sensor_hub:s0
+
 service thermal-com /system/vendor/bin/thermal-engine --minimode
     class main
     user root
     disabled
-
-service adspd /system/bin/adspd
-   class main
-   socket adspdsock stream 0660 system audio
-   user audio
-   group audio input diag
 
 # Set RPS Mask for Wifi Hotspot
 on property:sys.wifi.tethering=true
