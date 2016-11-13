@@ -26,13 +26,35 @@
 #
 
 # use init.mmi.usb.rc
-import init.target.rc
+import init.mmi.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
     chmod 0755 /sys/kernel/debug
+    mkdir /firmware 0771 system system
+    mkdir /system 0777 root root
+    symlink /data/tombstones /tombstones
+    mkdir /dsp 0771 media media
+
+on fs
+    wait /dev/block/bootdevice
+    mount_all fstab.qcom
+    write /proc/sys/vm/swappiness 100
+
+    # Keeping following partitions outside fstab file. As user may not have
+    # these partition flashed on the device. Failure to mount any partition in fstab file
+    # results in failure to launch late-start class.
+
+    wait /dev/block/bootdevice/by-name/persist
+    mkdir /persist/data 0700  system system
+    restorecon_recursive   /persist
+
+    wait /dev/block/bootdevice/by-name/dsp
+    restorecon_recursive   /dsp
 
 on init
+    write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
+
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
@@ -59,6 +81,21 @@ on early-boot
     exec u:r:qti_init_shell:s0 -- /init.qcom.early_boot.sh
 
 on boot
+    start rmt_storage
+    insmod /system/lib/modules/adsprpc.ko
+    # access permission for secure touch
+    chmod 0660 /sys/devices/soc/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch_enable
+    chmod 0440 /sys/devices/soc/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
+    chmod 0660 /sys/devices/soc/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch_enable
+    chmod 0440 /sys/devices/soc/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch
+    chown system drmrpc /sys/devices/soc/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch_enable
+    chown system drmrpc /sys/devices/soc/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
+    chown system drmrpc /sys/devices/soc/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch_enable
+    chown system drmrpc /sys/devices/soc/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch
+
+    write /sys/devices/soc/78b8000.i2c/i2c-4/4-0020/input/input0/fw_name PR1702898-s3528t_00260005_00380008.img
+    write /sys/devices/soc/78b8000.i2c/i2c-4/4-0020/input/input0/update_fw 1
+
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/type
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/state
@@ -216,6 +253,15 @@ on boot
 
 # msm specific files that need to be created on /data
 on post-fs-data
+    mkdir /tombstones/modem 0771 system system
+    mkdir /tombstones/lpass 0771 system system
+    mkdir /tombstones/wcnss 0771 system system
+    mkdir /tombstones/dsps 0771 system system
+    mkdir /persist/data/sfs 0700 system system
+    mkdir /persist/data/tz 0700 system system
+    mkdir /data/misc/dts 0770 media audio
+    mkdir /data/misc/hbtp 0750 system system
+
     #Create directories for Fingerprint
     mkdir /data/misc/stargate 0770 system system
     mkdir /data/misc/stargate/bg_estimation 0770 system system
@@ -384,11 +430,41 @@ service charger /charger
     group log
     seclabel u:r:healthd:s0
 
+# Allow usb charging to be disabled peristently
+on property:persist.usb.chgdisabled=1
+    write /sys/class/power_supply/battery/charging_enabled 0
+
+on property:persist.usb.chgdisabled=0
+    write /sys/class/power_supply/battery/charging_enabled 1
+
 service perfd /system/vendor/bin/perfd
    class main
    user root
    disabled
    socket perfd seqpacket 0666 root system
+
+service qseecomd /system/bin/qseecomd
+   class core
+   user root
+   group root
+
+service thermal-engine /system/vendor/bin/thermal-engine
+   class main
+   user root
+   socket thermal-send-client stream 0666 system system
+   socket thermal-recv-client stream 0660 system system
+   socket thermal-recv-passive-client stream 0666 system system
+   group root
+
+service time_daemon /system/bin/time_daemon
+   class late_start
+   user root
+   group root
+
+service audiod /system/bin/audiod
+   class late_start
+   user system
+   group system
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
@@ -416,6 +492,12 @@ on property:vold.decrypt=trigger_restart_framework
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
 
+#start camera server as daemon
+service qcamerasvr /system/bin/mm-qcamera-daemon
+    class late_start
+    user camera
+    group camera system inet input graphics
+
 service cnd /system/bin/cnd
     class main
     socket cnd stream 660 root inet
@@ -423,6 +505,17 @@ service cnd /system/bin/cnd
 service dpmd /system/bin/dpmd
     class late_start
     socket dpmd stream 660 root system
+
+service wcnss-service /system/bin/wcnss_service
+    class main
+    user system
+    group system wifi radio
+    oneshot
+
+service adsprpcd /system/bin/adsprpcd
+    class main
+    user media
+    group media
 
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
     class core
@@ -436,6 +529,23 @@ service rmt_storage /system/bin/rmt_storage
 service tftp_server /system/bin/tftp_server
    class core
    user root
+
+service per_mgr /system/bin/pm-service
+    class core
+    user system
+    group system net_raw
+
+service per_proxy /system/bin/pm-proxy
+    class core
+    user system
+    group system
+    disabled
+
+on property:init.svc.per_mgr=running
+    start per_proxy
+
+on property:sys.shutdown.requested=*
+    stop per_proxy
 
 service config_bt_addr /system/bin/btnvtool -O
     class core
@@ -633,6 +743,13 @@ service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqb
     group root
 
 on charger
+    wait /dev/block/bootdevice/by-name/system
+    mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
+    load_all_props
+    setprop sys.usb.configfs 0
+    setprop persist.sys.usb.config mass_storage
+    start qcom-post-boot
+    setprop persist.sys.usb.config mass_storage
     setprop persist.sys.usb.config charging
 
 on property:sys.boot_completed=1
