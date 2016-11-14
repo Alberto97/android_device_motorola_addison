@@ -1,2 +1,5 @@
 # FSG
 type fsg_file, fs_type, contextmount_type;
+
+# sysfs
+type sysfs_homebutton, fs_type, sysfs_type;

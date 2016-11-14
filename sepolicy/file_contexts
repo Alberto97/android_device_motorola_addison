@@ -4,6 +4,9 @@
 /dev/block/mmcblk0                                                  u:object_r:root_block_device:s0
 /dev/block/mmcblk0rpmb                                              u:object_r:rpmb_device:s0
 
+# CMActions
+/sys/homebutton/enable                                              u:object_r:sysfs_homebutton:s0
+
 #Using soc instead of soc.0 for 3.18 kernel
 /dev/block/platform/soc/7824900.sdhci/by-name/fsg                   u:object_r:modem_efs_partition_device:s0
 /dev/block/platform/soc/7824900.sdhci/by-name/fsc                   u:object_r:modem_efs_partition_device:s0
