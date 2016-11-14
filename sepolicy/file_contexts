@@ -2,6 +2,9 @@
 /system/bin/init\.mmi\.touch\.sh                         u:object_r:mmi_touch_sh_exec:s0
 /system/bin/motosh                                       u:object_r:sensor_hub_exec:s0
 
+# CMActions
+/sys/homebutton/enable                                   u:object_r:sysfs_homebutton:s0
+
 # Fingerprint
 /data/.fps(/.*)?                                         u:object_r:fingerprintd_data_file:s0
 /data/fpc                                                u:object_r:fingerprintd_data_file:s0

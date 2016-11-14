@@ -189,6 +189,9 @@ on boot
     # bond0 used by FST Manager
     chown wifi wifi /sys/class/net/bond0/bonding/queue_id
 
+    # FPC home button permissions
+    chown system system /sys/homebutton/enable
+
     # Display
     chown system graphics /sys/class/graphics/fb1/hpd
     chmod 0664 /sys/class/graphics/fb1/hpd
