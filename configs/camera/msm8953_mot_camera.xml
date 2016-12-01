@@ -110,31 +110,6 @@ LensInfo : Information of the lens present in the module.
     </LensInfo>
   </CameraModuleConfig>
   <CameraModuleConfig>
-    <CameraId>1</CameraId>
-    <SensorName>mot_imx362</SensorName>
-    <ActuatorName>mot_lc898212xd</ActuatorName>
-    <EepromName>ov16860</EepromName>
-    <FlashName>sky81298</FlashName>
-    <ChromatixName>mot_imx362_chromatix</ChromatixName>
-    <ModesSupported>1</ModesSupported>
-    <Position>BACK</Position>
-    <MountAngle>360</MountAngle>
-    <CSIInfo>
-      <CSIDCore>1</CSIDCore>
-      <LaneMask>0x1F</LaneMask>
-      <LaneAssign>0x4320</LaneAssign>
-      <ComboMode>0</ComboMode>
-    </CSIInfo>
-    <LensInfo>
-      <FocalLength>4.43</FocalLength>
-      <FNumber>2.0</FNumber>
-      <TotalFocusDistance>1.9</TotalFocusDistance>
-      <HorizontalViewAngle>60.0</HorizontalViewAngle>
-      <VerticalViewAngle>45.0</VerticalViewAngle>
-      <MinFocusDistance>0.1</MinFocusDistance>
-    </LensInfo>
-  </CameraModuleConfig>
-  <CameraModuleConfig>
     <CameraId>2</CameraId>
     <SensorName>ov5693</SensorName>
     <FlashName>sky81298</FlashName>

@@ -146,8 +146,6 @@ vendor/lib/libmmcamera_isp_sub_module.so
 vendor/lib/libmmcamera_isp_template.so
 vendor/lib/libmmcamera_isp_wb40.so
 vendor/lib/libmmcamera_llvd.so
-vendor/lib/libmmcamera_mot_imx362.so
-vendor/lib/libmmcamera_mot_imx362_pdaf.so
 vendor/lib/libmmcamera_optizoom_lib.so
 vendor/lib/libmmcamera_ov5693.so
 vendor/lib/libmmcamera_ov5693_eeprom.so
@@ -181,34 +179,6 @@ vendor/lib/libtrueportrait.so
 vendor/lib/libubifocus.so
 
 # Chromatix
-vendor/lib/libchromatix_mot_imx362_4k_preview_3a.so
-vendor/lib/libchromatix_mot_imx362_4k_video_3a.so
-vendor/lib/libchromatix_mot_imx362_1080p_preview_3a.so
-vendor/lib/libchromatix_mot_imx362_1080p_video_3a.so
-vendor/lib/libchromatix_mot_imx362_common.so
-vendor/lib/libchromatix_mot_imx362_cpp_hfr_60.so
-vendor/lib/libchromatix_mot_imx362_cpp_hfr_120.so
-vendor/lib/libchromatix_mot_imx362_cpp_hfr_240.so
-vendor/lib/libchromatix_mot_imx362_cpp_liveshot.so
-vendor/lib/libchromatix_mot_imx362_cpp_preview.so
-vendor/lib/libchromatix_mot_imx362_cpp_snapshot.so
-vendor/lib/libchromatix_mot_imx362_cpp_video.so
-vendor/lib/libchromatix_mot_imx362_cpp_video_4k.so
-vendor/lib/libchromatix_mot_imx362_default_preview_3a.so
-vendor/lib/libchromatix_mot_imx362_default_video.so
-vendor/lib/libchromatix_mot_imx362_default_video_3a.so
-vendor/lib/libchromatix_mot_imx362_fullsize_preview_3a.so
-vendor/lib/libchromatix_mot_imx362_fullsize_video_3a.so
-vendor/lib/libchromatix_mot_imx362_hfr_60.so
-vendor/lib/libchromatix_mot_imx362_hfr_60_3a.so
-vendor/lib/libchromatix_mot_imx362_hfr_120.so
-vendor/lib/libchromatix_mot_imx362_hfr_120_3a.so
-vendor/lib/libchromatix_mot_imx362_hfr_240.so
-vendor/lib/libchromatix_mot_imx362_hfr_240_3a.so
-vendor/lib/libchromatix_mot_imx362_postproc.so
-vendor/lib/libchromatix_mot_imx362_preview.so
-vendor/lib/libchromatix_mot_imx362_snapshot.so
-vendor/lib/libchromatix_mot_imx362_video_4k.so
 vendor/lib/libchromatix_ov5693_common.so
 vendor/lib/libchromatix_ov5693_cpp_hfr_120.so
 vendor/lib/libchromatix_ov5693_cpp_liveshot.so
