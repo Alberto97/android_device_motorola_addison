@@ -209,6 +209,9 @@ on boot
     chown system graphics /sys/class/graphics/fb0/msm_cmd_autorefresh_en
     chmod 0664 /sys/class/graphics/fb0/msm_cmd_autorefresh_en
 
+    # Wifi firmware reload path
+    chown wifi wifi /sys/module/wlan/parameters/fwpath
+
     setprop debug.gralloc.enable_fb_ubwc 1
     setprop debug.gralloc.gfx_ubwc_disable 0
 
