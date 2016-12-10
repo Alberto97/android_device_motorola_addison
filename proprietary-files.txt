@@ -326,6 +326,12 @@ bin/hardware_revisions.sh
 # NFC
 vendor/firmware/libpn548ad_fw.so
 
+# IMS
+-app/ims/ims.apk|b1b447084e2ef77ac300f63fee2b0640
+etc/permissions/ims.xml|c758509018b2052f13879b64aa1725ad
+vendor/lib/libimscamera_jni.so|49d2222def623bc2af35faf1eaf69b4e
+vendor/lib/libimsmedia_jni.so|66a9e4c64302704eb3d369cc0df0d859
+
 # IPA
 bin/ipacm-diag
 
