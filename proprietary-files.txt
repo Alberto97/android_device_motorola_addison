@@ -61,7 +61,7 @@ lib/libarcsoft_beautyshot.so
 lib/libcamerabgproc-jni.so
 lib/libcamerabgprocservice.so
 lib/libjscore.so
-lib/libjustshoot.so
+lib/libjustshoot.so|82f40e10c1783606b89e92742496eb5c
 lib/libmm-qcamera.so
 lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
@@ -235,7 +235,7 @@ vendor/lib/libscalar.so
 
 # DRM
 bin/qseecomd
-vendor/lib/mediadrm/libwvdrmengine.so
+vendor/lib/mediadrm/libwvdrmengine.so|989f57a18f247a55d4780802062b5955
 vendor/lib/libcppf.so
 vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
