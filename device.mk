@@ -134,6 +134,10 @@ PRODUCT_PACKAGES += \
 #PRODUCT_PACKAGES += \
 #    gps.msm8916
 
+# IMS
+PRODUCT_PACKAGES += \
+    libshim_ims
+
 # IPA Manager
 PRODUCT_PACKAGES += \
     ipacm \
