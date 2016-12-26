@@ -438,9 +438,7 @@ etc/firmware/synaptics-s3508-16080201-246de6-addison.tdat
 etc/firmware/synaptics-s3508sga-16080201-246de6-addison.tdat
 
 # Vendor extension
-bin/msm_irqbalance
 vendor/bin/perfd
-vendor/etc/msm_irqbalance.conf
 vendor/lib/libqti-iop-client.so
 vendor/lib/libqti-perfd-client.so
 
