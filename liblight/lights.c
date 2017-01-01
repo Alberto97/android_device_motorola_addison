@@ -30,7 +30,7 @@
 /******************************************************************************/
 
 
-#define LED_LIGHT_ON  2
+#define LED_LIGHT_ON  3
 #define LED_LIGHT_OFF 0
 
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
