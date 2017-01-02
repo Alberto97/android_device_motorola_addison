@@ -26,9 +26,6 @@ etc/acdbdata/Handset_cal.acdb
 etc/acdbdata/Hdmi_cal.acdb
 etc/acdbdata/Headset_cal.acdb
 etc/acdbdata/Speaker_cal.acdb
-lib/hw/audio.motvr.default.so
-lib/libmotaudioutils.so
-lib/libunshorten.so
 vendor/lib/soundfx/libqcbassboost.so
 vendor/lib/soundfx/libqcreverb.so
 vendor/lib/soundfx/libqcvirt.so
@@ -38,14 +35,12 @@ vendor/lib/libacdbmapper.so
 vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libaudcal.so
-vendor/lib/libqct_resampler.so
 vendor/lib/libvoice-svc.so
 
 # Audio firmware
 etc/firmware/marley-dsp1-ultrasound.wmfw
 etc/firmware/marley-dsp2-aov-frontend.wmfw
 etc/firmware/marley-dsp3-aov-control.wmfw
-etc/firmware/vrgain.bin
 
 # Bluetooth
 bin/btnvtool
@@ -172,8 +167,6 @@ vendor/lib/libmot_gpu_mapper.so
 vendor/lib/liboptizoom.so
 vendor/lib/libqomx_jpegdec.so
 vendor/lib/libqomx_jpegenc.so
-vendor/lib/libscve.so
-vendor/lib/libscve_mv.so
 vendor/lib/libseemore.so
 vendor/lib/libtrueportrait.so
 vendor/lib/libubifocus.so
@@ -226,9 +219,11 @@ etc/firmware/cpp_firmware_v1_5_2.fw
 etc/firmware/cpp_firmware_v1_6_0.fw
 etc/firmware/cpp_firmware_v1_8_0.fw
 etc/firmware/cpp_firmware_v1_10_0.fw
+etc/firmware/cpp_firmware_v1_12_0.fw
 
 # Display
 etc/qdcm_calib_data_mipi_mot_cmd_smd_1080p_549.xml
+vendor/lib/libdisp-aba.so
 vendor/lib/libmm-disp-apis.so
 vendor/lib/libmm-qdcm.so
 vendor/lib/libscalar.so
@@ -262,11 +257,14 @@ etc/flp.conf
 etc/gps.conf
 etc/sap.conf
 lib/hw/gps.default.so
+lib/libgnsspps.so
 lib/libgps.utils.so
 lib/libloc_api_v02.so
 lib/libloc_core.so
 lib/libloc_ds_api.so
 lib/libloc_eng.so
+lib/libloc_pla.so
+lib/libloc_stub.so
 vendor/lib/hw/flp.default.so
 vendor/lib/libflp.so
 vendor/lib/libgeofence.so
@@ -281,6 +279,7 @@ vendor/lib/egl/libGLESv2_adreno.so
 vendor/lib/egl/libq3dtools_adreno.so
 vendor/lib/egl/libq3dtools_esx.so
 vendor/lib/egl/libQTapGLES.so
+vendor/lib/hw/vulkan.msm8953.so
 vendor/lib/libadreno_utils.so
 vendor/lib/libbccQTI.so
 vendor/lib/libc2d30-a5xx.so
@@ -290,11 +289,34 @@ vendor/lib/libCB.so
 vendor/lib/libgsl.so
 vendor/lib/libllvm-glnext.so
 vendor/lib/libllvm-qcom.so
+vendor/lib/libllvm-qgl.so
 vendor/lib/libOpenCL.so
 vendor/lib/librs_adreno_sha1.so
 vendor/lib/librs_adreno.so
 vendor/lib/libRSDriver_adreno.so
 vendor/lib/libscale.so
+vendor/lib/libscveBlobDescriptor.so
+vendor/lib/libscveBlobDescriptor_stub.so
+vendor/lib/libscveCleverCapture.so
+vendor/lib/libscveCleverCapture_stub.so
+vendor/lib/libscveCommon.so
+vendor/lib/libscveCommon_stub.so
+vendor/lib/libscveFaceRecognition.so
+vendor/lib/libscveImageCloning.so
+vendor/lib/libscveImageCorrection.so
+vendor/lib/libscveImageRemoval.so
+vendor/lib/libscveMotionVector.so
+vendor/lib/libscveObjectMatting.so
+vendor/lib/libscveObjectMatting_stub.so
+vendor/lib/libscveObjectSegmentation.so
+vendor/lib/libscveObjectSegmentation_stub.so
+vendor/lib/libscveObjectTracker.so
+vendor/lib/libscveObjectTracker_stub.so
+vendor/lib/libscvePanorama.so
+vendor/lib/libscvePanorama_lite.so
+vendor/lib/libscveTextReco.so
+vendor/lib/libscveTextRecoPostProcessing.so
+vendor/lib/libscveTextReco_stub.so
 
 # Graphics firmware
 etc/firmware/a530_gpmu.fw2
@@ -352,6 +374,7 @@ vendor/lib/libqmi_client_helper.so
 vendor/lib/libqmi_client_qmux.so
 vendor/lib/libqmi_common_so.so
 vendor/lib/libqmi_csi.so
+vendor/lib/libqmi_csvt_srvc.so
 vendor/lib/libqmi_encdec.so
 vendor/lib/libqmiservices.so
 vendor/lib/libsmemlog.so
@@ -382,9 +405,12 @@ vendor/lib/libmdmdetect.so
 vendor/lib/libnetmgr.so
 vendor/lib/libperipheral_client.so
 vendor/lib/libqcmaputils.so
+vendor/lib/libril-qc-ltedirectdisc.so
 vendor/lib/libril-qc-qmi-1.so
 vendor/lib/libril-qc-radioconfig.so
 vendor/lib/libril-qcril-hook-oem.so
+vendor/lib/librilqmiservices.so
+vendor/lib/libsettings.so
 vendor/lib/libsystem_health_mon.so
 vendor/lib/libsubsystem_control.so
 vendor/lib/libSubSystemShutdown.so
@@ -393,18 +419,17 @@ vendor/lib/libxml.so
 # CNE
 -priv-app/CNEService/CNEService.apk
 bin/cnd
-etc/cne/wqeclient/profile1.xml
-etc/cne/wqeclient/profile2.xml
-etc/cne/wqeclient/profile3.xml
-etc/cne/wqeclient/profile5.xml
+etc/cne/wqeclient/ROW/ROW_profile1.xml
+etc/cne/wqeclient/ROW/ROW_profile2.xml
+etc/cne/wqeclient/ROW/ROW_profile3.xml
+etc/cne/wqeclient/ROW/ROW_profile4.xml
+etc/cne/wqeclient/ROW/ROW_profile5.xml
 etc/cne/andsfCne.xml
 etc/cne/SwimConfig.xml
 etc/permissions/cneapiclient.xml
 vendor/lib/libcne.so
 vendor/lib/libcneapiclient.so
-vendor/lib/libcneconn.so
 vendor/lib/libcneqmiutils.so
-vendor/lib/libNimsWrap.so
 vendor/lib/libvendorconn.so
 vendor/lib/libwms.so
 vendor/lib/libwqe.so
@@ -417,8 +442,6 @@ lib/hw/sensors.msm8953.so
 lib/libiio.so
 lib/libsensorhub.so
 lib/libsensorhubservice_jni.so
-vendor/lib/hw/activity_recognition.msm8953.so
-vendor/lib/libdisp-aba.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
 
@@ -434,13 +457,15 @@ vendor/lib/libtime_genoff.so
 vendor/lib/libTimeService.so
 
 # Touchscreen
-etc/firmware/synaptics-s3508-16080201-246de6-addison.tdat
-etc/firmware/synaptics-s3508sga-16080201-246de6-addison.tdat
+etc/firmware/synaptics-s3508-16082601-255c40-addison.tdat
+etc/firmware/synaptics-s3508sga-16082601-255c40-addison.tdat
 
 # Vendor extension
 vendor/bin/perfd
+vendor/lib/libqti-iop.so
 vendor/lib/libqti-iop-client.so
 vendor/lib/libqti-perfd-client.so
+vendor/lib/libqti_performance.so
 
 # WCNSS
 etc/wifi/WCNSS_qcom_wlan_nv.bin:etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
