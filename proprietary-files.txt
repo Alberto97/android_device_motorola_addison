@@ -222,11 +222,20 @@ etc/firmware/cpp_firmware_v1_10_0.fw
 etc/firmware/cpp_firmware_v1_12_0.fw
 
 # Display
+-framework/com.qti.snapdragon.sdk.display.jar
+-vendor/app/colorservice/colorservice.apk
+etc/permissions/com.qti.snapdragon.sdk.display.xml
 etc/qdcm_calib_data_mipi_mot_cmd_smd_1080p_549.xml
+vendor/bin/mm-pp-dpps
 vendor/lib/libdisp-aba.so
 vendor/lib/libmm-disp-apis.so
 vendor/lib/libmm-qdcm.so
 vendor/lib/libscalar.so
+vendor/lib/libsdm-color.so
+vendor/lib/libsdm-diag.so
+vendor/lib/libsdm-disp-apis.so
+vendor/lib/libsdmextension.so
+vendor/lib/libsd_sdk_display.so
 
 # DRM
 bin/qseecomd
