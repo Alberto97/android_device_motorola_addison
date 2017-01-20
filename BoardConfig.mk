@@ -34,6 +34,9 @@ TARGET_BOARD_PLATFORM := msm8953
 TARGET_BOOTLOADER_BOARD_NAME := MSM8953
 TARGET_NO_BOOTLOADER := true
 
+#TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/boot.img-zImage
+#TARGET_PREBUILT_DTB := $(DEVICE_PATH)/boot.img-dt
+
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci vmalloc=350M androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_SEPARATED_DT := true
