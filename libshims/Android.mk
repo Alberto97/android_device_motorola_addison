@@ -1,5 +1,6 @@
-
+#
 # Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,10 +18,7 @@ LOCAL_PATH := $(call my-dir)
 
 # Camera
 include $(CLEAR_VARS)
-LOCAL_SRC_FILES := \
-    GraphicBuffer.cpp \
-    moto_camera_misc.c
-
+LOCAL_SRC_FILES := GraphicBuffer.cpp
 LOCAL_SHARED_LIBRARIES := libui
 LOCAL_MODULE := libshim_camera
 LOCAL_MODULE_TAGS := optional
