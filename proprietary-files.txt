@@ -53,10 +53,10 @@ lib/hw/camera.msm8953.so
 lib/hw/camera.rc.so
 lib/libadvalgcore.so
 lib/libarcsoft_beautyshot.so
-lib/libcamerabgproc-jni.so
 lib/libcamerabgprocservice.so
+lib/libfamily_photo.so
 lib/libjscore.so
-lib/libjustshoot.so|82f40e10c1783606b89e92742496eb5c
+lib/libjustshoot.so
 lib/libmm-qcamera.so
 lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
@@ -71,8 +71,8 @@ lib/lib_mottof.so
 lib/libmorpho_image_stabilizer4.so
 lib/libmpbase.so
 lib/libqomx_core.so
-lib/libzxingcpp.so
 vendor/lib/libactuator_mot_lc898212xd.so
+vendor/lib/libcamerabgproc-jni.so
 vendor/lib/libchromaflash.so
 vendor/lib/libfastcvopt.so
 vendor/lib/libflash_pmic.so
@@ -96,6 +96,7 @@ vendor/lib/libmmcamera2_q3a_core.so
 vendor/lib/libmmcamera2_sensor_modules.so
 vendor/lib/libmmcamera2_stats_algorithm.so
 vendor/lib/libmmcamera2_stats_modules.so
+vendor/lib/libmmcamera_cac3_lib.so
 vendor/lib/libmmcamera_chromaflash_lib.so
 vendor/lib/libmmcamera_dbg.so
 vendor/lib/libmmcamera_dcrf_lib.so
@@ -103,6 +104,7 @@ vendor/lib/libmmcamera_dummyalgo.so
 vendor/lib/libmmcamera_eebinparse.so
 vendor/lib/libmmcamera_eeprom_util.so
 vendor/lib/libmmcamera_eztune_module.so
+vendor/lib/libmmcamera_facedetection_lib.so
 vendor/lib/libmmcamera_faceproc.so
 vendor/lib/libmmcamera_hdr_gb_lib.so
 vendor/lib/libmmcamera_imglib.so
@@ -148,11 +150,13 @@ vendor/lib/libmmcamera_ov16860.so
 vendor/lib/libmmcamera_ov16860_eeprom.so
 vendor/lib/libmmcamera_ov16860_pdaf.so
 vendor/lib/libmmcamera_ovpdaf.so
+vendor/lib/libmmcamera_paaf_lib.so
 vendor/lib/libmmcamera_pdaf.so
 vendor/lib/libmmcamera_pdafcamif.so
 vendor/lib/libmmcamera_ppbase_module.so
+vendor/lib/libmmcamera_ppeiscore.so
 vendor/lib/libmmcamera_stillmore_lib.so
-vendor/lib/libmmcamera_sw_tnr.so
+vendor/lib/libmmcamera_sw2d_lib.so
 vendor/lib/libmmcamera_thread_services.so
 vendor/lib/libmmcamera_tintless_algo.so
 vendor/lib/libmmcamera_tintless_bg_pca_algo.so
@@ -162,12 +166,17 @@ vendor/lib/libmmcamera_vstab_module.so
 vendor/lib/libmmjpeg.so
 vendor/lib/libmmqjpeg_codec.so
 vendor/lib/libmmqjpegdma.so
+vendor/lib/libmmsw_detail_enhancement.so
+vendor/lib/libmmsw_math.so
+vendor/lib/libmmsw_opencl.so
+vendor/lib/libmmsw_platform.so
 vendor/lib/libmotocalibration.so
 vendor/lib/libmot_gpu_mapper.so
 vendor/lib/liboptizoom.so
 vendor/lib/libqomx_jpegdec.so
 vendor/lib/libqomx_jpegenc.so
-vendor/lib/libseemore.so
+vendor/lib/libts_detected_face_hal.so
+vendor/lib/libts_face_beautify_hal.so
 vendor/lib/libtrueportrait.so
 vendor/lib/libubifocus.so
 
