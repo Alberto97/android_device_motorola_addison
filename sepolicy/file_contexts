@@ -1,4 +1,5 @@
 # Binaries
+/(vendor|system/vendor)/bin/hw/android\.hardware\.vibrator@1\.0-service.marlin          u:object_r:hal_vibrator_default_exec:s0
 /(vendor|system/vendor)/bin/hw/motorola\.hardware\.camera\.provider@2\.4-service        u:object_r:hal_camera_default_exec:s0
 /(vendor|system/vendor)/bin/hw/motorola\.hardware\.mods_camera\.provider@2\.4-service   u:object_r:hal_camera_default_exec:s0
 /(vendor|system/vendor)/bin/init\.mmi\.boot\.sh                                         u:object_r:mmi_boot_exec:s0
@@ -36,6 +37,9 @@
 # Sockets
 /dev/socket/adspdsock                                    u:object_r:adspd_socket:s0
 /dev/socket/cutback                                      u:object_r:cutback_socket:s0
+
+# Vibrator
+/sys/devices/virtual/timed_output/vibrator/voltage_level u:object_r:sysfs_vibrator:s0
 
 # WCNSS
 /sys/module/wcnsscore/parameters(/.*)?                   u:object_r:sysfs_wcnsscore:s0
