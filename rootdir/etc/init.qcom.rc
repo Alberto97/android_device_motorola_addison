@@ -618,6 +618,7 @@ on charger
     load_all_props
     setprop sys.usb.configfs 0
     setprop persist.sys.usb.config mass_storage
+    write /sys/class/leds/white/trigger "battery-full"
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
