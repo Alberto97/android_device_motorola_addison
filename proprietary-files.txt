@@ -26,9 +26,6 @@ etc/acdbdata/Handset_cal.acdb
 etc/acdbdata/Hdmi_cal.acdb
 etc/acdbdata/Headset_cal.acdb
 etc/acdbdata/Speaker_cal.acdb
-vendor/lib/soundfx/libqcbassboost.so
-vendor/lib/soundfx/libqcreverb.so
-vendor/lib/soundfx/libqcvirt.so
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbmapper.so
@@ -79,8 +76,6 @@ vendor/lib/libflash_pmic.so
 vendor/lib/libflash_sky81298.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegehw.so
-vendor/lib/libllvd_smore.so
-vendor/lib/libllvd_sw_tnr.so
 vendor/lib/libmmcamera2_c2d_module.so
 vendor/lib/libmmcamera2_cpp_module.so
 vendor/lib/libmmcamera2_dcrf.so
@@ -175,6 +170,7 @@ vendor/lib/libmot_gpu_mapper.so
 vendor/lib/liboptizoom.so
 vendor/lib/libqomx_jpegdec.so
 vendor/lib/libqomx_jpegenc.so
+vendor/lib/libseemore.so
 vendor/lib/libts_detected_face_hal.so
 vendor/lib/libts_face_beautify_hal.so
 vendor/lib/libtrueportrait.so
@@ -228,7 +224,6 @@ etc/firmware/cpp_firmware_v1_5_2.fw
 etc/firmware/cpp_firmware_v1_6_0.fw
 etc/firmware/cpp_firmware_v1_8_0.fw
 etc/firmware/cpp_firmware_v1_10_0.fw
-etc/firmware/cpp_firmware_v1_12_0.fw
 
 # Display
 -framework/com.qti.snapdragon.sdk.display.jar
@@ -248,7 +243,7 @@ vendor/lib/libsd_sdk_display.so
 
 # DRM
 bin/qseecomd
-vendor/lib/mediadrm/libwvdrmengine.so|989f57a18f247a55d4780802062b5955
+vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/libcppf.so
 vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
@@ -367,10 +362,10 @@ bin/hardware_revisions.sh
 vendor/firmware/libpn548ad_fw.so
 
 # IMS
--app/ims/ims.apk|b1b447084e2ef77ac300f63fee2b0640
-etc/permissions/ims.xml|c758509018b2052f13879b64aa1725ad
-vendor/lib/libimscamera_jni.so|49d2222def623bc2af35faf1eaf69b4e
-vendor/lib/libimsmedia_jni.so|66a9e4c64302704eb3d369cc0df0d859
+-app/ims/ims.apk|71d9036c5032398f79cf7ea1270a6071559b3db2
+etc/permissions/ims.xml
+vendor/lib/libimscamera_jni.so|12fbc57dafa17a5981463e3a893783344c72057e
+vendor/lib/libimsmedia_jni.so|0dad622081ac90fe91219c4e67eedf93be35bfaf
 
 # IPA
 bin/ipacm-diag
@@ -392,7 +387,6 @@ vendor/lib/libqmi_client_helper.so
 vendor/lib/libqmi_client_qmux.so
 vendor/lib/libqmi_common_so.so
 vendor/lib/libqmi_csi.so
-vendor/lib/libqmi_csvt_srvc.so
 vendor/lib/libqmi_encdec.so
 vendor/lib/libqmiservices.so
 vendor/lib/libsmemlog.so
@@ -411,7 +405,7 @@ etc/data/netmgr_config.xml
 etc/permissions/qcrilhook.xml
 -framework/qcrilhook.jar
 lib/libadropbox.so
-lib/libmdmcutback.so
+lib/libmdmcutback.so|e93c51738fa50ca63d0e67f86a02cf22ba8e1985
 lib/libmotext_inf.so
 lib/libqmimotext.so
 -lib/libril.so
@@ -440,7 +434,6 @@ bin/cnd
 etc/cne/wqeclient/ROW/ROW_profile1.xml
 etc/cne/wqeclient/ROW/ROW_profile2.xml
 etc/cne/wqeclient/ROW/ROW_profile3.xml
-etc/cne/wqeclient/ROW/ROW_profile4.xml
 etc/cne/wqeclient/ROW/ROW_profile5.xml
 etc/cne/andsfCne.xml
 etc/cne/SwimConfig.xml
@@ -456,12 +449,14 @@ vendor/lib/libwqe.so
 bin/motosh
 etc/firmware/sensorhubfw.bin
 lib/hw/sensorhub.msm8953.so
+lib/hw/sensors.addison.so
+lib/hw/sensors.iio.so
 lib/hw/sensors.msm8953.so
 lib/libiio.so
 lib/libsensorhub.so
-lib/libsensorhubservice_jni.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
+vendor/lib/libsensorhubservice_jni.so
 
 # Thermal
 vendor/bin/thermal-engine
