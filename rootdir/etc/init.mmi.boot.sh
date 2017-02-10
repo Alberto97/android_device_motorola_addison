@@ -17,6 +17,15 @@ start_copying_prebuilt_qcril_db()
     if [ -f /system/vendor/qcril.db -a ! -f /data/misc/radio/qcril.db ]; then
         cp /system/vendor/qcril.db /data/misc/radio/qcril.db
         chown -h radio.radio /data/misc/radio/qcril.db
+    else
+        # [MOTO] if qcril.db's owner is not radio (e.g. root),
+        # reset it for the recovery
+        qcril_db_owner=`stat -c %U /data/misc/radio/qcril.db`
+        echo "qcril.db's owner is $qcril_db_owner"
+        if [ $qcril_db_owner != "radio" ]; then
+            echo "reset owner to radio for qcril.db"
+            chown -h radio.radio /data/misc/radio/qcril.db
+        fi
     fi
 }
 

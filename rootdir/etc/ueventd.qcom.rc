@@ -121,13 +121,21 @@
 /dev/mhi_pipe_14          0640   radio      radio
 /dev/mhi_pipe_16          0640   radio      radio
 /dev/mhi_pipe_32          0640   radio      radio
+/dev/at_usb0              0640   radio      radio
+/dev/at_mdm0              0640   radio      radio
 /dev/video*               0660   system     camera
 /dev/v4l2-hal-ctrl        0660   system     camera
 /dev/media*               0660   system     camera
 /dev/v4l-subdev*          0660   system     camera
 /dev/qseecom              0660   system     drmrpc
+/dev/qsee_ipc_irq_spss    0660   system     drmrpc
 /dev/seemplog             0660   system     system
 /dev/pft                  0660   system     drmrpc
+/dev/spcom                0660   system     system
+/dev/sp_kernel            0660   system     system
+/dev/sp_ssr               0660   system     system
+/dev/sp_keymaster         0660   system     system
+/dev/cryptoapp            0660   system     system
 /dev/gemini0              0660   system     camera
 /dev/jpeg0                0660   system     camera
 /dev/jpeg1                0660   system     camera
@@ -152,6 +160,7 @@
 /dev/hw_random            0600   root       root
 
 #permissions for audio
+/dev/wcd-dsp-glink        0660   system     audio
 /dev/audio_slimslave      0660   system     audio
 /dev/msm_qcelp            0660   system     audio
 /dev/msm_evrc             0660   system     audio
@@ -238,6 +247,12 @@
 /sys/devices/soc/78b7000.i2c/i2c-3/3-0038/input/input*    secure_touch_enable  0660   system  drmrpc
 /sys/devices/soc/78b7000.i2c/i2c-3/3-004b/input/input*    secure_touch         0440   system  drmrpc
 /sys/devices/soc/78b7000.i2c/i2c-3/3-004b/input/input*    secure_touch_enable  0660   system  drmrpc
+/sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input*    secure_touch         0440   system  drmrpc
+/sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input*    secure_touch_enable  0660   system  drmrpc
+
+# laser sensor access
+/sys/devices/virtual/input/input*                   enable_ps_sensor 0660  system   system
+/sys/devices/virtual/input/input*                   set_delay_ms     0660  system   system
 
 # vm_bms
 /dev/vm_bms               0660   system     system
@@ -264,6 +279,14 @@
 # SSR devices
 /dev/subsys_*         0640   system     system
 
+# Add device block for FRP
+/dev/block/platform/soc/7464900.sdhci/by-name/frp       0600   system     system
+/dev/block/platform/soc/624000.ufshc/by-name/frp        0600   system     system
+/dev/block/bootdevice/by-name/frp 0600 system system
+
+# Ultrasound device
+/dev/usf1                 0660   system     system
+
 # Ramdump devices
 /dev/ramdump*             0640   system     system
 
@@ -277,17 +300,15 @@
 # Add device block for FRP
 /dev/block/bootdevice/by-name/frp 0600 system system
 
-#DTV
-/dev/isdbt                 0660 mot_dtv  mot_dtv
-
 # I2C
-/dev/i2c-*                0660   root       system
+/dev/i2c-*                0660   system     system
 
 #JOT fixture devices for AMPS factory testing
 /dev/hidraw0              0660   root       mot_tcmd
 /dev/hidraw1              0660   root       mot_tcmd
 
 # MOD device
+/sys/devices/soc/75b5000.i2c/i2c-7/7-0072 irq_enable 0660 mot_tcmd mot_tcmd
 /sys/devices/soc/0.apba_ctrl apba_enable 0660 mot_tcmd mot_mod
 /sys/devices/soc/0.apba_ctrl apba_mode 0660 mot_tcmd mot_mod
 /sys/devices/soc/0.apba_ctrl flash_partition 0220 mot_tcmd mot_mod
@@ -300,6 +321,7 @@
 /sys/devices/soc/soc:muc_svc@0/mods_interfaces/* hotplug 0660 root mot_mod
 /sys/devices/soc/soc:muc_svc@0/mods_interfaces/* uevent 0660 root mot_mod
 /sys/devices/soc/soc:muc_svc@0/mods_interfaces/* current_limit 0220 root mot_mod
+/sys/devices/soc/soc:muc_svc@0/mods_interfaces/* rtc_sync 0220 root mot_mod
 /sys/devices/soc/soc:muc_svc@0 flashmode 0660 root mot_mod
 /sys/devices/soc/soc:muc_svc@0 reset 0660 root mot_mod
 /sys/devices/soc/0.muc/0.muc:muc_svc@0/mods_interfaces/* hotplug 0660 root mot_mod
@@ -324,8 +346,14 @@
 /sys/devices/platform/mods_codec.0/* uevent 0660 root mot_mod
 
 # MOD camera device
+/dev/mot_camera_ext*               0660   system     camera
+/sys/devices/virtual/video4linux/mot_camera_ext* open_mode 0660 system camera
+/sys/devices/virtual/video4linux/mot_camera_ext* uevent 0660 root mot_mod
 /sys/devices/virtual/video4linux/video* open_mode 0660 system camera
 /sys/devices/virtual/video4linux/video* uevent 0660 root mot_mod
 
 # Laser device
 /dev/laser                 0660   system     camera
+
+#DTV
+/dev/isdbt                 0660 mot_dtv  mot_dtv

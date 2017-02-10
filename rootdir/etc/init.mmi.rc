@@ -203,6 +203,8 @@ on boot
    chown system mot_tcmd /sys/bus/spi/devices/spi8.0/clk_enable
    chown system mot_tcmd /sys/bus/spi/devices/spi8.0/dev_enable
    chown system mot_tcmd /sys/bus/spi/devices/spi8.0/irq
+   chown system mot_tcmd /sys/bus/spi/devices/spi8.0/irq_cnt
+   chmod 0440 /sys/bus/spi/devices/spi8.0/irq_cnt
 
    # STML4 driver parameter permissions
    chown root mot_tcmd /sys/module/motosh/parameters/irq_disable
