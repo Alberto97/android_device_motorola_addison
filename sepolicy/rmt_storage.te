@@ -1,1 +1,2 @@
 allow rmt_storage fsg_file:file { read open };
+allow rmt_storage self:capability dac_override;
