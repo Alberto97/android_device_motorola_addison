@@ -17,9 +17,6 @@ vendor/lib/rfsa/adsp/libscveCleverCapture_skel.so
 vendor/lib/rfsa/adsp/libscveObjectSegmentation_skel.so
 vendor/lib/rfsa/adsp/libscveT2T_skel.so
 vendor/lib/rfsa/adsp/libscveTextReco_skel.so
-vendor/lib/soundfx/libqcbassboost.so|77278c543ea66dbb25d9eaeda146fc569cbfa409
-vendor/lib/soundfx/libqcreverb.so|8d6e828606e388b3921048ad8466f27d8473dba4
-vendor/lib/soundfx/libqcvirt.so|1ec285952df680bd1ab73c9d7b74120640ed0158
 
 # Audio
 etc/acdbdata/Bluetooth_cal.acdb
@@ -36,6 +33,9 @@ vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libaudcal.so
 vendor/lib/libvoice-svc.so
+vendor/lib/soundfx/libqcbassboost.so|77278c543ea66dbb25d9eaeda146fc569cbfa409
+vendor/lib/soundfx/libqcreverb.so|8d6e828606e388b3921048ad8466f27d8473dba4
+vendor/lib/soundfx/libqcvirt.so|1ec285952df680bd1ab73c9d7b74120640ed0158
 
 # Audio firmware
 etc/firmware/marley-dsp1-ultrasound.wmfw
@@ -57,18 +57,18 @@ lib/libcamerabgprocservice.so
 lib/libfamily_photo.so
 lib/libjscore.so
 lib/libjustshoot.so
-lib/libmm-qcamera.so
+lib/libmbs.so
 lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
-lib/libmbs.so
+lib/libmm-qcamera.so
 lib/libmodmanager.so
+lib/libmorpho_image_stabilizer4.so
 lib/libmot_afd.so
+lib/libmotimager_utils.so
 lib/libmot_lux_standardization.so
 lib/libmot-qc-fd-offline.so
-lib/libmotimager_utils.so
 lib/lib_motsensorlistener.so
 lib/lib_mottof.so
-lib/libmorpho_image_stabilizer4.so
 lib/libmpbase.so
 lib/libqomx_core.so
 vendor/lib/libactuator_mot_lc898212xd.so
@@ -85,8 +85,8 @@ vendor/lib/libmmcamera2_dcrf.so
 vendor/lib/libmmcamera2_frame_algorithm.so
 vendor/lib/libmmcamera2_iface_modules.so
 vendor/lib/libmmcamera2_imglib_modules.so
-vendor/lib/libmmcamera2_is.so
 vendor/lib/libmmcamera2_isp_modules.so
+vendor/lib/libmmcamera2_is.so
 vendor/lib/libmmcamera2_mct.so
 vendor/lib/libmmcamera2_pp_buf_mgr.so
 vendor/lib/libmmcamera2_pproc_modules.so
@@ -142,15 +142,15 @@ vendor/lib/libmmcamera_isp_template.so
 vendor/lib/libmmcamera_isp_wb40.so
 vendor/lib/libmmcamera_llvd.so
 vendor/lib/libmmcamera_optizoom_lib.so
-vendor/lib/libmmcamera_ov5693.so
-vendor/lib/libmmcamera_ov5693_eeprom.so
-vendor/lib/libmmcamera_ov16860.so
 vendor/lib/libmmcamera_ov16860_eeprom.so
 vendor/lib/libmmcamera_ov16860_pdaf.so
+vendor/lib/libmmcamera_ov16860.so
+vendor/lib/libmmcamera_ov5693_eeprom.so
+vendor/lib/libmmcamera_ov5693.so
 vendor/lib/libmmcamera_ovpdaf.so
 vendor/lib/libmmcamera_paaf_lib.so
-vendor/lib/libmmcamera_pdaf.so
 vendor/lib/libmmcamera_pdafcamif.so
+vendor/lib/libmmcamera_pdaf.so
 vendor/lib/libmmcamera_ppbase_module.so
 vendor/lib/libmmcamera_ppeiscore.so
 vendor/lib/libmmcamera_stillmore_lib.so
@@ -168,15 +168,15 @@ vendor/lib/libmmsw_detail_enhancement.so
 vendor/lib/libmmsw_math.so
 vendor/lib/libmmsw_opencl.so
 vendor/lib/libmmsw_platform.so
-vendor/lib/libmotocalibration.so
 vendor/lib/libmot_gpu_mapper.so
+vendor/lib/libmotocalibration.so
 vendor/lib/liboptizoom.so
 vendor/lib/libqomx_jpegdec.so
 vendor/lib/libqomx_jpegenc.so
 vendor/lib/libseemore.so
+vendor/lib/libtrueportrait.so
 vendor/lib/libts_detected_face_hal.so
 vendor/lib/libts_face_beautify_hal.so
-vendor/lib/libtrueportrait.so
 vendor/lib/libubifocus.so
 
 # Chromatix
@@ -246,26 +246,25 @@ vendor/lib/libsd_sdk_display.so
 
 # DRM
 bin/qseecomd
-vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/libcppf.so
 vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
 vendor/lib/libGPreqcancel.so
 vendor/lib/libGPreqcancel_svc.so
 vendor/lib/libGPTEE.so
-vendor/lib/libQSEEComAPI.so
 vendor/lib/libmm-hdcpmgr.so
-vendor/lib/libmmQSM.so
 vendor/lib/liboemcrypto.so
+vendor/lib/libQSEEComAPI.so
 vendor/lib/librpmb.so
 vendor/lib/libssd.so
 vendor/lib/libwvdrm_L1.so
 vendor/lib/libWVStreamControlAPI_L1.so
+vendor/lib/mediadrm/libwvdrmengine.so
 
 # Fingerprint
 lib/hw/fingerprint.msm8953.so
-lib/lib_fpc_tac_shared.so
 lib/libcom_fingerprints_service.so
+lib/lib_fpc_tac_shared.so
 vendor/lib/hw/gatekeeper.msm8953.so
 
 # GPS
@@ -298,41 +297,20 @@ vendor/lib/egl/libQTapGLES.so
 vendor/lib/hw/vulkan.msm8953.so
 vendor/lib/libadreno_utils.so
 vendor/lib/libbccQTI.so
+vendor/lib/libC2D2.so
 vendor/lib/libc2d30-a5xx.so
 vendor/lib/libc2d30_bltlib.so
-vendor/lib/libC2D2.so
 vendor/lib/libCB.so
 vendor/lib/libgsl.so
 vendor/lib/libllvm-glnext.so
 vendor/lib/libllvm-qcom.so
 vendor/lib/libllvm-qgl.so
+vendor/lib/libmmQSM.so
 vendor/lib/libOpenCL.so
 vendor/lib/librs_adreno_sha1.so
 vendor/lib/librs_adreno.so
 vendor/lib/libRSDriver_adreno.so
 vendor/lib/libscale.so
-vendor/lib/libscveBlobDescriptor.so
-vendor/lib/libscveBlobDescriptor_stub.so
-vendor/lib/libscveCleverCapture.so
-vendor/lib/libscveCleverCapture_stub.so
-vendor/lib/libscveCommon.so
-vendor/lib/libscveCommon_stub.so
-vendor/lib/libscveFaceRecognition.so
-vendor/lib/libscveImageCloning.so
-vendor/lib/libscveImageCorrection.so
-vendor/lib/libscveImageRemoval.so
-vendor/lib/libscveMotionVector.so
-vendor/lib/libscveObjectMatting.so
-vendor/lib/libscveObjectMatting_stub.so
-vendor/lib/libscveObjectSegmentation.so
-vendor/lib/libscveObjectSegmentation_stub.so
-vendor/lib/libscveObjectTracker.so
-vendor/lib/libscveObjectTracker_stub.so
-vendor/lib/libscvePanorama.so
-vendor/lib/libscvePanorama_lite.so
-vendor/lib/libscveTextReco.so
-vendor/lib/libscveTextRecoPostProcessing.so
-vendor/lib/libscveTextReco_stub.so
 
 # Graphics firmware
 etc/firmware/a530_gpmu.fw2
@@ -343,6 +321,15 @@ etc/firmware/a530v1_pm4.fw
 etc/firmware/a530v2_seq.fw2
 etc/firmware/a530v3_gpmu.fw2
 etc/firmware/a530v3_seq.fw2
+
+# IMS
+-app/ims/ims.apk|71d9036c5032398f79cf7ea1270a6071559b3db2
+etc/permissions/ims.xml
+vendor/lib/libimscamera_jni.so|12fbc57dafa17a5981463e3a893783344c72057e
+vendor/lib/libimsmedia_jni.so|0dad622081ac90fe91219c4e67eedf93be35bfaf
+
+# IPA
+bin/ipacm-diag
 
 # Media
 vendor/lib/libAlacSwDec.so
@@ -364,15 +351,6 @@ bin/hardware_revisions.sh
 # NFC
 vendor/firmware/libpn548ad_fw.so
 
-# IMS
--app/ims/ims.apk|71d9036c5032398f79cf7ea1270a6071559b3db2
-etc/permissions/ims.xml
-vendor/lib/libimscamera_jni.so|12fbc57dafa17a5981463e3a893783344c72057e
-vendor/lib/libimsmedia_jni.so|0dad622081ac90fe91219c4e67eedf93be35bfaf
-
-# IPA
-bin/ipacm-diag
-
 # Qualcomm framework
 bin/irsc_util
 vendor/lib/hw/keystore.msm8953.so
@@ -384,7 +362,6 @@ vendor/lib/libqcci_legacy.so
 vendor/lib/libqdi.so
 vendor/lib/libqdp.so
 vendor/lib/libqisl.so
-vendor/lib/libqmi.so
 vendor/lib/libqmi_cci.so
 vendor/lib/libqmi_client_helper.so
 vendor/lib/libqmi_client_qmux.so
@@ -392,12 +369,13 @@ vendor/lib/libqmi_common_so.so
 vendor/lib/libqmi_csi.so
 vendor/lib/libqmi_encdec.so
 vendor/lib/libqmiservices.so
+vendor/lib/libqmi.so
 vendor/lib/libsmemlog.so
 
 # Radio
 bin/netmgrd
-bin/pm-service
 bin/pm-proxy
+bin/pm-service
 bin/qmi_motext_hook
 bin/radish
 bin/rild
@@ -412,7 +390,6 @@ lib/libmdmcutback.so|e93c51738fa50ca63d0e67f86a02cf22ba8e1985
 lib/libmotext_inf.so
 lib/libqmimotext.so
 -lib/libril.so
-vendor/qcril.db
 vendor/bin/qti
 vendor/lib/libconfigdb.so
 vendor/lib/liblqe.so
@@ -426,27 +403,52 @@ vendor/lib/libril-qc-radioconfig.so
 vendor/lib/libril-qcril-hook-oem.so
 vendor/lib/librilqmiservices.so
 vendor/lib/libsettings.so
-vendor/lib/libsystem_health_mon.so
 vendor/lib/libsubsystem_control.so
 vendor/lib/libSubSystemShutdown.so
+vendor/lib/libsystem_health_mon.so
 vendor/lib/libxml.so
+vendor/qcril.db
 
 # CNE
 -priv-app/CNEService/CNEService.apk
 bin/cnd
+etc/cne/andsfCne.xml
+etc/cne/SwimConfig.xml
 etc/cne/wqeclient/ROW/ROW_profile1.xml
 etc/cne/wqeclient/ROW/ROW_profile2.xml
 etc/cne/wqeclient/ROW/ROW_profile3.xml
 etc/cne/wqeclient/ROW/ROW_profile5.xml
-etc/cne/andsfCne.xml
-etc/cne/SwimConfig.xml
 etc/permissions/cneapiclient.xml
-vendor/lib/libcne.so
 vendor/lib/libcneapiclient.so
 vendor/lib/libcneqmiutils.so
+vendor/lib/libcne.so
 vendor/lib/libvendorconn.so
 vendor/lib/libwms.so
 vendor/lib/libwqe.so
+
+# SCVE
+vendor/lib/libscveBlobDescriptor.so
+vendor/lib/libscveBlobDescriptor_stub.so
+vendor/lib/libscveCleverCapture.so
+vendor/lib/libscveCleverCapture_stub.so
+vendor/lib/libscveCommon.so
+vendor/lib/libscveCommon_stub.so
+vendor/lib/libscveFaceRecognition.so
+vendor/lib/libscveImageCloning.so
+vendor/lib/libscveImageCorrection.so
+vendor/lib/libscveImageRemoval.so
+vendor/lib/libscveMotionVector.so
+vendor/lib/libscveObjectMatting.so
+vendor/lib/libscveObjectMatting_stub.so
+vendor/lib/libscveObjectSegmentation.so
+vendor/lib/libscveObjectSegmentation_stub.so
+vendor/lib/libscveObjectTracker.so
+vendor/lib/libscveObjectTracker_stub.so
+vendor/lib/libscvePanorama_lite.so
+vendor/lib/libscvePanorama.so
+vendor/lib/libscveTextRecoPostProcessing.so
+vendor/lib/libscveTextReco.so
+vendor/lib/libscveTextReco_stub.so
 
 # Sensors
 bin/motosh
@@ -458,8 +460,8 @@ lib/hw/sensors.msm8953.so
 lib/libiio.so
 lib/libsensorhub.so
 vendor/lib/libsensor1.so
-vendor/lib/libsensor_reg.so
 vendor/lib/libsensorhubservice_jni.so
+vendor/lib/libsensor_reg.so
 
 # Thermal
 vendor/bin/thermal-engine
