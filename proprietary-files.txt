@@ -289,30 +289,28 @@ vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
 
 # Graphics
-vendor/lib/egl/eglSubDriverAndroid.so
-vendor/lib/egl/libEGL_adreno.so
-vendor/lib/egl/libGLESv1_CM_adreno.so
-vendor/lib/egl/libGLESv2_adreno.so
-vendor/lib/egl/libq3dtools_adreno.so
-vendor/lib/egl/libq3dtools_esx.so
-vendor/lib/egl/libQTapGLES.so
-vendor/lib/hw/vulkan.msm8953.so
-vendor/lib/libadreno_utils.so
-vendor/lib/libbccQTI.so
-vendor/lib/libC2D2.so
-vendor/lib/libc2d30-a5xx.so
-vendor/lib/libc2d30_bltlib.so
-vendor/lib/libCB.so
-vendor/lib/libgsl.so
-vendor/lib/libllvm-glnext.so
-vendor/lib/libllvm-qcom.so
-vendor/lib/libllvm-qgl.so
-vendor/lib/libmmQSM.so
-vendor/lib/libOpenCL.so
-vendor/lib/librs_adreno_sha1.so
-vendor/lib/librs_adreno.so
-vendor/lib/libRSDriver_adreno.so
-vendor/lib/libscale.so
+vendor/lib/egl/eglSubDriverAndroid.so|ec4432c13c525a8e7699fc113ed76d12888b9a4a
+vendor/lib/egl/libEGL_adreno.so|4caf9805f540f252cbc59a1baeaf68947c4a3629
+vendor/lib/egl/libGLESv1_CM_adreno.so|08562444668386dbef3a91da4afe035c4cf3cca5
+vendor/lib/egl/libGLESv2_adreno.so|8336e1447123d07ce050d38b65f5c626ff5c364a
+vendor/lib/egl/libq3dtools_adreno.so|dc98724f776d1adb238a51f526f81c1a7332e7de
+vendor/lib/egl/libQTapGLES.so|103398f835687009fc6fc87150127b90947f0170
+vendor/lib/hw/vulkan.msm8953.so|9577e2339bf06adf5a7e3ba319755f4eb66f1084
+vendor/lib/libadreno_utils.so|688253d34b3b4df78cbe549f22138ec85c50cff5
+vendor/lib/libbccQTI.so|19ab8268addaa5b73631551dbc61154581636eca
+vendor/lib/libC2D2.so|7d5a26e6150ff9fbd2f0ad635a0d07a4326ff478
+vendor/lib/libc2d30-a5xx.so|6085baf304356bc4a9f49e163ddef5b0eaf225ed
+vendor/lib/libc2d30_bltlib.so|c7fa938f42498c3e320088aa41b25982696ed565
+vendor/lib/libCB.so|a0ca4debf1e18bdafce70eb3dfa6482c83f52453
+vendor/lib/libgsl.so|67637a099ccdea51c6a4c47116f400693a99edbc
+vendor/lib/libllvm-glnext.so|c80881bc8f0379491b3bc27126d7d7c5ceed1e1b
+vendor/lib/libllvm-qcom.so|c41627a71ecf4f25f31261cc11d69fe0d0d227f7
+vendor/lib/libllvm-qgl.so|f4a6fb48bbc96853a5fbd21112cbebe6e2f583f3
+vendor/lib/libmmQSM.so|7edd945bb418d41f95686268ca702497507b51ba
+vendor/lib/libOpenCL.so|9979863bcd10e3d47b9490dbfd9ed6e64b6d7f9a
+vendor/lib/librs_adreno_sha1.so|d4402f0e5300c7ac6b5593a85caac9c36056465d
+vendor/lib/librs_adreno.so|24191762448388fccc115b57ee2774f31a62a4a9
+vendor/lib/libRSDriver_adreno.so|5530b378a031d4c2725a7192a7ca02abc379caf0
 
 # Graphics firmware
 etc/firmware/a530_gpmu.fw2
