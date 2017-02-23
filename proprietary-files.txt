@@ -374,7 +374,6 @@ vendor/lib/libOmxWmaDec.so
 # Moto
 bin/batt_health
 bin/dbvc_atvc_property_set
-bin/hardware_revisions.sh
 
 # NFC
 vendor/firmware/libpn548ad_fw.so

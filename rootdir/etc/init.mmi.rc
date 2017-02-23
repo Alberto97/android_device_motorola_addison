@@ -277,12 +277,6 @@ service fingerprintd /system/bin/fingerprintd
     user system
     group input
 
-service hw_revs /system/bin/hardware_revisions.sh
-    class late_start
-    user system
-    group system
-    oneshot
-
 service mmi-boot-sh /system/bin/init.mmi.boot.sh
     class core
     user root

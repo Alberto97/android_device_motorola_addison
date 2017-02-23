@@ -1,9 +1,6 @@
 # FSG
 type fsg_file, fs_type, contextmount_type;
 
-# hw_revs
-type hw_revs_data_file, file_type, data_file_type;
-
 # RIL
 type netmgr_data_file, file_type, data_file_type;
 

@@ -3,7 +3,6 @@
 
 # Binaries
 /system/bin/adspd                                        u:object_r:adspd_exec:s0
-/system/bin/hardware_revisions\.sh                       u:object_r:hw_revs_exec:s0
 /system/bin/init\.mmi\.boot\.sh                          u:object_r:mmi_boot_exec:s0
 /system/bin/init\.mmi\.laser\.sh                         u:object_r:mmi_laser_exec:s0
 /system/bin/init\.mmi\.touch\.sh                         u:object_r:mmi_touch_sh_exec:s0
@@ -19,9 +18,6 @@
 /data/.fps(/.*)?                                         u:object_r:fingerprintd_data_file:s0
 /data/fpc                                                u:object_r:fingerprintd_data_file:s0
 /sys/devices/soc/7af8000\.spi/spi_master/spi8/spi8\.0(/.*)?  u:object_r:sysfs_mmi_fp:s0
-
-# Hardware Revisions
-/data/hardware_revisions                                 u:object_r:hw_revs_data_file:s0
 
 # mmi_touch related /sys files
 /sys/devices/soc/78b7000\.i2c/i2c-3/3-0020(/.*)?         u:object_r:sysfs_mmi_touch:s0
