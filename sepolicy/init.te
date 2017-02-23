@@ -7,7 +7,7 @@ allow init servicemanager:binder { transfer call };
 allow init system_server:binder call;
 
 allow init property_socket:sock_file write;
-allow init socket_device:sock_file { create setattr };
+allow init socket_device:sock_file { create setattr unlink };
 
 allow init system_data_file:file { rename append };
 allow init firmware_file:dir mounton;

@@ -6,7 +6,7 @@ init_daemon_domain(mmi_boot)
 allow mmi_boot shell_exec:file rx_file_perms;
 allow mmi_boot toolbox_exec:file rx_file_perms;
 
-allow mmi_boot radio_data_file:dir { add_name write };
+allow mmi_boot radio_data_file:dir { add_name search write };
 allow mmi_boot radio_data_file:file { create setattr };
 allow mmi_boot radio_data_file:file rw_file_perms;
 allow mmi_boot self:capability chown;
