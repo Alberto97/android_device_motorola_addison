@@ -3,12 +3,12 @@
     "remote":      "github",
     "repository":  "Alberto97/android_kernel_motorola_msm8953",
     "target_path": "kernel/motorola/msm8953",
-    "revision":    "cm-13.0"
+    "revision":    "cm-14.1"
   },
   {
     "remote":      "github",
-    "repository":  "lj50036/android_device_qcom_common",
+    "repository":  "TeamWin/android_device_qcom_common",
     "target_path": "device/qcom/common",
-    "revision":    "cm-13.0"
+    "revision":    "android-7.1"
   }
 ]
