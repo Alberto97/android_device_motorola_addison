@@ -2,7 +2,7 @@
 
 			L I B R M N E T C T L . C
 
-Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
+Copyright (c) 2013-2015, 2017 The Linux Foundation. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -791,6 +791,46 @@ int rmnet_new_vnd_prefix(rmnetctl_hndl_t *hndl,
 	} else {
 		request.message_type = RMNET_NETLINK_FREE_VND;
 	}
+
+	request.arg_length = sizeof(uint32_t);
+	request.vnd.id = id;
+
+	if ((*error_code = rmnetctl_transact(hndl, &request, &response))
+		!= RMNETCTL_SUCCESS)
+		break;
+	if (_rmnetctl_check_code(response.crd, error_code) != RMNETCTL_SUCCESS)
+		break;
+
+	return_code = _rmnetctl_set_codes(response.return_code, error_code);
+	} while(0);
+	return return_code;
+}
+
+int rmnet_new_vnd_name(rmnetctl_hndl_t *hndl,
+			 uint32_t id,
+			 uint16_t *error_code,
+			 const char *prefix)
+{
+	struct rmnet_nl_msg_s request, response;
+	int return_code = RMNETCTL_LIB_ERR;
+	size_t str_len = 0;
+	do {
+	if ((!hndl) || (!error_code)) {
+		return_code = RMNETCTL_INVALID_ARG;
+		break;
+	}
+
+	memset(request.vnd.vnd_name, 0, RMNET_MAX_STR_LEN);
+		if (prefix) {
+			request.message_type =RMNET_NETLINK_NEW_VND_WITH_NAME;
+			str_len = strlcpy((char *)request.vnd.vnd_name,
+					  prefix, RMNET_MAX_STR_LEN);
+			if (_rmnetctl_check_len(str_len, error_code)
+						!= RMNETCTL_SUCCESS)
+				break;
+		} else {
+			request.message_type = RMNET_NETLINK_NEW_VND;
+		}
 
 	request.arg_length = sizeof(uint32_t);
 	request.vnd.id = id;
