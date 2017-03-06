@@ -461,11 +461,24 @@ service irsc_util /system/bin/irsc_util "/etc/sec_config"
     user root
     oneshot
 
-service imsqmidaemon /system/bin/imsqmidaemon
+service ims_rtp_daemon /system/bin/ims_rtp_daemon
+   class main
+   user system
+   socket ims_rtpd stream 0660 system radio
+   group radio diag diag inet log
+   disabled
+
+on property:sys.ims.DATA_DAEMON_STATUS=1
+    start ims_rtp_daemon
+
+service imscmservice /system/bin/imscmservice
     class main
     user system
-    socket ims_qmid stream 0660 system radio
-    group radio log diag
+    group radio diag diag log
+    disabled
+
+on property:sys.ims.DATA_DAEMON_STATUS=1
+    start imscmservice
 
 service imsdatadaemon /system/bin/imsdatadaemon
     class main
@@ -476,6 +489,12 @@ service imsdatadaemon /system/bin/imsdatadaemon
 
 on property:sys.ims.QMI_DAEMON_STATUS=1
     start imsdatadaemon
+
+service imsqmidaemon /system/bin/imsqmidaemon
+    class main
+    user system
+    socket ims_qmid stream 0660 system radio
+    group radio log diag
 
 service rmt_storage /system/bin/rmt_storage
     class core
