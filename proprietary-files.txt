@@ -33,9 +33,6 @@ vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libaudcal.so
 vendor/lib/libvoice-svc.so
-vendor/lib/soundfx/libqcbassboost.so|77278c543ea66dbb25d9eaeda146fc569cbfa409
-vendor/lib/soundfx/libqcreverb.so|8d6e828606e388b3921048ad8466f27d8473dba4
-vendor/lib/soundfx/libqcvirt.so|1ec285952df680bd1ab73c9d7b74120640ed0158
 
 # Audio firmware
 etc/firmware/marley-dsp1-ultrasound.wmfw
