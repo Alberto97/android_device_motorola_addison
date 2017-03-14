@@ -231,7 +231,6 @@ etc/firmware/cpp_firmware_v1_10_0.fw
 -framework/com.qti.snapdragon.sdk.display.jar
 -vendor/app/colorservice/colorservice.apk
 etc/permissions/com.qti.snapdragon.sdk.display.xml
-etc/qdcm_calib_data_mipi_mot_cmd_smd_1080p_549.xml
 vendor/bin/mm-pp-dpps
 vendor/lib/libdisp-aba.so
 vendor/lib/libmm-disp-apis.so
@@ -397,6 +396,8 @@ vendor/lib/libqmi.so
 vendor/lib/libsmemlog.so
 
 # Radio
+-app/datastatusnotification/datastatusnotification.apk
+-app/embms/embms.apk
 bin/netmgrd
 bin/pm-proxy
 bin/pm-service
@@ -407,7 +408,9 @@ bin/rmt_storage
 bin/tftp_server
 etc/data/dsi_config.xml
 etc/data/netmgr_config.xml
+etc/permissions/embms.xml
 etc/permissions/qcrilhook.xml
+-framework/embmslibrary.jar
 -framework/qcrilhook.jar
 lib/libadropbox.so
 lib/libmdmcutback.so|e93c51738fa50ca63d0e67f86a02cf22ba8e1985

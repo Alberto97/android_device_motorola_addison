@@ -99,6 +99,7 @@ persist.radio.apn_delay=5000
 persist.radio.apm_sim_not_pwdn=1
 persist.radio.dfr_mode_set=1
 persist.radio.force_get_pref=1
+persist.radio.msgtunnel.start=true
 persist.radio.no_wait_for_card=1
 persist.radio.oem_ind_to_both=0
 persist.radio.relay_oprt_change=1
