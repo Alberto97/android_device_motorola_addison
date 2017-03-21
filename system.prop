@@ -49,7 +49,6 @@ camera.disable_zsl_mode=1
 camera.display.umax=1920x1080
 camera.display.lmax=1280x720
 camera.hal1.packagelist=com.skype.raider,com.google.android.talk
-persist.camera.HAL3.enabled=1
 vidc.dec.downscalar_width=1920
 vidc.dec.downscalar_height=1088
 vidc.dec.disable.split.cpu=1
