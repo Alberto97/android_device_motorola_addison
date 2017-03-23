@@ -55,6 +55,13 @@ vidc.dec.disable.split.cpu=1
 vidc.enc.dcvs.extra-buff-count=2
 vidc.enc.disable_bframes=1
 
+# CNE
+persist.cne.feature=1
+persist.cne.logging.qxdm=3974
+persist.cne.rat.wlan.chip.oem=WCN
+persist.dpm.feature=0
+persist.sys.cnd.iwlan=1
+
 # Display
 debug.egl.hw=1
 debug.enable.sglscale=1
@@ -69,6 +76,13 @@ ro.sf.lcd_density=480
 
 # FRP
 #ro.frp.pst=/dev/block/bootdevice/by-name/frp
+
+# IMS
+persist.radio.jbims=1
+persist.radio.RATE_ADAPT_ENABLE=1
+persist.radio.VT_ENABLE=1
+persist.radio.VT_HYBRID_ENABLE=1
+persist.radio.VT_USE_MDM_TIME=0
 
 # Media
 media.aac_51_output_enabled=true
