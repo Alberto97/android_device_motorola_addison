@@ -78,6 +78,7 @@ persist.radio.VT_USE_MDM_TIME=0
 
 # Media
 media.aac_51_output_enabled=true
+persist.media.treble_omx=false
 
 # Radio
 persist.data.qmi.adb_logmask=0
