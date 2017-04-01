@@ -48,7 +48,7 @@ vendor/lib/libbtnv.so
 
 # Camera
 bin/mm-qcamera-daemon
-lib/hw/camera.msm8953.so
+lib/hw/camera.msm8953.so:lib/hw/camera.vendor.msm8953.so
 lib/hw/camera.rc.so
 lib/libadvalgcore.so
 lib/libarcsoft_beautyshot.so
