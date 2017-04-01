@@ -116,6 +116,7 @@ static char *camera_fixup_getparams(int id, const char *settings)
     params.dump();
 #endif
 
+    params.set("longshot-supported", "false");
     params.set("video-stabilization-supported", "false");
 
 #if !LOG_NDEBUG
