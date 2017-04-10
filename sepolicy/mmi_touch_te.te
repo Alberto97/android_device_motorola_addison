@@ -1,5 +1,5 @@
 type mmi_touch_sh, domain;
-type mmi_touch_sh_exec, exec_type, file_type;
+type mmi_touch_sh_exec, exec_type, vendor_file_type, file_type;
 init_daemon_domain(mmi_touch_sh)
 
 # shell scripts need to execute /system/bin/sh
