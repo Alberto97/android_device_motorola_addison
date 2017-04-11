@@ -6,6 +6,7 @@
 /system/bin/init\.mmi\.boot\.sh                          u:object_r:mmi_boot_exec:s0
 /system/bin/init\.mmi\.laser\.sh                         u:object_r:mmi_laser_exec:s0
 /system/bin/init\.mmi\.touch\.sh                         u:object_r:mmi_touch_sh_exec:s0
+/system/bin/wlan_carrier_bin\.sh                         u:object_r:init_wifi_exec:s0
 /system/bin/motosh                                       u:object_r:sensor_hub_exec:s0
 
 # Camera
@@ -37,3 +38,6 @@
 /dev/motosh                                              u:object_r:sensors_device:s0
 /dev/motosh_as                                           u:object_r:sensors_device:s0
 /dev/motosh_ms                                           u:object_r:sensors_device:s0
+
+# WCNSS
+/sys/module/wcnsscore/parameters(/.*)?                   u:object_r:sysfs_wcnsscore:s0
