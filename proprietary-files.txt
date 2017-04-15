@@ -249,14 +249,10 @@ vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
 vendor/lib/libGPreqcancel.so
 vendor/lib/libGPreqcancel_svc.so
-vendor/lib/libGPTEE.so
-vendor/lib/libmm-hdcpmgr.so
 vendor/lib/liboemcrypto.so
 vendor/lib/libQSEEComAPI.so
 vendor/lib/librpmb.so
 vendor/lib/libssd.so
-vendor/lib/libwvdrm_L1.so
-vendor/lib/libWVStreamControlAPI_L1.so
 vendor/lib/mediadrm/libwvdrmengine.so
 
 # Fingerprint
@@ -362,7 +358,6 @@ vendor/lib/libOmxWmaDec.so
 
 # Moto
 bin/batt_health
-bin/dbvc_atvc_property_set
 
 # NFC
 vendor/firmware/libpn548ad_fw.so
@@ -511,6 +506,3 @@ etc/wifi/WCNSS_qcom_wlan_nv_Argentina.bin:etc/firmware/wlan/prima/WCNSS_qcom_wla
 etc/wifi/WCNSS_qcom_wlan_nv_Brazil.bin:etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv_Brazil.bin
 etc/wifi/WCNSS_qcom_wlan_nv_India.bin:etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv_India.bin
 etc/wifi/WCNSS_wlan_dictionary.dat:etc/firmware/wlan/prima/WCNSS_wlan_dictionary.dat
-
-# WiFi
-bin/ptt_socket_app
