@@ -269,15 +269,8 @@ vendor/lib/hw/gatekeeper.msm8953.so
 etc/flp.conf
 etc/gps.conf
 etc/sap.conf
-lib/hw/gps.default.so
-lib/libgnsspps.so
-lib/libgps.utils.so
 lib/libloc_api_v02.so
-lib/libloc_core.so
 lib/libloc_ds_api.so
-lib/libloc_eng.so
-lib/libloc_pla.so
-lib/libloc_stub.so
 vendor/lib/hw/flp.default.so
 vendor/lib/libflp.so
 vendor/lib/libgeofence.so
