@@ -389,6 +389,9 @@
     <!-- Whether the display blanks itself when transitioning from a doze to a non-doze state -->
     <bool name="config_displayBlanksAfterDoze">true</bool>
 
+    <!-- Specifies whether to decouple the auto-suspend state of the device from the display on/off state. -->
+    <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool>
+
     <!-- Power Management: Specifies whether to decouple the interactive state of the
          device from the display on/off state.
          When false, setInteractive(..., true) will be called before the display is turned on
