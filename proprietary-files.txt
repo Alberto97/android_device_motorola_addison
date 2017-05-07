@@ -231,16 +231,12 @@ etc/firmware/cpp_firmware_v1_10_0.fw
 -framework/com.qti.snapdragon.sdk.display.jar
 -vendor/app/colorservice/colorservice.apk
 etc/permissions/com.qti.snapdragon.sdk.display.xml
-vendor/bin/mm-pp-dpps
-vendor/lib/libdisp-aba.so
-vendor/lib/libmm-disp-apis.so
-vendor/lib/libmm-qdcm.so
 vendor/lib/libscalar.so
-vendor/lib/libsdm-color.so
-vendor/lib/libsdm-diag.so
-vendor/lib/libsdm-disp-apis.so
-vendor/lib/libsdmextension.so
-vendor/lib/libsd_sdk_display.so
+vendor/lib/libsdm-color.so|fa907f8d480261fdb3b78057c7352bc1e3899a92
+vendor/lib/libsdm-diag.so|5169f31e832d19af78ac0045c725ce2d3f1da640
+vendor/lib/libsdm-disp-apis.so|72f6db2b249a47a6ac83d4dfc7d2e9f76b349920
+vendor/lib/libsdmextension.so|e52ca803e2e07dc675ea65974de55fa0d9e9dd88
+vendor/lib/libsd_sdk_display.so|23b1ef85654178da98e4f950d26736759cf069c1
 
 # DRM
 bin/qseecomd
