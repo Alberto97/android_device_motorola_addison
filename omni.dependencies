@@ -3,7 +3,7 @@
     "remote":      "github",
     "repository":  "Alberto97/android_kernel_motorola_msm8953",
     "target_path": "kernel/motorola/msm8953",
-    "revision":    "cm-14.1"
+    "revision":    "twrp-7.1"
   },
   {
     "remote":      "github",
