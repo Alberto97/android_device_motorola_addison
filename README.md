@@ -21,4 +21,4 @@ Copyright 2016 - The CyanogenMod Project.
 
 Copyright 2017 - The LineageOS Project.
 
-![Moto Z Play](https://wiki.cyanogenmod.org/images/thumb/8/81/Osprey.png/314px-Osprey.png "Moto Z Play")
+![Moto Z Play](https://raw.githubusercontent.com/LineageOS/lineage_wiki/master/images/devices/addison.png "Moto Z Play")
