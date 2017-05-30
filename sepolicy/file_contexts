@@ -12,9 +12,6 @@
 # Camera
 /sys/kernel/range/offset                                 u:object_r:sysfs_mmi_laser:s0
 
-# CMActions
-/sys/homebutton/enable                                   u:object_r:sysfs_homebutton:s0
-
 # Fingerprint
 /data/.fps(/.*)?                                         u:object_r:fingerprintd_data_file:s0
 /data/fpc                                                u:object_r:fingerprintd_data_file:s0

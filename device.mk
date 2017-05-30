@@ -161,6 +161,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
 
+# Keylayout
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/fpc1020.kl:system/usr/keylayout/fpc1020.kl
+
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8953
