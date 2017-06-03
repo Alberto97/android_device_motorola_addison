@@ -100,26 +100,26 @@
             <Limit name="measured-frame-rate-1920x1080" range="50-50" />
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.decoder.avc" type="video/avc" update="true">
-            <Limit name="measured-frame-rate-320x240" range="270-275" />
-            <Limit name="measured-frame-rate-720x480" range="230-233" />
-            <Limit name="measured-frame-rate-1280x720" range="133-134" />
-            <Limit name="measured-frame-rate-1920x1080" range="53-53" />
+            <Limit name="measured-frame-rate-320x240" range="439-444" />
+            <Limit name="measured-frame-rate-720x480" range="223-224" />
+            <Limit name="measured-frame-rate-1280x720" range="283-284" />
+            <Limit name="measured-frame-rate-1920x1080" range="153-153" />
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.decoder.h263" type="video/3gpp" update="true">
-            <Limit name="measured-frame-rate-176x144" range="422-429" />
-            <Limit name="measured-frame-rate-352x288" range="427-431" />
+            <Limit name="measured-frame-rate-176x144" range="584-600" />
+            <Limit name="measured-frame-rate-352x288" range="563-575" />
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.decoder.hevc" type="video/hevc" update="true">
-            <Limit name="measured-frame-rate-352x288" range="341-345" />
-            <Limit name="measured-frame-rate-640x360" range="266-269" />
-            <Limit name="measured-frame-rate-720x480" range="250-252" />
-            <Limit name="measured-frame-rate-1280x720" range="120-121" />
-            <Limit name="measured-frame-rate-1920x1080" range="56-56" />
-            <Limit name="measured-frame-rate-3840x2160" range="13-13" />
+            <Limit name="measured-frame-rate-352x288" range="460-467" />
+            <Limit name="measured-frame-rate-640x360" range="339-340" />
+            <Limit name="measured-frame-rate-720x480" range="258-259" />
+            <Limit name="measured-frame-rate-1280x720" range="346-347" />
+            <Limit name="measured-frame-rate-1920x1080" range="179-179" />
+            <Limit name="measured-frame-rate-3840x2160" range="44-44" />
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.decoder.mpeg4" type="video/mp4v-es" update="true">
-            <Limit name="measured-frame-rate-176x144" range="428-433" />
-            <Limit name="measured-frame-rate-480x360" range="409-412" />
+            <Limit name="measured-frame-rate-176x144" range="576-590" />
+            <Limit name="measured-frame-rate-480x360" range="512-520" />
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.decoder.vp8" type="video/x-vnd.on2.vp8" update="true">
             <Limit name="measured-frame-rate-320x180" range="434-436" />

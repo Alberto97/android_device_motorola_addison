@@ -2,8 +2,7 @@
 # system.prop for addison
 #
 
-# Android Run Time
-ro.sys.fw.dex2oat_thread_count=4
+ro.build.version.qcom=LA.UM.5.6.r1-03800-89xx.0
 
 # Audio
 audio.deep_buffer.media=true
@@ -54,6 +53,7 @@ vidc.dec.downscalar_height=1088
 vidc.dec.disable.split.cpu=1
 vidc.enc.dcvs.extra-buff-count=2
 vidc.enc.disable_bframes=1
+vidc.enc.disable_pframes=1
 
 # CNE
 persist.cne.feature=1
@@ -71,11 +71,11 @@ debug.sf.hw=1
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
 persist.hwc.mdpcomp.enable=true
-ro.opengles.version=196609
+ro.opengles.version=196610
 ro.sf.lcd_density=480
 
 # FRP
-#ro.frp.pst=/dev/block/bootdevice/by-name/frp
+ro.frp.pst=/dev/block/bootdevice/by-name/frp
 
 # IMS
 persist.radio.jbims=1
@@ -86,25 +86,6 @@ persist.radio.VT_USE_MDM_TIME=0
 
 # Media
 media.aac_51_output_enabled=true
-
-# NFC
-persist.nfc.smartcard.config=SIM1,SIM2,eSE1
-
-# NITZ
-persist.rild.nitz_plmn=
-persist.rild.nitz_long_ons_0=
-persist.rild.nitz_long_ons_1=
-persist.rild.nitz_long_ons_2=
-persist.rild.nitz_long_ons_3=
-persist.rild.nitz_short_ons_0=
-persist.rild.nitz_short_ons_1=
-persist.rild.nitz_short_ons_2=
-persist.rild.nitz_short_ons_3=
-
-# Qualcomm
-com.qc.hardware=true
-debug.qc.hardware=true
-persist.timed.enable=true
 
 # Radio
 persist.data.qmi.adb_logmask=0

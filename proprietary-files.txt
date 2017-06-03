@@ -232,11 +232,11 @@ etc/firmware/cpp_firmware_v1_10_0.fw
 -vendor/app/colorservice/colorservice.apk
 etc/permissions/com.qti.snapdragon.sdk.display.xml
 vendor/lib/libscalar.so
-vendor/lib/libsdm-color.so|fa907f8d480261fdb3b78057c7352bc1e3899a92
-vendor/lib/libsdm-diag.so|5169f31e832d19af78ac0045c725ce2d3f1da640
-vendor/lib/libsdm-disp-apis.so|72f6db2b249a47a6ac83d4dfc7d2e9f76b349920
-vendor/lib/libsdmextension.so|e52ca803e2e07dc675ea65974de55fa0d9e9dd88
-vendor/lib/libsd_sdk_display.so|23b1ef85654178da98e4f950d26736759cf069c1
+vendor/lib/libsdm-color.so
+vendor/lib/libsdm-diag.so
+vendor/lib/libsdm-disp-apis.so
+vendor/lib/libsdmextension.so
+vendor/lib/libsd_sdk_display.so
 
 # DRM
 bin/qseecomd
@@ -270,28 +270,30 @@ vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
 
 # Graphics
-vendor/lib/egl/eglSubDriverAndroid.so|ec4432c13c525a8e7699fc113ed76d12888b9a4a
-vendor/lib/egl/libEGL_adreno.so|4caf9805f540f252cbc59a1baeaf68947c4a3629
-vendor/lib/egl/libGLESv1_CM_adreno.so|08562444668386dbef3a91da4afe035c4cf3cca5
-vendor/lib/egl/libGLESv2_adreno.so|8336e1447123d07ce050d38b65f5c626ff5c364a
-vendor/lib/egl/libq3dtools_adreno.so|dc98724f776d1adb238a51f526f81c1a7332e7de
-vendor/lib/egl/libQTapGLES.so|103398f835687009fc6fc87150127b90947f0170
-vendor/lib/hw/vulkan.msm8953.so|9577e2339bf06adf5a7e3ba319755f4eb66f1084
-vendor/lib/libadreno_utils.so|688253d34b3b4df78cbe549f22138ec85c50cff5
-vendor/lib/libbccQTI.so|19ab8268addaa5b73631551dbc61154581636eca
-vendor/lib/libC2D2.so|7d5a26e6150ff9fbd2f0ad635a0d07a4326ff478
-vendor/lib/libc2d30-a5xx.so|6085baf304356bc4a9f49e163ddef5b0eaf225ed
-vendor/lib/libc2d30_bltlib.so|c7fa938f42498c3e320088aa41b25982696ed565
-vendor/lib/libCB.so|a0ca4debf1e18bdafce70eb3dfa6482c83f52453
-vendor/lib/libgsl.so|67637a099ccdea51c6a4c47116f400693a99edbc
-vendor/lib/libllvm-glnext.so|c80881bc8f0379491b3bc27126d7d7c5ceed1e1b
-vendor/lib/libllvm-qcom.so|c41627a71ecf4f25f31261cc11d69fe0d0d227f7
-vendor/lib/libllvm-qgl.so|f4a6fb48bbc96853a5fbd21112cbebe6e2f583f3
-vendor/lib/libmmQSM.so|7edd945bb418d41f95686268ca702497507b51ba
-vendor/lib/libOpenCL.so|9979863bcd10e3d47b9490dbfd9ed6e64b6d7f9a
-vendor/lib/librs_adreno_sha1.so|d4402f0e5300c7ac6b5593a85caac9c36056465d
-vendor/lib/librs_adreno.so|24191762448388fccc115b57ee2774f31a62a4a9
-vendor/lib/libRSDriver_adreno.so|5530b378a031d4c2725a7192a7ca02abc379caf0
+vendor/lib/egl/eglSubDriverAndroid.so
+vendor/lib/egl/libEGL_adreno.so
+vendor/lib/egl/libGLESv1_CM_adreno.so
+vendor/lib/egl/libGLESv2_adreno.so
+vendor/lib/egl/libq3dtools_adreno.so
+vendor/lib/egl/libq3dtools_esx.so
+vendor/lib/egl/libQTapGLES.so
+vendor/lib/hw/vulkan.msm8953.so
+vendor/lib/libadreno_utils.so
+vendor/lib/libbccQTI.so
+vendor/lib/libC2D2.so
+vendor/lib/libc2d30-a5xx.so
+vendor/lib/libc2d30_bltlib.so
+vendor/lib/libCB.so
+vendor/lib/libgsl.so
+vendor/lib/libllvm-glnext.so
+vendor/lib/libllvm-qcom.so
+vendor/lib/libllvm-qgl.so
+vendor/lib/libmmQSM.so
+vendor/lib/libOpenCL.so
+vendor/lib/librs_adreno_sha1.so
+vendor/lib/librs_adreno.so
+vendor/lib/libRSDriver_adreno.so
+vendor/lib/libscale.so
 
 # Graphics firmware
 etc/firmware/a530_gpmu.fw2
@@ -305,8 +307,8 @@ etc/firmware/a530v3_seq.fw2
 
 # IMS
 -framework/imscmlibrary.jar
--vendor/app/ims/ims.apk|138de3a169d8c4703d9e5645abeb19e427b04909
--vendor/app/imssettings/imssettings.apk|3020cdd3bc6d3c5bd147f2086fdd62fae108d81b
+-vendor/app/ims/ims.apk|66fa3ab695d7be55a334cbee6e9c94d60089ac2a
+-vendor/app/imssettings/imssettings.apk|63c44e1961546bd90f1675da696f194ae8f8506d
 bin/imscmservice
 bin/imsdatadaemon
 bin/imsqmidaemon
@@ -314,19 +316,18 @@ bin/ims_rtp_daemon
 etc/permissions/imscm.xml
 etc/permissions/ims.xml
 etc/permissions/qti_permissions.xml
-vendor/lib/lib-dplmedia.so
-vendor/lib/libimscamera_jni.so
 vendor/lib/lib-imscamera.so
+vendor/lib/libimscamera_jni.so
 vendor/lib/lib-imsdpl.so
 vendor/lib/libimsmedia_jni.so
 vendor/lib/lib-imsqimf.so
+vendor/lib/lib-imsrcs.so
+vendor/lib/lib-imsrcscm.so
 vendor/lib/lib-imsrcscmclient.so
 vendor/lib/lib-ims-rcscmjni.so
 vendor/lib/lib-imsrcscmservice.so
-vendor/lib/lib-imsrcscm.so
-vendor/lib/lib-imsrcs.so
-vendor/lib/lib-imsSDP.so
 vendor/lib/lib-imss.so
+vendor/lib/lib-imsSDP.so
 vendor/lib/lib-imsvt.so
 vendor/lib/lib-imsxml.so
 vendor/lib/librcc.so
@@ -355,6 +356,11 @@ vendor/lib/libOmxWmaDec.so
 # Moto
 bin/batt_health
 
+# Network
+-priv-app/QtiTetherService/QtiTetherService.apk
+vendor/lib/libQtiTether.so
+vendor/lib/libconnctrl.so
+
 # NFC
 vendor/firmware/libpn548ad_fw.so
 
@@ -381,7 +387,6 @@ vendor/lib/libsmemlog.so
 
 # Radio
 -app/datastatusnotification/datastatusnotification.apk
--app/embms/embms.apk
 bin/netmgrd
 bin/pm-proxy
 bin/pm-service
@@ -392,12 +397,10 @@ bin/rmt_storage
 bin/tftp_server
 etc/data/dsi_config.xml
 etc/data/netmgr_config.xml
-etc/permissions/embms.xml
 etc/permissions/qcrilhook.xml
--framework/embmslibrary.jar
 -framework/qcrilhook.jar
 lib/libadropbox.so
-lib/libmdmcutback.so|e93c51738fa50ca63d0e67f86a02cf22ba8e1985
+lib/libmdmcutback.so
 lib/libmotext_inf.so
 lib/libqmimotext.so
 -lib/libril.so
@@ -421,18 +424,33 @@ vendor/lib/libxml.so
 vendor/qcril.db
 
 # CNE
--priv-app/CNEService/CNEService.apk
 bin/cnd
 etc/cne/andsfCne.xml
 etc/cne/SwimConfig.xml
+etc/cne/wqeclient/ATT/ATT_profile1.xml
+etc/cne/wqeclient/ATT/ATT_profile2.xml
+etc/cne/wqeclient/ATT/ATT_profile3.xml
+etc/cne/wqeclient/ATT/ATT_profile4.xml
 etc/cne/wqeclient/ROW/ROW_profile1.xml
 etc/cne/wqeclient/ROW/ROW_profile2.xml
 etc/cne/wqeclient/ROW/ROW_profile3.xml
 etc/cne/wqeclient/ROW/ROW_profile5.xml
+etc/cne/wqeclient/VZW/VZW_profile1.xml
+etc/cne/wqeclient/VZW/VZW_profile2.xml
+etc/cne/wqeclient/VZW/VZW_profile3.xml
+etc/cne/wqeclient/VZW/VZW_profile4.xml
+etc/cne/wqeclient/VZW/VZW_profile5.xml
+etc/cne/wqeclient/VZW/VZW_profile6.xml
+etc/permissions/ConnectivityExt.xml
 etc/permissions/cneapiclient.xml
+etc/permissions/com.quicinc.cne.xml
+-framework/ConnectivityExt.jar
+-framework/cneapiclient.jar
+-framework/com.quicinc.cne.jar
+-priv-app/CNEService/CNEService.apk
+vendor/lib/libcne.so
 vendor/lib/libcneapiclient.so
 vendor/lib/libcneqmiutils.so
-vendor/lib/libcne.so
 vendor/lib/libvendorconn.so
 vendor/lib/libwms.so
 vendor/lib/libwqe.so
@@ -455,10 +473,10 @@ vendor/lib/libscveObjectSegmentation.so
 vendor/lib/libscveObjectSegmentation_stub.so
 vendor/lib/libscveObjectTracker.so
 vendor/lib/libscveObjectTracker_stub.so
-vendor/lib/libscvePanorama_lite.so
 vendor/lib/libscvePanorama.so
-vendor/lib/libscveTextRecoPostProcessing.so
+vendor/lib/libscvePanorama_lite.so
 vendor/lib/libscveTextReco.so
+vendor/lib/libscveTextRecoPostProcessing.so
 vendor/lib/libscveTextReco_stub.so
 
 # Sensors
@@ -490,6 +508,7 @@ etc/firmware/synaptics-s3508-16082601-255c40-addison.tdat
 etc/firmware/synaptics-s3508sga-16082601-255c40-addison.tdat
 
 # Vendor extension
+bin/energy-awareness
 vendor/bin/perfd
 vendor/lib/libqti-iop.so
 vendor/lib/libqti-iop-client.so

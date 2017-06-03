@@ -53,7 +53,7 @@ on fs
 
 on init
     # Symbols required for motorola blobs
-    export LD_SHIM_LIBS /system/vendor/lib/libmot_gpu_mapper.so|libshim_camera.so:/system/vendor/lib/lib-imsvt.so|libshim_ims.so:/system/bin/adspd|libshim_adsp.so
+    export LD_SHIM_LIBS /system/bin/adspd|libshim_adsp.so:/system/vendor/lib/libmot_gpu_mapper.so|libshim_camera.so
 
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 
@@ -115,6 +115,10 @@ on boot
     chown radio radio /data/misc/radio/copy_complete
     chmod 0660 /data/misc/radio/copy_complete
 
+    # copy prebuilt qcril.db files always
+    copy /system/vendor/qcril.db /data/misc/radio/qcril_prebuilt.db
+    chown radio radio /data/misc/radio/qcril_prebuilt.db
+    chmod 0660 /data/misc/radio/qcril_prebuilt.db
     # File flags for prebuilt ril db file
     write /data/misc/radio/prebuilt_db_support 1
     chown radio radio /data/misc/radio/prebuilt_db_support
@@ -406,6 +410,12 @@ service perfd /system/vendor/bin/perfd
    socket perfd seqpacket 0666 root system
    writepid /dev/cpuset/system-background/tasks
 
+service energy-awareness /system/bin/energy-awareness
+    class main
+    user root
+    group system
+    oneshot
+
 service qseecomd /system/bin/qseecomd
    class core
    user root
@@ -420,7 +430,7 @@ service thermal-engine /system/vendor/bin/thermal-engine
    group root
 
 service time_daemon /system/bin/time_daemon
-   class late_start
+   class main
    user root
    group root
 
@@ -717,5 +727,7 @@ on property:sys.boot_completed=1
     write /sys/block/dm-1/queue/read_ahead_kb 128
     #WDSP FW boot sysfs node used by STHAL
     chown media audio /sys/kernel/wdsp0/boot
+    #CPE fw_name used by sound trigger HAL
+    chown media audio /sys/kernel/wcd_cpe0/fw_name
     rm /data/system/perfd/default_values
     start perfd

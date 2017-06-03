@@ -63,7 +63,7 @@
 	<device name="SND_DEVICE_IN_SPEAKER_DMIC_NS" acdb_id="117" />
 	<device name="SND_DEVICE_IN_QUAD_MIC" acdb_id="125" />
 	<device name="SND_DEVICE_IN_THREE_MIC" acdb_id="125" />
-	<device name="SND_DEVICE_IN_MOD_VOICE_MIC" acdb_id="211" />
+	<device name="SND_DEVICE_IN_MOD_VOICE_MIC" acdb_id="226" />
 	<device name="SND_DEVICE_IN_MOD_SPEAKER_INT_MIC_AEC_EXTREF" acdb_id="224" />
 	<device name="SND_DEVICE_IN_MOD_SPEAKER_INT_MIC_AEC_NS_EXTREF" acdb_id="224" />
 	<device name="SND_DEVICE_IN_MOD_SPEAKER_INT_MIC_AEC_INTREF" acdb_id="225" />

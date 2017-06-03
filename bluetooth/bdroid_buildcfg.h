@@ -21,7 +21,6 @@
 #include <string.h>
 
 #define BTM_DEF_LOCAL_NAME "Moto Z Play"
-#define BTA_DISABLE_DELAY 1000 /* in milliseconds */
 #define BLUETOOTH_QTI_SW TRUE
-#define BLE_VND_INCLUDED   TRUE
+#define BLE_VND_INCLUDED TRUE
 #endif

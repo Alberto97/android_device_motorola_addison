@@ -34,6 +34,7 @@ on post-fs
     mkdir /persist/public 0755 mot_tcmd mot_tcmd
     mkdir /persist/public/atvc 0770 mot_atvc shell
     mkdir /persist/public/battd 0755 mot_accy mot_tcmd
+    mkdir /persist/public/att_dm 0775 radio mot_tcmd
     mkdir /persist/public/hiddenmenu 0755 radio radio
     mkdir /persist/public/hiddenmenu/data 0775 system mot_tcmd
     mkdir /persist/public/locale 0700 system system
@@ -42,6 +43,8 @@ on post-fs
     mkdir /persist/wifi 0755 mot_tcmd mot_tcmd
     mkdir /persist/bt 0755 mot_tcmd bluetooth
     mkdir /persist/wmdrm 0775 mot_drm mot_drm
+    mkdir /persist/public/usc_dm 0775 radio radio
+    mkdir /persist/sds 0700 vold vold
 
     chown mot_tcmd mot_tcmd /persist/factory/fti
     chmod 0660 /persist/factory/fti
@@ -50,6 +53,12 @@ on post-fs
     chmod 0660 /persist/wifi/wlan_mac.bin
     chown mot_tcmd mot_tcmd /persist/bt/bt_bdaddr
     chmod 0664 /persist/bt/bt_bdaddr
+
+    # Set life_calls and life_timer file permissions
+    chown radio mot_tcmd /persist/public/hiddenmenu/life_calls
+    chmod 0775 /persist/public/hiddenmenu/life_calls
+    chown radio mot_tcmd /persist/public/hiddenmenu/life_timer
+    chmod 0775 /persist/public/hiddenmenu/life_timer
 
     swapon_all fstab.qcom
     write /proc/sys/vm/page-cluster 0
@@ -184,7 +193,6 @@ on boot
    chown root mot_tcmd /sys/class/graphics/fb0/frame_counter
 
    # Change ownership of aov related sysfs entries
-   wait /sys/kernel/aov/event
    chown audio audio /sys/kernel/aov/trigger
    chown audio audio /sys/kernel/aov/register
    chown audio audio /sys/kernel/aov/event
@@ -319,6 +327,7 @@ on property:sys.wifi.tethering=true
     write /sys/class/net/wlan0/queues/rx-1/rps_cpus ${sys.usb.rps_mask}
     write /sys/class/net/wlan0/queues/rx-2/rps_cpus ${sys.usb.rps_mask}
     write /sys/class/net/wlan0/queues/rx-3/rps_cpus ${sys.usb.rps_mask}
+    write /sys/class/net/wlan0/queues/rx-4/rps_cpus ${sys.usb.rps_mask}
 
 on property:sys.wifi.tethering=false
     write /sys/class/net/rmnet_data0/queues/rx-0/rps_cpus ${sys.rmnet_vnd.rps_mask}

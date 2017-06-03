@@ -127,6 +127,13 @@ if [ "$selinux" == "permissive" ]; then
 		debug "change permissions of $touch_path/f54/$entry"
 	done
 	unset touch_report_files
+	debug "loosen permissions to focaltech proc entries"
+	focaltech_proc_files="ftxxxx-debug"
+	for entry in $focaltech_proc_files; do
+		chmod 0666 /proc/$entry
+		debug "change permissions of /proc/$entry"
+	done
+	unset focaltech_proc_files
 fi
 
 # Set permissions to enable factory touch tests
