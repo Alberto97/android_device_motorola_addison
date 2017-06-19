@@ -415,7 +415,8 @@ service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
 
 service cnd /system/vendor/bin/cnd
     class late_start
-    socket cnd stream 660 root inet
+    user system
+    group system wifi inet radio wakelock net_admin
 
 service wcnss-service /vendor/bin/wcnss_service
     class main
