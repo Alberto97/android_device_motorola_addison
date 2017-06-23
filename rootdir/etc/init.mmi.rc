@@ -62,7 +62,6 @@ on post-fs
     chown radio oem_5004 /persist/public/hiddenmenu/life_timer
     chmod 0775 /persist/public/hiddenmenu/life_timer
 
-    swapon_all fstab.qcom
     write /proc/sys/vm/page-cluster 0
 
 on post-fs-data
@@ -313,3 +312,7 @@ on property:sys.wifi.tethering=true
 
 on property:sys.wifi.tethering=false
     write /sys/class/net/rmnet_data0/queues/rx-0/rps_cpus ${sys.rmnet_vnd.rps_mask}
+
+on property:sys.boot_completed=1
+    # Enable ZRAM on boot_complete
+    swapon_all fstab.qcom
