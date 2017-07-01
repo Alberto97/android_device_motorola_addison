@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2016 The CyanogenMod Project
+ * Copyright (C) 2017 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,5 +23,8 @@
 
 #define BTM_DEF_LOCAL_NAME "Moto Z Play"
 #define BLUETOOTH_QTI_SW TRUE
+#define MAX_ACL_CONNECTIONS   16
+#define MAX_L2CAP_CHANNELS    16
 #define BLE_VND_INCLUDED TRUE
+#define BT_CLEAN_TURN_ON_DISABLED TRUE
 #endif
