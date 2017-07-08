@@ -54,6 +54,8 @@ on post-fs
     chown mot_tcmd mot_tcmd /persist/bt/bt_bdaddr
     chmod 0664 /persist/bt/bt_bdaddr
 
+    chmod 0660 /persist/camera/focus/offset_cal
+
     # Set life_calls and life_timer file permissions
     chown radio mot_tcmd /persist/public/hiddenmenu/life_calls
     chmod 0775 /persist/public/hiddenmenu/life_calls
@@ -295,11 +297,13 @@ service fingerprintd /system/bin/fingerprintd
 service mmi-boot-sh /system/bin/init.mmi.boot.sh
     class core
     user root
+    group root radio
     oneshot
 
 service mmi-laser-sh /system/bin/init.mmi.laser.sh
     class core
     user root
+    group root mot_tcmd
     oneshot
 
 service mmi-touch-sh /system/bin/init.mmi.touch.sh
