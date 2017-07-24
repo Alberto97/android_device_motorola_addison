@@ -37,7 +37,7 @@ LOCAL_MODULE := WCNSS_qcom_cfg.ini
 LOCAL_MODULE_CLASS := FAKE
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_SYSTEM)/base_rules.mk
-$(LOCAL_BUILT_MODULE): TARGET := $(TARGET_OUT)/etc/firmware/wlan/prima/$(LOCAL_MODULE)
+$(LOCAL_BUILT_MODULE): TARGET := /system/etc/firmware/wlan/prima/$(LOCAL_MODULE)
 $(LOCAL_BUILT_MODULE): SYMLINK := $(TARGET_OUT)/etc/wifi/$(LOCAL_MODULE)
 $(LOCAL_BUILT_MODULE):
 	$(hide) echo "Symlink: $(SYMLINK) -> $(TARGET)"
@@ -53,7 +53,7 @@ LOCAL_MODULE := WCNSS_qcom_wlan_nv.bin
 LOCAL_MODULE_CLASS := FAKE
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_SYSTEM)/base_rules.mk
-$(LOCAL_BUILT_MODULE): TARGET := $(TARGET_OUT)/etc/firmware/wlan/prima/$(LOCAL_MODULE)
+$(LOCAL_BUILT_MODULE): TARGET := /system/etc/firmware/wlan/prima/$(LOCAL_MODULE)
 $(LOCAL_BUILT_MODULE): SYMLINK := $(TARGET_OUT)/etc/wifi/$(LOCAL_MODULE)
 $(LOCAL_BUILT_MODULE):
 	$(hide) echo "Symlink: $(SYMLINK) -> $(TARGET)"
@@ -70,7 +70,7 @@ LOCAL_MODULE := WCNSS_qcom_wlan_nv_Argentina.bin
 LOCAL_MODULE_CLASS := FAKE
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_SYSTEM)/base_rules.mk
-$(LOCAL_BUILT_MODULE): TARGET := $(TARGET_OUT)/etc/firmware/wlan/prima/$(LOCAL_MODULE)
+$(LOCAL_BUILT_MODULE): TARGET := /system/etc/firmware/wlan/prima/$(LOCAL_MODULE)
 $(LOCAL_BUILT_MODULE): SYMLINK := $(TARGET_OUT)/etc/wifi/$(LOCAL_MODULE)
 $(LOCAL_BUILT_MODULE):
 	$(hide) echo "Symlink: $(SYMLINK) -> $(TARGET)"
@@ -87,7 +87,7 @@ LOCAL_MODULE := WCNSS_qcom_wlan_nv_Brazil.bin
 LOCAL_MODULE_CLASS := FAKE
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_SYSTEM)/base_rules.mk
-$(LOCAL_BUILT_MODULE): TARGET := $(TARGET_OUT)/etc/firmware/wlan/prima/$(LOCAL_MODULE)
+$(LOCAL_BUILT_MODULE): TARGET := /system/etc/firmware/wlan/prima/$(LOCAL_MODULE)
 $(LOCAL_BUILT_MODULE): SYMLINK := $(TARGET_OUT)/etc/wifi/$(LOCAL_MODULE)
 $(LOCAL_BUILT_MODULE):
 	$(hide) echo "Symlink: $(SYMLINK) -> $(TARGET)"
@@ -104,7 +104,7 @@ LOCAL_MODULE := WCNSS_qcom_wlan_nv_India.bin
 LOCAL_MODULE_CLASS := FAKE
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_SYSTEM)/base_rules.mk
-$(LOCAL_BUILT_MODULE): TARGET := $(TARGET_OUT)/etc/firmware/wlan/prima/$(LOCAL_MODULE)
+$(LOCAL_BUILT_MODULE): TARGET := /system/etc/firmware/wlan/prima/$(LOCAL_MODULE)
 $(LOCAL_BUILT_MODULE): SYMLINK := $(TARGET_OUT)/etc/wifi/$(LOCAL_MODULE)
 $(LOCAL_BUILT_MODULE):
 	$(hide) echo "Symlink: $(SYMLINK) -> $(TARGET)"
@@ -120,7 +120,7 @@ LOCAL_MODULE := WCNSS_wlan_dictionary.dat
 LOCAL_MODULE_CLASS := FAKE
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_SYSTEM)/base_rules.mk
-$(LOCAL_BUILT_MODULE): TARGET := $(TARGET_OUT)/etc/firmware/wlan/prima/$(LOCAL_MODULE)
+$(LOCAL_BUILT_MODULE): TARGET := /system/etc/firmware/wlan/prima/$(LOCAL_MODULE)
 $(LOCAL_BUILT_MODULE): SYMLINK := $(TARGET_OUT)/etc/wifi/$(LOCAL_MODULE)
 $(LOCAL_BUILT_MODULE):
 	$(hide) echo "Symlink: $(SYMLINK) -> $(TARGET)"
