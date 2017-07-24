@@ -3,14 +3,7 @@ allow init input_device:chr_file ioctl;
 allow init sensors_device:chr_file { write ioctl };
 allow init tee_device:chr_file { write ioctl };
 
-allow init servicemanager:binder { transfer call };
-allow init system_server:binder call;
-
-allow init property_socket:sock_file write;
-allow init socket_device:sock_file { create setattr unlink };
-
-allow init system_data_file:file { rename append };
+allow init debugfs:file write;
 allow init firmware_file:dir mounton;
 
-allow init debugfs:file write;
-allow init persist_file:filesystem { getattr mount relabelfrom relabelto };
+binder_use(init)

@@ -1,3 +1,2 @@
-allow rmt_storage fsg_file:dir search;
-allow rmt_storage fsg_file:file { read open };
 allow rmt_storage self:capability dac_override;
+r_dir_file(rmt_storage, fsg_file)

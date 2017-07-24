@@ -1,1 +1,0 @@
-allow persist_file self:filesystem associate;

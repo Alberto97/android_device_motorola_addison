@@ -36,5 +36,9 @@
 /dev/motosh_as                                           u:object_r:sensors_device:s0
 /dev/motosh_ms                                           u:object_r:sensors_device:s0
 
+# Sockets
+/dev/socket/adspdsock                                    u:object_r:adspd_socket:s0
+/dev/socket/cutback                                      u:object_r:cutback_socket:s0
+
 # WCNSS
 /sys/module/wcnsscore/parameters(/.*)?                   u:object_r:sysfs_wcnsscore:s0
