@@ -262,7 +262,6 @@ on charger
 on moto-charger
     setprop ro.board.platform msm8953
     trigger firmware_mounts_complete
-    start batt_health
     start thermal-com
 
 on property:ro.boot.dualsim=true
@@ -279,15 +278,6 @@ service adspd /system/bin/adspd
    socket adspdsock stream 0660 system audio
    user audio
    group audio input diag
-
-service batt_health /system/bin/batt_health
-    class late_start
-    user mot_pwric
-    group mot_pwric cache net_admin log
-    disabled
-
-on property:sys.boot_completed=1 && property:ro.boot.secure_hardware=0
-    start batt_health
 
 service fingerprintd /system/bin/fingerprintd
     class late_start

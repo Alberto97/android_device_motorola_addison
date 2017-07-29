@@ -390,9 +390,6 @@ vendor/lib/libOmxApeDec.so
 vendor/lib/libOmxApeDecSw.so
 vendor/lib/libOmxWmaDec.so
 
-# Moto
-bin/batt_health
-
 # Network
 -priv-app/QtiTetherService/QtiTetherService.apk
 vendor/lib/libQtiTether.so
