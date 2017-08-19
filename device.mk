@@ -158,7 +158,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl \
     libgnsspps \
-    gps.msm8953
+    gps.msm8953 \
+    libshims_get_process_name
 
 # HIDL
 PRODUCT_COPY_FILES += \

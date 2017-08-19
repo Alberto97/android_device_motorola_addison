@@ -55,7 +55,7 @@ on fs
 
 on init
     # Symbols required for motorola blobs
-    export LD_SHIM_LIBS /system/bin/adspd|libshim_adsp.so:/system/lib/libandroid.so|libshim_ril.so
+    export LD_SHIM_LIBS /system/bin/adspd|libshim_adsp.so:/system/lib/libandroid.so|libshim_ril.so:/system/vendor/lib/libizat_core.so|libshims_get_process_name.so
 
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 
