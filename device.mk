@@ -144,9 +144,9 @@ PRODUCT_PACKAGES += \
     gps.msm8953
 
 # IPA Manager
-PRODUCT_PACKAGES += \
-    ipacm \
-    IPACM_cfg.xml
+#PRODUCT_PACKAGES += \
+#    ipacm \
+#    IPACM_cfg.xml
 
 # IRSC
 PRODUCT_COPY_FILES += \
