@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include <gui/Sensor.h>
+#include <sensor/Sensor.h>
 
 extern "C" int ASensor_getHandle(ASensor const* sensor)
 {
