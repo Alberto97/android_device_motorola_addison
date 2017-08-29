@@ -278,11 +278,6 @@ service adspd /system/bin/adspd
    user audio
    group audio input diag
 
-service fingerprintd /system/bin/fingerprintd
-    class late_start
-    user system
-    group input
-
 service mmi-boot-sh /system/bin/init.mmi.boot.sh
     class core
     user root
