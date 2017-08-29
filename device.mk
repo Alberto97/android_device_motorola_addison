@@ -249,11 +249,12 @@ PRODUCT_PACKAGES += \
     wpa_supplicant_overlay.conf
 
 PRODUCT_PACKAGES += \
-    libcurl \
     libqsap_sdk \
     libQWiFiSoftApCfg \
-    tcpdump \
-    wcnss_service
+    libwpa_client \
+    wcnss_service \
+    wificond \
+    wifilogd
 
 # Wifi Symlinks
 PRODUCT_PACKAGES += \
