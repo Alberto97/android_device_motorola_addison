@@ -305,8 +305,8 @@
             32 - Camera
             64 - Volume rocker
          For example, a device with Home, Back and Menu keys would set this
-         config to 7. -->
-    <integer name="config_deviceHardwareKeys">64</integer>
+         config to 7.
+    <integer name="config_deviceHardwareKeys">64</integer> -->
 
     <!-- Hardware keys present on the device with the ability to wake, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
@@ -319,8 +319,8 @@
             32 - Camera
             64 - Volume rocker
          For example, a device with Home, Back and Menu keys would set this
-         config to 7. -->
-    <integer name="config_deviceHardwareWakeKeys">64</integer>
+         config to 7.
+    <integer name="config_deviceHardwareWakeKeys">64</integer> -->
 
     <!-- Screen brightness used to dim the screen while dozing in a very low power state.
           May be less than the minimum allowed brightness setting
