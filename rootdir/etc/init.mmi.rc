@@ -290,16 +290,16 @@ service mmi-boot-sh /system/bin/init.mmi.boot.sh
     group root radio
     oneshot
 
-service mmi-laser-sh /system/bin/init.mmi.laser.sh
-    class core
-    user root
-    group root mot_tcmd
-    oneshot
+#service mmi-laser-sh /system/bin/init.mmi.laser.sh
+#    class core
+#    user root
+#    group root mot_tcmd
+#    oneshot
 
-service mmi-touch-sh /system/bin/init.mmi.touch.sh
-    class core
-    user root
-    oneshot
+#service mmi-touch-sh /system/bin/init.mmi.touch.sh
+#    class core
+#    user root
+#    oneshot
 
 # Start Sensor daemon
 service motosh /system/bin/motosh boot
