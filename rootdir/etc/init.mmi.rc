@@ -273,7 +273,6 @@ on property:ro.boot.dualsim=false
    setprop ro.telephony.default_network 10
 
 service adspd /system/bin/adspd
-   seclabel u:r:adspd:s0
    class main
    socket adspdsock stream 0660 system audio
    user audio
@@ -307,7 +306,6 @@ service motosh /system/bin/motosh boot
     user compass
     group compass misc input
     oneshot
-    seclabel u:r:sensor_hub:s0
 
 service thermal-com /system/vendor/bin/thermal-engine --minimode
     class main
