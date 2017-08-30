@@ -292,7 +292,7 @@ on boot
    chmod 0660 /persist/chargeonly/cooldown
 
 # Pass carrier to wlan
-service init_wifi /vendor/bin/wlan_carrier_bin.sh
+service vendor.init_wifi /vendor/bin/wlan_carrier_bin.sh
     class main
     user root
     group root
@@ -305,7 +305,7 @@ on moto-charger
     setprop ro.board.platform msm8953
     load_system_props
     trigger firmware_mounts_complete
-    start thermal-com
+    start vendor.thermal-com
 
 on property:ro.boot.dualsim=true
    setprop persist.radio.multisim.config dsds
@@ -315,31 +315,31 @@ on property:ro.boot.dualsim=false
    setprop persist.radio.multisim.config ""
    setprop ro.telephony.default_network 10
 
-service mmi-boot-sh /vendor/bin/init.mmi.boot.sh
+service vendor.mmi-boot-sh /vendor/bin/init.mmi.boot.sh
     class core
     user root
     group root radio
     oneshot
 
-service mmi-laser-sh /vendor/bin/init.mmi.laser.sh
+service vendor.mmi-laser-sh /vendor/bin/init.mmi.laser.sh
     class core
     user root
     group root oem_5004
     oneshot
 
-service mmi-touch-sh /vendor/bin/init.mmi.touch.sh
+service vendor.mmi-touch-sh /vendor/bin/init.mmi.touch.sh
     class core
     user root
     oneshot
 
 # Start Sensor daemon
-service motosh /vendor/bin/motosh boot
+service vendor.motosh /vendor/bin/motosh boot
     class late_start
     user compass
     group compass misc input
     oneshot
 
-service thermal-com /vendor/bin/thermal-engine --minimode
+service vendor.thermal-com /vendor/bin/thermal-engine --minimode
     class main
     user root
     disabled

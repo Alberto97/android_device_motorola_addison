@@ -145,7 +145,7 @@ on boot
     chown radio radio /data/vendor/radio/db_check_done
     chmod 0660 /data/vendor/radio/db_check_done
 
-    start rmt_storage
+    start vendor.rmt_storage
 
     # Permission for vibrator amplitude
     chown system system /sys/class/timed_output/vibrator/voltage_level
@@ -323,9 +323,9 @@ on late-fs
     # Start bootanim and its dependencies
     start surfaceflinger
     start bootanim
-    start hwcomposer-2-1
-    start configstore-hal-1-0
-    start gralloc-2-0
+    start vendor.hwcomposer-2-1
+    start vendor.configstore-hal-1-0
+    start vendor.gralloc-2-0
 
     # Mount RW partitions which need run fsck
     mount_all /vendor/etc/fstab.qcom --late
@@ -523,7 +523,7 @@ on post-fs-data
 
     setprop vold.post_fs_data_done 1
 
-service charger /charger
+service vendor.charger /charger
     class charger
     group log
     seclabel u:r:charger:s0
@@ -535,17 +535,17 @@ on property:persist.usb.chgdisabled=1
 on property:persist.usb.chgdisabled=0
     write /sys/class/power_supply/battery/charging_enabled 1
 
-service adsprpcd /system/vendor/bin/adsprpcd
+service vendor.adsprpcd /system/vendor/bin/adsprpcd
     class main
     user media
     group media
 
-service qseecomd /vendor/bin/qseecomd
+service vendor.qseecomd /vendor/bin/qseecomd
     class core
     user root
     group root
 
-service thermal-engine /system/vendor/bin/thermal-engine
+service vendor.thermal-engine /system/vendor/bin/thermal-engine
     class main
     user root
     socket thermal-send-client stream 0666 system system
@@ -555,27 +555,27 @@ service thermal-engine /system/vendor/bin/thermal-engine
     group root
 
 #start camera server as daemon
-service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
+service vendor.qcamerasvr /system/vendor/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
 
 on property:vold.decrypt=trigger_restart_framework
-    start wcnss-service
+    start vendor.wcnss-service
 
-service wcnss-service /vendor/bin/wcnss_service
+service vendor.wcnss-service /vendor/bin/wcnss_service
     class main
     user system
     group system wifi radio
     oneshot
 
-service imsqmidaemon /system/vendor/bin/imsqmidaemon
+service vendor.imsqmidaemon /system/vendor/bin/imsqmidaemon
     class main
     user system
     socket ims_qmid stream 0660 system radio
     group radio log diag
 
-service imsdatadaemon /system/vendor/bin/imsdatadaemon
+service vendor.imsdatadaemon /system/vendor/bin/imsdatadaemon
     class main
     user system
     socket ims_datad stream 0660 system radio
@@ -583,61 +583,61 @@ service imsdatadaemon /system/vendor/bin/imsdatadaemon
     disabled
 
 on property:vendor.ims.QMI_DAEMON_STATUS=1
-    start imsdatadaemon
+    start vendor.imsdatadaemon
 
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
 
-service cnd /system/vendor/bin/cnd
+service vendor.cnd /system/vendor/bin/cnd
     class main
     user system
     group system wifi inet radio wakelock net_admin
 
-service irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
+service vendor.irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
     class core
     user root
     oneshot
 
-service per_mgr /system/vendor/bin/pm-service
+service vendor.per_mgr /system/vendor/bin/pm-service
     class core
     user system
     group system
 
-service per_proxy /system/vendor/bin/pm-proxy
+service vendor.per_proxy /system/vendor/bin/pm-proxy
     class core
     user system
     group system
     disabled
 
 on property:init.svc.per_mgr=running
-    start per_proxy
+    start vendor.per_proxy
 
 on property:sys.shutdown.requested=*
-    stop per_proxy
+    stop vendor.per_proxy
 
-service rmt_storage /vendor/bin/rmt_storage
+service vendor.rmt_storage /vendor/bin/rmt_storage
     class core
     user root
     shutdown critical
     ioprio rt 0
 
-service tftp_server /vendor/bin/tftp_server
+service vendor.tftp_server /vendor/bin/tftp_server
    class core
    user root
 
-service netmgrd /system/vendor/bin/netmgrd
+service vendor.netmgrd /system/vendor/bin/netmgrd
     class main
     user root
     group root wifi wakelock radio inet
 
-service qti /system/vendor/bin/qti
+service vendor.qti /system/vendor/bin/qti
     class main
     user radio
     group radio oem_2901 diag usb
 
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
-    stop netmgrd
+    stop vendor.netmgrd
 
 # Adjust socket buffer to enlarge TCP receive window for high bandwidth
 # but only if ro.data.large_tcp_window_size property is set.
@@ -663,25 +663,25 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     disabled
     oneshot
 
-service loc_launcher /system/vendor/bin/loc_launcher
+service vendor.loc_launcher /system/vendor/bin/loc_launcher
     #loc_launcher will start as root and set its uid to gps
     class late_start
     group gps inet diag wifi
 
-service ril-daemon2 /vendor/bin/hw/rild -c 2
+service vendor.ril-daemon2 /vendor/bin/hw/rild -c 2
     class main
     user radio
     group radio cache inet misc audio log readproc wakelock
     disabled
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
 
-service rild2-wrapper /vendor/bin/init.qcom.ril.sh
+service vendor.rild2-wrapper /vendor/bin/init.qcom.ril.sh
     class late_start
     user root
     group root
     oneshot
 
-service time_daemon /system/vendor/bin/time_daemon
+service vendor.time_daemon /system/vendor/bin/time_daemon
     class main
     user root
     group root
