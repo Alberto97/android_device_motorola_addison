@@ -522,9 +522,7 @@ bin/motosh
 etc/firmware/sensorhubfw.bin
 lib/hw/sensorhub.msm8953.so
 lib/hw/sensors.addison.so
-lib/hw/sensors.iio.so
-lib/hw/sensors.msm8953.so
-lib/libiio.so
+lib/hw/sensors.msm8953.so:lib/sensors.msm8953.so
 lib/libsensorhub.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensorhubservice_jni.so
