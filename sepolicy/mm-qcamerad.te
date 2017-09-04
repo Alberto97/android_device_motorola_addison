@@ -5,6 +5,10 @@ allow mm-qcamerad sysfs_mods_camd:dir search;
 allow mm-qcamerad sysfs_mods_camd:file r_file_perms;
 allow mm-qcamerad system_data_file:dir read;
 
+#allow camera to access Isensormanager
+allow mm-qcamerad fwk_sensor_hwservice:hwservice_manager find;
+binder_call(mm-qcamerad, system_server)
+
 allow mm-qcamerad sysfs_graphics:dir search;
 allow mm-qcamerad sysfs_graphics:file rw_file_perms;
 set_prop(mm-qcamerad, debug_prop);
