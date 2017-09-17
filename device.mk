@@ -123,10 +123,8 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-impl \
     android.hardware.renderscript@1.0-impl \
     gralloc.msm8953 \
-    copybit.msm8953 \
     hwcomposer.msm8953 \
-    memtrack.msm8953 \
-    libtinyxml
+    memtrack.msm8953
 
 # Display Calibration
 PRODUCT_PACKAGES += \
