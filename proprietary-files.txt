@@ -421,6 +421,7 @@ vendor/lib/libsmemlog.so
 
 # Radio
 -app/datastatusnotification/datastatusnotification.apk
+-app/QtiTelephonyService/QtiTelephonyService.apk|763deb39a73c7d2bd3b67524722ec4ef4f0d1f18
 bin/netmgrd
 bin/pm-proxy
 bin/pm-service
@@ -433,6 +434,8 @@ etc/data/dsi_config.xml
 etc/data/netmgr_config.xml
 etc/permissions/qcrilhook.xml
 -framework/qcrilhook.jar
+-framework/qti-telephony-common.jar|3cea332c3cc179fae5691763c8e55027cc76ffc8
+-framework/QtiTelephonyServicelibrary.jar|0507664eb8751cba3dcf0f4ab5b49d871455ddd9
 lib/libadropbox.so
 lib/libmdmcutback.so
 lib/libmotext_inf.so
