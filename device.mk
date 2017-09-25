@@ -104,6 +104,7 @@ PRODUCT_PACKAGES += \
     camera.msm8953 \
     libbson \
     libshim_buffer \
+    libshim_camera \
     libshim_just \
     Snap
 
