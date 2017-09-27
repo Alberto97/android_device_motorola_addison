@@ -13,9 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Blinking patterns reference:
- * https://github.com/MotorolaMobilityLLC/kernel-msm/commit/3b521f965fae990b2a7f13a6fc98fcf0ea50f66b
- *
  */
 
 #include <cutils/log.h>
@@ -29,14 +26,15 @@
 
 /******************************************************************************/
 
-
-#define LED_LIGHT_ON  3
-#define LED_LIGHT_OFF 0
+#define LED_LIGHT_OFF          0
+#define LED_LIGHT_BLINK_FAST   1
+#define LED_LIGHT_BLINK_SLOW   2
+#define LED_LIGHT_SOLID_ON     3
 
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
 static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
 
-char const*const CHARGING_LED_FILE
+char const*const LED_FILE
         = "/sys/class/leds/white/brightness";
 
 char const*const LCD_FILE
@@ -112,11 +110,11 @@ set_light_notifications(struct light_device_t* dev, struct light_state_t const* 
     pthread_mutex_lock(&g_lock);
 
     if (is_lit(state))
-        brightness_level = LED_LIGHT_ON;
+        brightness_level = LED_LIGHT_BLINK_SLOW;
     else
         brightness_level = LED_LIGHT_OFF;
 
-    err = write_int(CHARGING_LED_FILE, brightness_level);
+    err = write_int(LED_FILE, brightness_level);
 
     pthread_mutex_unlock(&g_lock);
     return err;
