@@ -237,6 +237,10 @@ PRODUCT_PACKAGES += \
     android.hardware.power@1.0-impl \
     power.msm8953
 
+# Post intallation script
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/post_install.sh:install/bin/post_install.sh
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     init.mmi.touch.sh \
