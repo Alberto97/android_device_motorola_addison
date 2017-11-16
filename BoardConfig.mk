@@ -23,6 +23,7 @@ BOARD_VENDOR := motorola-qcom
 # AIDs and CAPS
 TARGET_FS_CONFIG_GEN := \
     $(DEVICE_PATH)/fs_config/mot_aids.txt \
+    $(DEVICE_PATH)/fs_config/qcom_aids.txt \
     $(DEVICE_PATH)/fs_config/file_caps.txt
 
 # Platform
