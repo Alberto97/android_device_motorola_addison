@@ -539,7 +539,7 @@ service ipacm-diag /system/bin/ipacm-diag
     class main
     user system
     socket ipacm_log_file dgram 660 system net_admin
-    group net_admin qcom_diag
+    group net_admin oem_2950
 
 service ipacm /system/bin/ipacm
     class main
@@ -549,7 +549,7 @@ service ipacm /system/bin/ipacm
 service qti /system/vendor/bin/qti
     class main
     user radio
-    group radio qcom_diag usb
+    group radio oem_2950 usb
 
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
@@ -599,7 +599,7 @@ service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqb
 service loc_launcher /system/bin/loc_launcher
     #loc_launcher will start as root and set its uid to gps
     class late_start
-    group gps inet qcom_diag wifi
+    group gps inet oem_2950 wifi
 
 on charger
     wait /dev/block/bootdevice/by-name/system
