@@ -79,7 +79,6 @@ on early-boot
     # write /sys/kernel/boot_slpi/boot 1
 
 on boot
-    insmod /system/lib/modules/adsprpc.ko
     # access permission for secure touch
     chmod 0660 /sys/devices/soc/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch_enable
     chmod 0440 /sys/devices/soc/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
