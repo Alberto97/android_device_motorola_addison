@@ -169,6 +169,9 @@ PRODUCT_PACKAGES += \
     libshims_get_process_name
 
 # HIDL
+PRODUCT_PACKAGES += \
+    android.hidl.base@1.0
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
 
