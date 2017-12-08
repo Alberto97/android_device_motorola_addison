@@ -437,7 +437,7 @@ service cnd /system/bin/cnd
     class main
     socket cnd stream 660 root inet
 
-service wcnss-service /system/bin/wcnss_service
+service wcnss-service /vendor/bin/wcnss_service
     class main
     user system
     group system wifi radio
