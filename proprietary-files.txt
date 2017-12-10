@@ -402,7 +402,9 @@ vendor/lib/libOmxWmaDec.so
 vendor/firmware/libpn548ad_fw.so
 
 # Qualcomm framework
-# bin/irsc_util
+lib/libdiag_system.so
+lib/libqmi_cci_system.so
+# vendor/bin/irsc_util
 vendor/lib/libdiag.so
 vendor/lib/libdsi_netctrl.so
 vendor/lib/libdsutils.so
@@ -411,6 +413,7 @@ vendor/lib/libqcci_legacy.so
 vendor/lib/libqdi.so
 vendor/lib/libqdp.so
 vendor/lib/libqisl.so
+vendor/lib/libqmi.so
 vendor/lib/libqmi_cci.so
 vendor/lib/libqmi_client_helper.so
 vendor/lib/libqmi_client_qmux.so
@@ -418,37 +421,31 @@ vendor/lib/libqmi_common_so.so
 vendor/lib/libqmi_csi.so
 vendor/lib/libqmi_encdec.so
 vendor/lib/libqmiservices.so
-vendor/lib/libqmi.so
 vendor/lib/libsmemlog.so
 
 # Radio
--app/datastatusnotification/datastatusnotification.apk
--app/QtiTelephonyService/QtiTelephonyService.apk|763deb39a73c7d2bd3b67524722ec4ef4f0d1f18
-# bin/netmgrd
-# bin/pm-proxy
-# bin/pm-service
-# bin/qmi_motext_hook
-# bin/radish
-# bin/rmt_storage
-# bin/tftp_server
-etc/data/dsi_config.xml
-etc/data/netmgr_config.xml
 etc/permissions/qcrilhook.xml
 -framework/qcrilhook.jar
--framework/qti-telephony-common.jar|3cea332c3cc179fae5691763c8e55027cc76ffc8
--framework/QtiTelephonyServicelibrary.jar|0507664eb8751cba3dcf0f4ab5b49d871455ddd9
-lib/libadropbox.so
-lib/libmdmcutback.so
-lib/libmotext_inf.so
-lib/libqmimotext.so
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
+# vendor/bin/netmgrd
+# vendor/bin/pm-proxy
+# vendor/bin/pm-service
+# vendor/bin/qmi_motext_hook
 # vendor/bin/qti
+# vendor/bin/rmt_storage
+# vendor/bin/tftp_server
+vendor/etc/data/dsi_config.xml
+vendor/etc/data/netmgr_config.xml
+vendor/lib/libadropbox.so
 vendor/lib/libconfigdb.so
 vendor/lib/liblqe.so
+vendor/lib/libmdmcutback.so
 vendor/lib/libmdmdetect.so
+vendor/lib/libmotext_inf.so
 vendor/lib/libnetmgr.so
 vendor/lib/libperipheral_client.so
 vendor/lib/libqcmaputils.so
+vendor/lib/libqmimotext.so
 vendor/lib/libril-qc-ltedirectdisc.so
 vendor/lib/libril-qc-qmi-1.so
 vendor/lib/libril-qc-radioconfig.so
@@ -459,7 +456,16 @@ vendor/lib/libsubsystem_control.so
 vendor/lib/libSubSystemShutdown.so
 vendor/lib/libsystem_health_mon.so
 vendor/lib/libxml.so
-vendor/qcril.db
+vendor/lib/vendor.qti.hardware.radio.am@1.0_vendor.so
+vendor/lib/vendor.qti.hardware.radio.atcmdfwd@1.0_vendor.so
+vendor/lib/vendor.qti.hardware.radio.ims@1.0_vendor.so
+vendor/lib/vendor.qti.hardware.radio.lpa@1.0_vendor.so
+vendor/lib/vendor.qti.hardware.radio.qcrilhook@1.0_vendor.so
+vendor/lib/vendor.qti.hardware.radio.qtiradio@1.0_vendor.so
+vendor/lib/vendor.qti.hardware.radio.uim@1.0_vendor.so
+vendor/lib/vendor.qti.hardware.radio.uim_remote_client@1.0_vendor.so
+vendor/lib/vendor.qti.hardware.radio.uim_remote_server@1.0_vendor.so
+vendor/radio/qcril_database/qcril.db
 
 # CNE
 # bin/cnd
