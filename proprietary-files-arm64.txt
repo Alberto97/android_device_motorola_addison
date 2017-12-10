@@ -56,17 +56,18 @@ lib64/lib_fpc_tac_shared.so
 vendor/lib64/hw/fingerprint.msm8996.so:vendor/lib64/hw/fingerprint.msm8953.so
 
 # GPS
-bin/loc_launcher
-bin/xtwifi-client
-bin/xtwifi-inet-agent
+lib64/liblocationservice_jni.so
+lib64/libxt_native.so
+lib64/vendor.qti.gnss@1.0.so
+vendor/bin/hw/vendor.qti.gnss@1.0-service
+vendor/bin/loc_launcher
 vendor/bin/slim_daemon
-lib64/libloc_api_v02.so
-lib64/libloc_ds_api.so
-vendor/lib64/hw/flp.default.so
+vendor/bin/xtwifi-client
+vendor/bin/xtwifi-inet-agent
+vendor/bin/xtra-daemon
+vendor/etc/init/vendor.qti.gnss@1.0-service.rc
+vendor/lib64/hw/vendor.qti.gnss@1.0-impl.so
 vendor/lib64/libalarmservice_jni.so
-vendor/lib64/libasn1cper.so
-vendor/lib64/libasn1crt.so
-vendor/lib64/libasn1crtx.so
 vendor/lib64/libdataitems.so
 vendor/lib64/libDRPlugin.so
 vendor/lib64/libdrplugin_client.so
@@ -77,16 +78,17 @@ vendor/lib64/libgeofence.so
 vendor/lib64/libizat_client_api.so
 vendor/lib64/libizat_core.so
 vendor/lib64/liblbs_core.so
-vendor/lib64/libloc_ext.so
+vendor/lib64/libloc_api_v02.so
+vendor/lib64/libloc_ds_api.so
 vendor/lib64/libloc_externalDr.so
 vendor/lib64/liblocationservice.so
 vendor/lib64/liblocationservice_glue.so
 vendor/lib64/liblowi_client.so
 vendor/lib64/libquipc_os_api.so
 vendor/lib64/libulp2.so
-vendor/lib64/libxt_native.so
 vendor/lib64/libxtadapter.so
 vendor/lib64/libxtwifi_ulp_adaptor.so
+vendor/lib64/vendor.qti.gnss@1.0_vendor.so
 
 # Graphics
 vendor/lib64/egl/eglSubDriverAndroid.so

@@ -151,8 +151,7 @@ BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 TARGET_LD_SHIM_LIBS := \
     /system/bin/adspd|libshim_adsp.so \
     /system/lib64/libandroid.so|libshim_ril.so \
-    /system/lib64/libmdmcutback.so|libqsap_shim.so \
-    /system/vendor/lib64/libizat_core.so|libshims_get_process_name.so
+    /system/lib64/libmdmcutback.so|libqsap_shim.so
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
