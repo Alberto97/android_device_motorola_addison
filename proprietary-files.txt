@@ -40,10 +40,10 @@ etc/firmware/marley-dsp2-aov-frontend.wmfw
 etc/firmware/marley-dsp3-aov-control.wmfw
 
 # Bluetooth
-bin/btnvtool
-bin/hci_qcomm_init
-vendor/lib/libaptX-1.0.0-rel-Android21-ARMv7A.so
-vendor/lib/libaptXScheduler.so
+vendor/lib/hw/android.hardware.bluetooth@1.0-impl-qti.so
+vendor/lib/com.qualcomm.qti.bluetooth_audio@1.0_vendor.so
+vendor/lib/libaptX_encoder.so
+vendor/lib/libaptXHD_encoder.so
 vendor/lib/libbtnv.so
 
 # Camera
