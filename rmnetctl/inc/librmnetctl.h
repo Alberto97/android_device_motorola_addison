@@ -2,7 +2,7 @@
 
 			  L I B R M N E T C T L . H
 
-Copyright (c) 2013-2015, 2017 The Linux Foundation. All rights reserved.
+Copyright (c) 2013-2015, 2017-2018 The Linux Foundation. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -516,6 +516,89 @@ int rmnet_add_del_vnd_tc_flow(rmnetctl_hndl_t *hndl,
 			      uint32_t tc_flow_id,
 			      uint8_t set_flow,
 			      uint16_t *error_code);
+
+/* @brief Public API to initialize the RTM_NETLINK RMNET control driver
+ * @details Allocates memory for the RmNet handle. Creates and binds to a
+ * netlink socket if successful
+ * @param **rmnetctl_hndl_t_val RmNet handle to be initialized
+ * @return RMNETCTL_SUCCESS if successful
+ * @return RMNETCTL_LIB_ERR if there was a library error. Check error_code
+ * @return RMNETCTL_KERNEL_ERR if there was an error in the kernel.
+ * Check error_code
+ * @return RMNETCTL_INVALID_ARG if invalid arguments were passed to the API
+ */
+int rtrmnet_ctl_init(rmnetctl_hndl_t **hndl, uint16_t *error_code);
+
+/* @brief Public API to clean up the RTM_NETLINK RmNeT control handle
+ * @details Close the socket and free the RmNet handle
+ * @param *rmnetctl_hndl_t_val RmNet handle to be initialized
+ * @return void
+ */
+int rtrmnet_ctl_deinit(rmnetctl_hndl_t *hndl);
+
+/* @brief Public API to create a new virtual device node
+ * @details Message type is RTM_NEWLINK
+ * @param hndl RmNet handle for the Netlink message
+ * @param dev_name Device name new node will be connected to
+ * @param vnd_name Name of virtual device to be created
+ * @param error_code Status code of this operation returned from the kernel
+ * @param index Index node will have
+ * @param flagconfig Flag configuration device will have
+ * @return RMNETCTL_SUCCESS if successful
+ * @return RMNETCTL_LIB_ERR if there was a library error. Check error_code
+ * @return RMNETCTL_KERNEL_ERR if there was an error in the kernel.
+ * Check error_code
+ * @return RMNETCTL_INVALID_ARG if invalid arguments were passed to the API
+ */
+int rtrmnet_ctl_newvnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
+		       uint16_t *error_code, uint8_t  index,
+		       uint32_t flagconfig);
+
+/* @brief Public API to delete a virtual device node
+ * @details Message type is RTM_DELLINK
+ * @param hndl RmNet handle for the Netlink message
+ * @param vnd_name Name of virtual device to be deleted
+ * @param error_code Status code of this operation returned from the kernel
+ * @return RMNETCTL_SUCCESS if successful
+ * @return RMNETCTL_LIB_ERR if there was a library error. Check error_code
+ * @return RMNETCTL_KERNEL_ERR if there was an error in the kernel.
+ * Check error_code
+ * @return RMNETCTL_INVALID_ARG if invalid arguments were passed to the API
+ */
+int rtrmnet_ctl_delvnd(rmnetctl_hndl_t *hndl, char *vndname,
+		       uint16_t *error_code);
+
+/* @brief Public API to change flag's of a virtual device node
+ * @details Message type is RTM_NEWLINK
+ * @param hndl RmNet handle for the Netlink message
+ * @param dev_name Name of device node is connected to
+ * @param vnd_name Name of virtual device to be changed
+ * @param error_code Status code of this operation returned from the kernel
+ * @param flagconfig New flag config vnd should have
+ * @return RMNETCTL_SUCCESS if successful
+ * @return RMNETCTL_LIB_ERR if there was a library error. Check error_code
+ * @return RMNETCTL_KERNEL_ERR if there was an error in the kernel.
+ * Check error_code
+ * @return RMNETCTL_INVALID_ARG if invalid arguments were passed to the API
+ */
+int rtrmnet_ctl_changevnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
+			  uint16_t *error_code, uint8_t  index,
+			  uint32_t flagconfig);
+
+/* @brief Public API to bridge a vnd and device
+ * @details Message type is RTM_NEWLINK
+ * @param hndl RmNet handle for the Netlink message
+ * @param dev_name device to bridge msg will be sent to
+ * @param vnd_name vnd name of device that will be dev_name's master
+ * @param error_code Status code of this operation returned from the kernel
+ * @return RMNETCTL_SUCCESS if successful
+ * @return RMNETCTL_LIB_ERR if there was a library error. Check error_code
+ * @return RMNETCTL_KERNEL_ERR if there was an error in the kernel.
+ * Check error_code
+ * @return RMNETCTL_INVALID_ARG if invalid arguments were passed to the API
+ */
+int rtrmnet_ctl_bridgevnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
+			  uint16_t *error_code);
 
 #endif /* not defined LIBRMNETCTL_H */
 
