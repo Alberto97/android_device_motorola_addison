@@ -139,9 +139,6 @@ PRODUCT_PACKAGES += \
     memtrack.msm8953
 
 # Display Calibration
-PRODUCT_PACKAGES += \
-    libjni_livedisplay
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/qdcm_calib_data_mipi_mot_cmd_smd_1080p_549.xml:system/etc/qdcm_calib_data_mipi_mot_cmd_smd_1080p_549.xml
 
