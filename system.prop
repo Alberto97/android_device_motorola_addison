@@ -81,6 +81,9 @@ persist.radio.VT_USE_MDM_TIME=0
 media.aac_51_output_enabled=true
 persist.media.treble_omx=false
 
+# NFC
+ro.hardware.nfc_nci=addison
+
 # Radio
 persist.data.qmi.adb_logmask=0
 persist.radio.apn_delay=5000
