@@ -44,6 +44,11 @@ vendor/lib/com.qualcomm.qti.bluetooth_audio@1.0_vendor.so
 vendor/lib/libaptX_encoder.so
 vendor/lib/libaptXHD_encoder.so
 vendor/lib/libbtnv.so
+vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so
+vendor/lib64/com.qualcomm.qti.bluetooth_audio@1.0_vendor.so
+vendor/lib64/libaptX_encoder.so
+vendor/lib64/libaptXHD_encoder.so
+vendor/lib64/libbtnv.so
 
 # Camera
 bin/mm-qcamera-daemon
