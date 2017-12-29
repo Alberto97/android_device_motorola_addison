@@ -67,6 +67,7 @@ TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CONFIG := addison_defconfig
 TARGET_KERNEL_SOURCE := kernel/motorola/msm8953
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/aarch64-linux-android-4.9/bin
+LZMA_RAMDISK_TARGETS := recovery
 
 # Audio
 AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := true
