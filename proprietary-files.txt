@@ -289,6 +289,7 @@ vendor/lib64/libGPreqcancel_svc.so
 vendor/lib64/libQSEEComAPI.so
 vendor/lib64/librpmb.so
 vendor/lib64/libssd.so
+vendor/lib64/mediadrm/libwvdrmengine.so
 
 # Fingerprint
 lib/hw/fingerprint.msm8953.so
