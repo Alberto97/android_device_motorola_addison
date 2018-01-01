@@ -713,9 +713,6 @@ lib/libsensorhub.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensorhubservice_jni.so
 vendor/lib/libsensor_reg.so
-lib64/hw/sensorhub.msm8953.so
-lib64/hw/sensors.addison.so
-lib64/hw/sensors.msm8953.so:lib64/sensors.msm8953.so
 lib64/libsensorhub.so
 vendor/lib64/libsensor1.so
 vendor/lib64/libsensorhubservice_jni.so
