@@ -80,9 +80,9 @@
 	<usecase name="USECASE_VOICEMMODE1_CALL" type="out" id="35" />
 	<usecase name="USECASE_VOICEMMODE2_CALL" type="in" id="36" />
 	<usecase name="USECASE_VOICEMMODE2_CALL" type="out" id="36" />
-	<usecase name="USECASE_AUDIO_DSM_FEEDBACK" type="in" id="61" />
-	<usecase name="USECASE_MOTVR_COMMAND" type="in" id="40" />
-	<usecase name="USECASE_MOTVR_TRACE" type="in" id="41" />
+	<usecase name="USECASE_AUDIO_DSM_FEEDBACK" type="in" id="64" />
+	<usecase name="USECASE_MOTVR_COMMAND" type="in" id="43" />
+	<usecase name="USECASE_MOTVR_TRACE" type="in" id="44" />
 </pcm_ids>
 
 <backend_names>
