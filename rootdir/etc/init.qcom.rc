@@ -244,7 +244,7 @@ on post-fs-data
     mkdir /data/misc/qsee 0770 system system
 
     #Create folder for mm-qcamera-daemon
-    mkdir /data/misc/camera 0770 camera camera
+    mkdir /data/vendor/camera 0770 camera camera
 
     mkdir /data/media 0770 media_rw media_rw
     chown media_rw media_rw /data/media
@@ -428,7 +428,7 @@ on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
 
 #start camera server as daemon
-service qcamerasvr /system/bin/mm-qcamera-daemon
+service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
