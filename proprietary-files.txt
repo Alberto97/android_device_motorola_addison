@@ -27,7 +27,6 @@ vendor/lib/libacdbmapper.so
 vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libaudcal.so
-vendor/lib/libvoice-svc.so
 
 # Audio firmware
 etc/firmware/marley-dsp1-ultrasound.wmfw
