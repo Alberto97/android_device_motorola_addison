@@ -704,17 +704,16 @@ vendor/lib64/libscveTextRecoPostProcessing.so
 vendor/lib64/libscveTextReco_stub.so
 
 # Sensors
-bin/motosh
-etc/firmware/sensorhubfw.bin
-lib/hw/sensorhub.msm8953.so
-lib/hw/sensors.addison.so
-lib/hw/sensors.msm8953.so:lib/sensors.msm8953.so
-lib/libsensorhub.so
+vendor/bin/motosh
+vendor/etc/firmware/sensorhubfw.bin
+vendor/lib/hw/sensorhub.msm8953.so
 vendor/lib/libsensor1.so
+vendor/lib/libsensorhub.so
 vendor/lib/libsensorhubservice_jni.so
 vendor/lib/libsensor_reg.so
-lib64/libsensorhub.so
+vendor/lib/sensors.msm8953.so
 vendor/lib64/libsensor1.so
+vendor/lib64/libsensorhub.so
 vendor/lib64/libsensorhubservice_jni.so
 vendor/lib64/libsensor_reg.so
 
