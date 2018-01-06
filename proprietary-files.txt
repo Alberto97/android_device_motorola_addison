@@ -533,8 +533,8 @@ etc/firmware/synaptics-s3508-16082601-255c40-addison.tdat
 etc/firmware/synaptics-s3508sga-16082601-255c40-addison.tdat
 
 # WCNSS
-etc/wifi/WCNSS_qcom_wlan_nv.bin:etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
-etc/wifi/WCNSS_qcom_wlan_nv_Argentina.bin:etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv_Argentina.bin
-etc/wifi/WCNSS_qcom_wlan_nv_Brazil.bin:etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv_Brazil.bin
-etc/wifi/WCNSS_qcom_wlan_nv_India.bin:etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv_India.bin
-etc/wifi/WCNSS_wlan_dictionary.dat:etc/firmware/wlan/prima/WCNSS_wlan_dictionary.dat
+vendor/etc/wifi/WCNSS_qcom_wlan_nv.bin:vendor/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
+vendor/etc/wifi/WCNSS_qcom_wlan_nv_Argentina.bin:vendor/firmware/wlan/prima/WCNSS_qcom_wlan_nv_Argentina.bin
+vendor/etc/wifi/WCNSS_qcom_wlan_nv_Brazil.bin:vendor/firmware/wlan/prima/WCNSS_qcom_wlan_nv_Brazil.bin
+vendor/etc/wifi/WCNSS_qcom_wlan_nv_India.bin:vendor/firmware/wlan/prima/WCNSS_qcom_wlan_nv_India.bin
+vendor/etc/wifi/WCNSS_wlan_dictionary.dat:vendor/firmware/wlan/prima/WCNSS_wlan_dictionary.dat
