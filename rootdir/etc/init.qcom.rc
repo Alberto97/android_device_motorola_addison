@@ -394,7 +394,7 @@ service thermal-engine /system/vendor/bin/thermal-engine
    socket thermal-send-rule stream 0660 system system
    group root
 
-service time_daemon /system/bin/time_daemon
+service time_daemon /vendor/bin/time_daemon
    class main
    user root
    group root
