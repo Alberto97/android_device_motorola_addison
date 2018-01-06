@@ -433,8 +433,8 @@ service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
     user camera
     group camera system inet input graphics
 
-service cnd /system/bin/cnd
-    class main
+service cnd /system/vendor/bin/cnd
+    class late_start
     socket cnd stream 660 root inet
 
 service wcnss-service /vendor/bin/wcnss_service
