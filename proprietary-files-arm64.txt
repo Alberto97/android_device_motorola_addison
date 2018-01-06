@@ -36,8 +36,8 @@ vendor/lib64/vendor.display.color@1.0_vendor.so
 
 # DRM
 bin/qseecomd
-vendor/lib64/hw/gatekeeper.msm8953.so
-vendor/lib64/hw/keystore.msm8953.so
+vendor/lib64/hw/gatekeeper.msm8996.so:vendor/lib64/hw/gatekeeper.msm8953.so
+vendor/lib64/hw/keystore.msm8996.so:vendor/lib64/hw/keystore.msm8953.so
 vendor/lib64/libdrmfs.so
 vendor/lib64/libdrmtime.so
 vendor/lib64/libGPreqcancel.so
@@ -50,7 +50,7 @@ vendor/lib64/mediadrm/libwvdrmengine.so
 # Fingerprint
 lib64/libcom_fingerprints_service.so
 lib64/lib_fpc_tac_shared.so
-vendor/lib64/hw/fingerprint.msm8953.so
+vendor/lib64/hw/fingerprint.msm8996.so:vendor/lib64/hw/fingerprint.msm8953.so
 
 # GPS
 bin/loc_launcher
@@ -93,7 +93,7 @@ vendor/lib64/egl/libGLESv2_adreno.so
 vendor/lib64/egl/libq3dtools_adreno.so
 vendor/lib64/egl/libq3dtools_esx.so
 vendor/lib64/egl/libQTapGLES.so
-vendor/lib64/hw/vulkan.msm8953.so
+vendor/lib64/hw/vulkan.msm8996.so:vendor/lib64/hw/vulkan.msm8953.so
 vendor/lib64/libadreno_utils.so
 vendor/lib64/libbccQTI.so
 vendor/lib64/libC2D2.so
