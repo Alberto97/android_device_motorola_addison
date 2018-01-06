@@ -147,7 +147,6 @@ bin/ipacm-diag
 vendor/lib64/libAlacSwDec.so
 vendor/lib64/libApeSwDec.so
 vendor/lib64/libI420colorconvert.so
-vendor/lib64/libmmosal.so
 vendor/lib64/libOmxAlacDec.so
 vendor/lib64/libOmxAlacDecSw.so
 vendor/lib64/libOmxApeDec.so
