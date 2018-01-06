@@ -238,6 +238,7 @@ vendor/lib64/libsensor_reg.so
 
 # Thermal
 vendor/bin/thermal-engine
+vendor/lib64/hw/thermal.msm8996.so:vendor/lib64/hw/thermal.msm8953.so
 vendor/lib64/libthermalclient.so
 vendor/lib64/libthermalioctl.so
 

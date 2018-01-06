@@ -519,6 +519,7 @@ vendor/lib/sensors.msm8953.so
 
 # Thermal
 # vendor/bin/thermal-engine
+vendor/lib/hw/thermal.msm8953.so
 vendor/lib/libthermalclient.so
 vendor/lib/libthermalioctl.so
 
