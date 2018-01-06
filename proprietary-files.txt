@@ -245,9 +245,14 @@ vendor/lib/vendor.display.color@1.0_vendor.so
 vendor/lib/vendor.display.postproc@1.0_vendor.so
 
 # DRM
-# bin/qseecomd
+lib/vendor.qti.hardware.qteeconnector@1.0.so
+# vendor/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service
+# vendor/bin/qseecomd
+# vendor/etc/init/vendor.qti.hardware.qteeconnector@1.0-service.rc
 vendor/lib/hw/gatekeeper.msm8953.so
 vendor/lib/hw/keystore.msm8953.so
+vendor/lib/hw/vendor.qti.hardware.qteeconnector@1.0-impl.so
+vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/libcppf.so
 vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
@@ -257,7 +262,7 @@ vendor/lib/liboemcrypto.so
 vendor/lib/libQSEEComAPI.so
 vendor/lib/librpmb.so
 vendor/lib/libssd.so
-vendor/lib/mediadrm/libwvdrmengine.so
+vendor/lib/vendor.qti.hardware.qteeconnector@1.0_vendor.so
 
 # Fingerprint
 lib/libcom_fingerprints_service.so
