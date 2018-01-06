@@ -532,14 +532,6 @@ vendor/lib/libtime_genoff.so
 etc/firmware/synaptics-s3508-16082601-255c40-addison.tdat
 etc/firmware/synaptics-s3508sga-16082601-255c40-addison.tdat
 
-# Vendor extension
-# bin/energy-awareness
-# vendor/bin/perfd
-vendor/lib/libqti-iop.so
-vendor/lib/libqti-iop-client.so
-vendor/lib/libqti-perfd-client.so
-vendor/lib/libqti_performance.so
-
 # WCNSS
 etc/wifi/WCNSS_qcom_wlan_nv.bin:etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
 etc/wifi/WCNSS_qcom_wlan_nv_Argentina.bin:etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv_Argentina.bin

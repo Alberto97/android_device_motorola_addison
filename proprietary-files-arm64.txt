@@ -245,11 +245,3 @@ vendor/lib64/libthermalioctl.so
 # Time services
 vendor/bin/time_daemon
 vendor/lib64/libtime_genoff.so
-
-# Vendor extension
-bin/energy-awareness
-vendor/bin/perfd
-vendor/lib64/libqti-iop.so
-vendor/lib64/libqti-iop-client.so
-vendor/lib64/libqti-perfd-client.so
-vendor/lib64/libqti_performance.so
