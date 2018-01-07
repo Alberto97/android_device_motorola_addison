@@ -103,6 +103,3 @@ persist.data.mode=concurrent
 # Sensors
 ro.hardware.sensors=addison
 system_init.startsensorservice=0
-
-# Vendor Extension
-ro.vendor.extension_library=libqti-perfd-client.so
