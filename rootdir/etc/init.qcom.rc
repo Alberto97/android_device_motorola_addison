@@ -32,10 +32,7 @@ on early-init
     chmod 0755 /sys/kernel/debug
     chown root system /dev/kmsg
     chmod 0620 /dev/kmsg
-    mkdir /firmware 0771 system system
-    mkdir /system 0777 root root
     symlink /data/tombstones /tombstones
-    mkdir /dsp 0771 media media
 
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
