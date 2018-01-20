@@ -83,6 +83,7 @@ vendor/lib64/liblocationservice.so
 vendor/lib64/liblocationservice_glue.so
 vendor/lib64/liblowi_client.so
 vendor/lib64/libquipc_os_api.so
+vendor/lib64/libsensor1.so
 vendor/lib64/libulp2.so
 vendor/lib64/libxt_native.so
 vendor/lib64/libxtadapter.so
@@ -228,13 +229,6 @@ vendor/lib64/libscveObjectTracker.so
 vendor/lib64/libscveObjectTracker_stub.so
 vendor/lib64/libscvePanorama.so
 vendor/lib64/libscvePanorama_lite.so
-
-# Sensors
-vendor/bin/motosh
-vendor/lib64/libsensor1.so
-vendor/lib64/libsensorhub.so
-vendor/lib64/libsensorhubservice_jni.so
-vendor/lib64/libsensor_reg.so
 
 # Thermal
 vendor/bin/thermal-engine
