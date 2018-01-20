@@ -99,4 +99,3 @@ persist.data.mode=concurrent
 
 # Sensors
 ro.hardware.sensors=addison
-system_init.startsensorservice=0
