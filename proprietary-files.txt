@@ -313,7 +313,6 @@ vendor/lib/liblocationservice.so
 vendor/lib/liblocationservice_glue.so
 vendor/lib/liblowi_client.so
 vendor/lib/libquipc_os_api.so
-vendor/lib/libsensor1.so
 vendor/lib/libulp2.so
 vendor/lib/libxt_native.so
 vendor/lib/libxtadapter.so
@@ -509,7 +508,14 @@ vendor/lib/libscvePanorama.so
 vendor/lib/libscvePanorama_lite.so
 
 # Sensors
+# vendor/bin/motosh
 vendor/etc/firmware/sensorhubfw.bin
+vendor/lib/hw/sensorhub.msm8953.so
+vendor/lib/libsensor1.so
+vendor/lib/libsensorhub.so
+vendor/lib/libsensorhubservice_jni.so
+vendor/lib/libsensor_reg.so
+vendor/lib/sensors.msm8953.so
 
 # Thermal
 # vendor/bin/thermal-engine
