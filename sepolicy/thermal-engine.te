@@ -1,0 +1,2 @@
+allow thermal-engine sysfs_vadc_dev:dir search;
+allow thermal-engine sysfs_vadc_dev:lnk_file read;
