@@ -1,5 +1,5 @@
 # Moto USB configuration
-import init.mmi.usb.rc
+import /vendor/etc/init/hw/init.mmi.usb.rc
 
 on early-boot
     write /sys/module/subsystem_restart/parameters/disable_restart_work 0x0
@@ -238,7 +238,7 @@ on boot
    write /sys/module/binder/parameters/debug_mask 0x5
 
 # Pass carrier to wlan
-service init_wifi /system/bin/wlan_carrier_bin.sh
+service init_wifi /vendor/bin/wlan_carrier_bin.sh
     class main
     user root
     group root
@@ -272,19 +272,19 @@ service adspd /system/bin/adspd
    user audio
    group audio input diag
 
-service mmi-boot-sh /system/bin/init.mmi.boot.sh
+service mmi-boot-sh /vendor/bin/init.mmi.boot.sh
     class core
     user root
     group root radio
     oneshot
 
-service mmi-laser-sh /system/bin/init.mmi.laser.sh
+service mmi-laser-sh /vendor/bin/init.mmi.laser.sh
     class core
     user root
     group root oem_5004
     oneshot
 
-service mmi-touch-sh /system/bin/init.mmi.touch.sh
+service mmi-touch-sh /vendor/bin/init.mmi.touch.sh
     class core
     user root
     oneshot
@@ -315,4 +315,4 @@ on property:sys.wifi.tethering=false
 
 on property:sys.boot_completed=1
     # Enable ZRAM on boot_complete
-    swapon_all fstab.qcom
+    swapon_all /vendor/etc/fstab.qcom

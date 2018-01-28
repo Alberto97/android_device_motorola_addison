@@ -25,7 +25,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-import init.mmi.rc
+import /vendor/etc/init/hw/init.mmi.rc
 
 on early-init
     mount tracefs tracefs /sys/kernel/tracing
@@ -40,7 +40,7 @@ on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
-    mount_all fstab.qcom
+    mount_all /vendor/etc/fstab.qcom
     write /proc/sys/vm/swappiness 100
 
     # Keeping following partitions outside fstab file. As user may not have
@@ -569,7 +569,7 @@ service ril-daemon2 /vendor/bin/hw/rild -c 2
     group radio cache inet misc audio log readproc wakelock
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
 
-service rild2-wrapper /system/bin/sh /system/etc/init.qcom.ril.sh
+service rild2-wrapper /vendor/etc/init.qcom.ril.sh
     class late_start
     user root
     group root
