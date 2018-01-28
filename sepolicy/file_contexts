@@ -2,12 +2,12 @@
 /sys/kernel/aov(/.*)?                                    u:object_r:sysfs_adsp:s0
 
 # Binaries
-/system/bin/adspd                                        u:object_r:adspd_exec:s0
-/system/bin/init\.mmi\.boot\.sh                          u:object_r:mmi_boot_exec:s0
-/system/bin/init\.mmi\.laser\.sh                         u:object_r:mmi_laser_exec:s0
-/system/bin/init\.mmi\.touch\.sh                         u:object_r:mmi_touch_sh_exec:s0
-/system/bin/wlan_carrier_bin\.sh                         u:object_r:init_wifi_exec:s0
-/system/bin/motosh                                       u:object_r:sensor_hub_exec:s0
+/vendor/bin/adspd                                        u:object_r:adspd_exec:s0
+/vendor/bin/init\.mmi\.boot\.sh                          u:object_r:mmi_boot_exec:s0
+/vendor/bin/init\.mmi\.laser\.sh                         u:object_r:mmi_laser_exec:s0
+/vendor/bin/init\.mmi\.touch\.sh                         u:object_r:mmi_touch_sh_exec:s0
+/vendor/bin/wlan_carrier_bin\.sh                         u:object_r:init_wifi_exec:s0
+/vendor/bin/motosh                                       u:object_r:sensor_hub_exec:s0
 
 # Camera
 /sys/kernel/range/offset                                 u:object_r:sysfs_mmi_laser:s0
