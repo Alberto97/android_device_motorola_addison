@@ -140,9 +140,6 @@ vendor/lib64/lib-rtpcore.so
 vendor/lib64/lib-rtpdaemoninterface.so
 vendor/lib64/lib-rtpsl.so
 
-# IPA
-bin/ipacm-diag
-
 # Media
 vendor/lib64/libAlacSwDec.so
 vendor/lib64/libApeSwDec.so
