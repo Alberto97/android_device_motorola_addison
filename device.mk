@@ -121,7 +121,6 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hidl.manager@1.0 \
     libbson \
-    libshims_skia \
     Snap
 #    camera.msm8953 \
 
