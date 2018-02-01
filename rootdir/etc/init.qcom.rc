@@ -387,20 +387,6 @@ on property:persist.usb.chgdisabled=1
 on property:persist.usb.chgdisabled=0
     write /sys/class/power_supply/battery/charging_enabled 1
 
-service perfd /system/vendor/bin/perfd
-   class main
-   user root
-   group root readproc
-   disabled
-   socket perfd seqpacket 0666 root system
-   writepid /dev/cpuset/system-background/tasks
-
-service energy-awareness /system/bin/energy-awareness
-    class main
-    user root
-    group system
-    oneshot
-
 service qseecomd /system/bin/qseecomd
    class core
    user root
@@ -663,6 +649,3 @@ on property:sys.boot_completed=1
     chown media audio /sys/kernel/wdsp0/boot
     #CPE fw_name used by sound trigger HAL
     chown media audio /sys/kernel/wcd_cpe0/fw_name
-
-    rm /data/system/perfd/default_values
-    start perfd
