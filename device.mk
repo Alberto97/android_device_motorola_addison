@@ -260,6 +260,7 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
+    libqsap_shim \
     librmnetctl \
     libshim_ril \
     libxml2
