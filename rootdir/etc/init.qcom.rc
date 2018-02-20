@@ -664,9 +664,9 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     oneshot
 
 service vendor.loc_launcher /system/vendor/bin/loc_launcher
-    #loc_launcher will start as root and set its uid to gps
     class late_start
-    group gps inet diag wifi
+    user gps
+    group gps
 
 service vendor.ril-daemon2 /vendor/bin/hw/rild -c 2
     class main
