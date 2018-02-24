@@ -72,6 +72,7 @@ vendor/lib/hw/libcamera_mods_legacy_hal.so
 vendor/lib/hw/motorola.hardware.camera.provider@2.4-impl.so
 vendor/lib/hw/motorola.hardware.mods_camera.provider@2.4-impl.so
 vendor/lib/libactuator_mot_lc898212xd.so
+vendor/lib/libbson.so
 vendor/lib/libcamerabgproc-jni.so
 vendor/lib/libcamerabgprocservice.so
 vendor/lib/libchromaflash.so
