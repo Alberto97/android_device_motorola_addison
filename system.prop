@@ -2,7 +2,7 @@
 # system.prop for addison
 #
 
-ro.build.version.qcom=LA.UM.5.6.r1-03800-89xx.0
+ro.build.version.qcom=LA.UM.6.6.r1-04400-89xx.0
 
 # Audio
 audio.deep_buffer.media=true
