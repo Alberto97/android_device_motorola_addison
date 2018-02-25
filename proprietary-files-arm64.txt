@@ -120,31 +120,23 @@ vendor/lib64/librs_adreno.so
 vendor/lib64/libRSDriver_adreno.so
 
 # IMS
-bin/imscmservice
-bin/imsdatadaemon
-bin/imsqmidaemon
-bin/ims_rtp_daemon
-vendor/lib64/lib-imscamera.so
-vendor/lib64/libimscamera_jni.so
-vendor/lib64/lib-imsdpl.so
-vendor/lib64/libimsmedia_jni.so
-vendor/lib64/lib-imsqimf.so
-vendor/lib64/lib-imsrcs.so
-vendor/lib64/lib-imsrcscm.so
-vendor/lib64/lib-imsrcscmclient.so
-vendor/lib64/lib-ims-rcscmjni.so
-vendor/lib64/lib-imsrcscmservice.so
-vendor/lib64/lib-imss.so
+lib64/libimscamera_jni.so
+lib64/libimsmedia_jni.so
+lib64/vendor.qti.imsrtpservice@1.0.so
+vendor/bin/imsdatadaemon
+vendor/bin/imsqmidaemon
+vendor/bin/ims_rtp_daemon
 vendor/lib64/lib-imsSDP.so
-vendor/lib64/lib-imsvt.so
+vendor/lib64/lib-imsdpl.so
+vendor/lib64/lib-imsqimf.so
 vendor/lib64/lib-imsxml.so
-vendor/lib64/librcc.so
-vendor/lib64/lib-rcsimssjni.so
-vendor/lib64/lib-rcsjni.so
 vendor/lib64/lib-rtpcommon.so
 vendor/lib64/lib-rtpcore.so
 vendor/lib64/lib-rtpdaemoninterface.so
 vendor/lib64/lib-rtpsl.so
+vendor/lib64/vendor.qti.hardware.radio.ims@1.0_vendor.so
+vendor/lib64/vendor.qti.imsrtpservice@1.0-service-Impl.so
+vendor/lib64/vendor.qti.imsrtpservice@1.0_vendor.so
 
 # Media
 vendor/lib64/libAlacSwDec.so
