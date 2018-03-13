@@ -16,14 +16,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-# ADSP
-include $(CLEAR_VARS)
-LOCAL_C_INCLUDES := external/tinyalsa/include
-LOCAL_SRC_FILES := mixer.c
-LOCAL_MODULE := libshim_adsp
-LOCAL_MODULE_TAGS := optional
-include $(BUILD_SHARED_LIBRARY)
-
 # RIL
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := sensor.cpp

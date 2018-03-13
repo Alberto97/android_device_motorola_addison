@@ -266,12 +266,6 @@ on property:ro.boot.dualsim=false
    setprop persist.radio.multisim.config ""
    setprop ro.telephony.default_network 10
 
-service adspd /system/bin/adspd
-   class main
-   socket adspdsock stream 0660 system audio
-   user audio
-   group audio input diag
-
 service mmi-boot-sh /vendor/bin/init.mmi.boot.sh
     class core
     user root

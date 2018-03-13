@@ -149,7 +149,6 @@ BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 
 # Shim
 TARGET_LD_SHIM_LIBS := \
-    /system/bin/adspd|libshim_adsp.so \
     /system/lib64/libandroid.so|libshim_ril.so \
     /system/lib64/libmdmcutback.so|libqsap_shim.so
 

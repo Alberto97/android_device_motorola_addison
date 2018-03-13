@@ -95,7 +95,6 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     libqcompostprocbundle \
-    libshim_adsp \
     tinymix
 
 PRODUCT_COPY_FILES +=  \
