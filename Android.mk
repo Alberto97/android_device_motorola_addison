@@ -17,6 +17,8 @@ ifneq ($(filter addison,$(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
 
+include $(CLEAR_VARS)
+
 FIRMWARE_ADSP_IMAGES := \
     adsp.b00 adsp.b01 adsp.b02 adsp.b03 adsp.b04 adsp.b05 adsp.b06 \
     adsp.b07 adsp.b08 adsp.b09 adsp.b10 adsp.b11 adsp.b12 adsp.b13 \
