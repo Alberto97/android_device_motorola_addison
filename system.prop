@@ -99,6 +99,3 @@ rild.libpath=/system/vendor/lib64/libril-qc-qmi-1.so
 ro.use_data_netmgrd=true
 persist.data.netmgrd.qos.enable=true
 persist.data.mode=concurrent
-
-# Sensors
-system_init.startsensorservice=0

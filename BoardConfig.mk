@@ -152,6 +152,20 @@ TARGET_LD_SHIM_LIBS := \
     /system/lib64/libandroid.so|libshim_ril.so \
     /system/lib64/libmdmcutback.so|libqsap_shim.so
 
+# Sensors
+BOARD_USES_MOT_SENSOR_HUB := true
+MOT_AP_SENSOR_HW_REARPROX := true
+MOT_SENSOR_HUB_HW_BMI160 := true
+MOT_SENSOR_HUB_HW_TYPE_L4 := true
+
+MOT_SENSOR_HUB_FEATURE_CAMFSYNC := true
+MOT_SENSOR_HUB_FEATURE_CHOPCHOP := true
+MOT_SENSOR_HUB_FEATURE_GR := true
+MOT_SENSOR_HUB_FEATURE_LA := true
+MOT_SENSOR_HUB_FEATURE_LIFT := true
+MOT_SENSOR_HUB_FEATURE_PEDO := true
+MOT_SENSOR_HUB_FEATURE_ULTRASOUND := true
+
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
 BOARD_WLAN_DEVICE := qcwcn
