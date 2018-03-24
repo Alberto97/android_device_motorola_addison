@@ -1,6 +1,6 @@
-#!/system/bin/sh
+#!/vendor/bin/sh
 
-PATH=/sbin:/system/sbin:/system/bin:/system/xbin
+PATH=/sbin:/vendor/sbin:/vendor/bin:/vendor/xbin
 export PATH
 
 while getopts ds op;
@@ -85,13 +85,24 @@ error_and_leave()
 			notice "Touch is not working; rebooting..."
 			debug "sleep 3s to allow touch-dead-sh service to run"
 			sleep 3
-			[ -z "$dbg_on" ] && reboot
+			[ -z "$dbg_on" ] && setprop sys.powerctl reboot
 		else
 			notice "Although touch is not working, no more reboots"
 		fi
 	fi
 
 	exit $err_code
+}
+
+prepend()
+{
+	local list=""
+	local prefix=$1
+	shift
+	for name in $*; do
+		list="$list$prefix/$name "
+	done
+	echo $list
 }
 
 [ -z "$touch_product_string" ] && error_and_leave 6
@@ -116,24 +127,21 @@ fi
 selinux=$(getprop ro.boot.selinux 2> /dev/null)
 
 if [ "$selinux" == "permissive" ]; then
-	debug "loosen permissions to touch report sysfs entries"
-	touch_report_files="reporting query stats"
-	for entry in $touch_report_files; do
-		chmod 0666 $touch_path/$entry
-		debug "change permissions of $touch_path/$entry"
+	debug "loosen permissions to $touch_vendor files"
+	case $touch_vendor in
+		synaptics)	key_path=$touch_path
+					key_files=$(prepend f54 `ls $touch_path/f54/ 2>/dev/null`)
+					key_files=$key_files"reporting query stats";;
+		focaltech)	key_path="/proc/"
+					key_files="ftxxxx-debug";;
+		   goodix)	key_path="/proc/"
+					key_files="gmnode";;
+	esac
+	for entry in $key_files; do
+		chmod 0666 $key_path/$entry
+		debug "change permissions of $key_path/$entry"
 	done
-	for entry in $(ls $touch_path/f54/ 2>/dev/null); do
-		chmod 0666 $touch_path/f54/$entry
-		debug "change permissions of $touch_path/f54/$entry"
-	done
-	unset touch_report_files
-	debug "loosen permissions to focaltech proc entries"
-	focaltech_proc_files="ftxxxx-debug"
-	for entry in $focaltech_proc_files; do
-		chmod 0666 /proc/$entry
-		debug "change permissions of /proc/$entry"
-	done
-	unset focaltech_proc_files
+	unset key_path key_files
 fi
 
 # Set permissions to enable factory touch tests
@@ -157,7 +165,7 @@ unset readiness
 
 device_property=ro.hw.device
 hwrev_property=ro.hw.revision
-firmware_path=/system/etc/firmware
+firmware_path=/vendor/firmware
 
 let dec_cfg_id_boot=0; dec_cfg_id_latest=0;
 
@@ -247,7 +255,8 @@ hwrev_id=$(getprop $hwrev_property 2> /dev/null)
 [ -z "$hwrev_id" ] && notice "hw revision undefined"
 debug "hw revision: $hwrev_id"
 
-read_panel_property "panel_supplier"
+read_touch_property "panel_supplier"
+[ -z "$property" ] && read_panel_property "panel_supplier"
 supplier=$property
 [ -z "$supplier" ] && debug "driver does not report panel supplier"
 debug "panel supplier: $supplier"
