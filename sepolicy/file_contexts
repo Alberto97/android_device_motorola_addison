@@ -1,10 +1,6 @@
-# ADSP
-/sys/kernel/aov(/.*)?                                    u:object_r:sysfs_adsp:s0
-
 # Binaries
 /(vendor|system/vendor)/bin/hw/motorola\.hardware\.camera\.provider@2\.4-service        u:object_r:hal_camera_default_exec:s0
 /(vendor|system/vendor)/bin/hw/motorola\.hardware\.mods_camera\.provider@2\.4-service   u:object_r:hal_camera_default_exec:s0
-/(vendor|system/vendor)/bin/adspd                                                       u:object_r:adspd_exec:s0
 /(vendor|system/vendor)/bin/init\.mmi\.boot\.sh                                         u:object_r:mmi_boot_exec:s0
 /(vendor|system/vendor)/bin/init\.mmi\.laser\.sh                                        u:object_r:mmi_laser_exec:s0
 /(vendor|system/vendor)/bin/init\.mmi\.touch\.sh                                        u:object_r:mmi_touch_sh_exec:s0
