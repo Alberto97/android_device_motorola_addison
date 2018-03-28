@@ -513,9 +513,9 @@ vendor/lib/libthermalclient.so
 vendor/lib/libthermalioctl.so
 
 # Time services
--vendor/app/TimeService/TimeService.apk
+-vendor/app/TimeService/TimeService.apk|22f13bcbac7b3cac6f6a2c6cc0e1069b3c728faa
 # vendor/bin/time_daemon
-vendor/lib/libtime_genoff.so
+vendor/lib/libtime_genoff.so|267516e23fe515013b6ef4e2f7edd0049fb75466
 
 # Touchscreen
 etc/firmware/synaptics-s3508-16082601-255c40-addison.tdat

@@ -234,5 +234,5 @@ vendor/lib64/libthermalclient.so
 vendor/lib64/libthermalioctl.so
 
 # Time services
-vendor/bin/time_daemon
-vendor/lib64/libtime_genoff.so
+vendor/bin/time_daemon|99b24a72f891f289260593eb3a0533e86658972c
+vendor/lib64/libtime_genoff.so|7683a85cae9f17cd535e8960fceda1d6831074a0
