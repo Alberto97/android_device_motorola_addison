@@ -42,15 +42,12 @@ TARGET_NO_BOOTLOADER := true
 # TARGET_PREBUILT_DTB := $(DEVICE_PATH)/dt.img
 
 BOARD_CUSTOM_BOOTIMG_MK := $(DEVICE_PATH)/mkbootimg.mk
-BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci vmalloc=350M androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_SEPARATED_DT := true
-BOARD_RAMDISK_OFFSET := 0x01000000
+BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/aarch64-linux-android-4.9/bin
-KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-androidkernel-
+BOARD_KERNEL_SEPARATED_DT := true
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 LZMA_RAMDISK_TARGETS := recovery
 TARGET_KERNEL_CONFIG := addison_defconfig
 TARGET_KERNEL_SOURCE := kernel/motorola/msm8953
