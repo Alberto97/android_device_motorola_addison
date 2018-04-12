@@ -413,8 +413,12 @@ vendor/lib/libqmiservices.so
 vendor/lib/libsmemlog.so
 
 # Radio
+-app/QtiTelephonyService/QtiTelephonyService.apk
+etc/permissions/privapp-permissions-com.qualcomm.qcrilmsgtunnel.xml
 etc/permissions/qcrilhook.xml
 -framework/qcrilhook.jar
+-framework/qti-telephony-common.jar
+-framework/QtiTelephonyServicelibrary.jar
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 # vendor/bin/netmgrd
 # vendor/bin/pm-proxy
