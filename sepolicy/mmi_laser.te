@@ -10,4 +10,5 @@ allow mmi_laser vendor_toolbox_exec:file rx_file_perms;
 allow mmi_laser kmsg_device:chr_file w_file_perms;
 
 allow mmi_laser sysfs_mmi_laser:file rw_file_perms;
+allow mmi_laser sysfs_mmi_laser:dir search;
 r_dir_file(mmi_laser, persist_file)

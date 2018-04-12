@@ -6,9 +6,12 @@ init_daemon_domain(mmi_boot)
 allow mmi_boot vendor_shell_exec:file rx_file_perms;
 allow mmi_boot vendor_toolbox_exec:file rx_file_perms;
 
+allow mmi_boot firmware_file:dir search;
 allow mmi_boot radio_data_file:dir w_dir_perms;
 allow mmi_boot radio_data_file:file create_file_perms;
 allow mmi_boot self:capability chown;
 allow mmi_boot sysfs_socinfo:file write;
+allow mmi_boot vendor_radio_data_file:dir create_dir_perms;
+allow mmi_boot vendor_radio_data_file:file create_file_perms;
 
 set_prop(mmi_boot, hw_rev_prop);
