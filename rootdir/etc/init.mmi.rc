@@ -78,6 +78,7 @@ on post-fs
     chown oem_5004 oem_5004 /persist/bt/bt_bdaddr
     chmod 0664 /persist/bt/bt_bdaddr
 
+    chown oem_5004 oem_5004 /persist/camera/focus/offset_cal
     chmod 0660 /persist/camera/focus/offset_cal
 
     # Set life_calls and life_timer file permissions
