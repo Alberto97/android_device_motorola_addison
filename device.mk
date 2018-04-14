@@ -174,7 +174,7 @@ PRODUCT_PACKAGES += \
     android.hidl.manager@1.0
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
+    $(LOCAL_PATH)/manifest.xml:$(TARGET_COPY_OUT_VENDOR)/manifest.xml
 
 # IRSC
 PRODUCT_COPY_FILES += \
