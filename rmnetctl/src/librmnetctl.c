@@ -343,7 +343,7 @@ int rmnetctl_init(rmnetctl_hndl_t **hndl, uint16_t *error_code)
 		break;
 	}
 	(*hndl)->pid = (uint32_t)pid;
-	netlink_fd = socket(PF_NETLINK, SOCK_RAW, RMNET_NETLINK_PROTO);
+	netlink_fd = socket(PF_NETLINK, SOCK_RAW | SOCK_CLOEXEC, RMNET_NETLINK_PROTO);
 	if (netlink_fd < MIN_VALID_SOCKET_FD) {
 		free(*hndl);
 		*error_code = RMNETCTL_INIT_ERR_NETLINK_FD;
@@ -1027,7 +1027,7 @@ int rtrmnet_ctl_init(rmnetctl_hndl_t **hndl, uint16_t *error_code)
 		return RMNETCTL_LIB_ERR;
 	}
 	(*hndl)->pid = KERNEL_PROCESS_ID;
-	netlink_fd = socket(AF_NETLINK, SOCK_RAW, NETLINK_ROUTE);
+	netlink_fd = socket(AF_NETLINK, SOCK_RAW | SOCK_CLOEXEC, NETLINK_ROUTE);
 	if (netlink_fd < MIN_VALID_SOCKET_FD) {
 		free(*hndl);
 		*error_code = RMNETCTL_INIT_ERR_NETLINK_FD;
