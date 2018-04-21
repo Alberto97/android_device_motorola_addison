@@ -1,0 +1,4 @@
+service vibrator-1-0 /vendor/bin/hw/android.hardware.vibrator@1.0-service.addison
+    class hal
+    user system
+    group system

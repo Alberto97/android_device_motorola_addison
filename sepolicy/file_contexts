@@ -1,5 +1,5 @@
 # Binaries
-/(vendor|system/vendor)/bin/hw/android\.hardware\.vibrator@1\.0-service.marlin          u:object_r:hal_vibrator_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.vibrator@1\.0-service.addison         u:object_r:hal_vibrator_default_exec:s0
 /(vendor|system/vendor)/bin/hw/motorola\.hardware\.camera\.provider@2\.4-service        u:object_r:hal_camera_default_exec:s0
 /(vendor|system/vendor)/bin/hw/motorola\.hardware\.mods_camera\.provider@2\.4-service   u:object_r:hal_camera_default_exec:s0
 /(vendor|system/vendor)/bin/init\.mmi\.boot\.sh                                         u:object_r:mmi_boot_exec:s0

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#define LOG_TAG "android.hardware.vibrator@1.0-service.marlin"
+#define LOG_TAG "android.hardware.vibrator@1.0-service.addison"
 
 #include <android/hardware/vibrator/1.0/IVibrator.h>
 #include <hidl/HidlSupport.h>
