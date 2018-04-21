@@ -35,7 +35,7 @@ namespace vibrator {
 namespace V1_0 {
 namespace implementation {
 
-static constexpr int MAX_VOLTAGE = 3596;
+static constexpr int MAX_VOLTAGE = 2900;
 static constexpr int MIN_VOLTAGE = 116;
 
 static constexpr uint32_t CLICK_TIMING_MS = 20;
