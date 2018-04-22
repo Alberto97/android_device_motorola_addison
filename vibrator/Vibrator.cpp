@@ -44,8 +44,48 @@ Vibrator::Vibrator(std::ofstream&& enable, std::ofstream&& amplitude) :
         mEnable(std::move(enable)),
         mAmplitude(std::move(amplitude)) {}
 
+volatile uint32_t timeout;
+
+int32_t readFile(const std::string &filename, std::string *contents) {
+    FILE *fp;
+    ssize_t read = 0;
+    char *line = NULL;
+    size_t len = 0;
+    fp = fopen(filename.c_str(), "r");
+    if (fp != NULL) {
+        if ((read = getline(&line, &len, fp)) != -1) {
+            char *pos;
+            if ((pos = strchr(line, '\n')) != NULL) *pos = '\0';
+            *contents = line;
+        }
+        free(line);
+        fclose(fp);
+        return 0;
+    } else {
+        ALOGE("fopen failed");
+    }
+    return -1;
+}
+
+bool isTabletop() {
+    std::string status;
+    std::string filename =
+      "/sys/devices/virtual/motosh/motosh_as/tabletop_mode";
+
+    if (readFile(filename, &status)) {
+        ALOGE("isTabletop: Failed to open filesystem node: %s",
+              filename.c_str());
+        return false;
+    }
+
+    int out = std::stoi(status);
+
+    return out > 0;
+}
+
 // Methods from ::android::hardware::vibrator::V1_0::IVibrator follow.
 Return<Status> Vibrator::on(uint32_t timeout_ms) {
+    timeout = timeout_ms;
     mEnable << timeout_ms << std::endl;
     if (!mEnable) {
         ALOGE("Failed to turn vibrator on (%d): %s", errno, strerror(errno));
@@ -71,6 +111,12 @@ Return<Status> Vibrator::setAmplitude(uint8_t amplitude) {
     if (amplitude == 0) {
         return Status::BAD_VALUE;
     }
+
+    if (isTabletop() && timeout > 100 && amplitude > 96) {
+        amplitude = 96;
+        ALOGI("On a table, lowering amplitude");
+    }
+
     // Scale the voltage such that an amplitude of 1 is MIN_VOLTAGE, an amplitude of 255 is
     // MAX_VOLTAGE, and there are equal steps for every value in between.
     long voltage =

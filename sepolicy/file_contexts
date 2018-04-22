@@ -40,6 +40,7 @@
 
 # Vibrator
 /sys/devices/virtual/timed_output/vibrator/voltage_level u:object_r:sysfs_vibrator:s0
+/sys/devices/virtual/motosh/motosh_as/tabletop_mode      u:object_r:sysfs_vibrator:s0
 
 # WCNSS
 /sys/module/wcnsscore/parameters(/.*)?                   u:object_r:sysfs_wcnsscore:s0
