@@ -8,3 +8,5 @@ allow rild radio_data_file:dir rw_dir_perms;
 allow rild radio_data_file:file create_file_perms;
 
 allow rild vendor_file:file execute_no_trans;
+
+r_dir_file(rild, fsg_file)
