@@ -677,7 +677,7 @@ service ril-daemon2 /vendor/bin/hw/rild -c 2
     disabled
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
 
-service rild2-wrapper /vendor/etc/init.qcom.ril.sh
+service rild2-wrapper /vendor/bin/init.qcom.ril.sh
     class late_start
     user root
     group root
