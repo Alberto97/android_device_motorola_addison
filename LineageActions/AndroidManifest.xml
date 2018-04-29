@@ -48,17 +48,14 @@
 
         <activity
             android:name=".ActionsPreferenceActivity"
-            android:label="@string/screen_gestures_panel_title"
+            android:label="Moto Actions"
             android:theme="@style/LineageActions">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
             <meta-data
                 android:name="com.android.settings.category"
-                android:value="com.android.settings.category.ia.system" />
-            <meta-data
-                android:name="com.android.settings.icon"
-                android:resource="@drawable/ic_settings_gestures" />
+                android:value="com.android.settings.category.ia.gestures" />
             <meta-data
                 android:name="com.android.settings.summary"
                 android:resource="@string/summary_empty" />
