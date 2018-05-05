@@ -299,14 +299,7 @@ service init_wifi /vendor/bin/wlan_carrier_bin.sh
     oneshot
 
 on charger
-    trigger early-fs
-    trigger fs
-    trigger post-fs
-    trigger late-fs
-    trigger post-fs-data
     trigger moto-charger
-    class_stop main
-    class_stop late_start
 
 on moto-charger
     setprop ro.board.platform msm8953

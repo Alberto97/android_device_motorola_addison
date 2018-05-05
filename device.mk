@@ -125,6 +125,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/camera/ov5693_chromatix.xml:system/etc/camera/ov5693_chromatix.xml \
     $(LOCAL_PATH)/configs/camera/ov16860_chromatix.xml:system/etc/camera/ov16860_chromatix.xml
 
+# Charger
+PRODUCT_PACKAGES += \
+    charger_res_images
+
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
