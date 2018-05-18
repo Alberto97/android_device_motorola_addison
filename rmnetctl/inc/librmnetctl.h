@@ -600,5 +600,50 @@ int rtrmnet_ctl_changevnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
 int rtrmnet_ctl_bridgevnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
 			  uint16_t *error_code);
 
+int rtrmnet_activate_flow(rmnetctl_hndl_t *hndl,
+			  char *devname,
+			  char *vndname,
+			  uint8_t bearer_id,
+			  uint32_t flow_id,
+			  int ip_type,
+			  uint32_t tcm_handle,
+			  uint16_t *error_code);
+
+int rtrmnet_delete_flow(rmnetctl_hndl_t *hndl,
+			  char *devname,
+			  char *vndname,
+			  uint8_t bearer_id,
+			  uint32_t flow_id,
+			  int ip_type,
+			  uint16_t *error_code);
+
+
+
+
+int rtrmnet_control_flow(rmnetctl_hndl_t *hndl,
+			  char *devname,
+			  char *vndname,
+			  uint8_t bearer_id,
+			  uint16_t sequence,
+			  uint32_t grantsize,
+			  uint8_t ack,
+			  uint16_t *error_code);
+
+int rtrmnet_flow_state_down(rmnetctl_hndl_t *hndl,
+			  char *devname,
+			  char *vndname,
+			  uint32_t instance,
+			  uint16_t *error_code);
+
+
+int rtrmnet_flow_state_up(rmnetctl_hndl_t *hndl,
+			  char *devname,
+			  char *vndname,
+			  uint32_t instance,
+			  uint32_t ep_type,
+			  uint32_t ifaceid,
+			  int flags,
+			  uint16_t *error_code);
+
 #endif /* not defined LIBRMNETCTL_H */
 
