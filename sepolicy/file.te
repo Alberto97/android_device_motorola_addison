@@ -1,6 +1,9 @@
 # FSG
 type fsg_file, fs_type, contextmount_type;
 
+# debugfs
+type debugfs_rmt_storage, debugfs_type, fs_type;
+
 # RIL
 type netmgr_data_file, file_type, data_file_type;
 type cutback_data_file, file_type, data_file_type;
