@@ -1,3 +1,5 @@
+allow init adsprpcd_file:filesystem { mount relabelfrom relabelto };
+
 allow init audio_device:chr_file { write ioctl };
 allow init input_device:chr_file ioctl;
 allow init sensors_device:chr_file { write ioctl };
