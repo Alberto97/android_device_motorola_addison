@@ -20,6 +20,9 @@
 # mmi_touch related /sys files
 /sys/devices/soc/78b7000\.i2c/i2c-3/3-0020(/.*)?         u:object_r:sysfs_mmi_touch:s0
 
+# NFC
+/data/vendor/nfc(/.*)?                                                                  u:object_r:nfc_data_file:s0
+
 # Partitions
 /dev/block/platform/soc/7824900.sdhci/by-name/frp                                       u:object_r:frp_block_device:s0
 /dev/block/platform/soc/7824900.sdhci/by-name/metadata                                  u:object_r:metadata_block_device:s0
