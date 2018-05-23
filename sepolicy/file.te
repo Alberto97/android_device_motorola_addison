@@ -3,6 +3,7 @@ type fsg_file, fs_type, contextmount_type;
 
 # RIL
 type netmgr_data_file, file_type, data_file_type;
+type cutback_data_file, file_type, data_file_type;
 
 # /dev/socket needs to be file_type so init can create
 type adspd_socket, file_type;
