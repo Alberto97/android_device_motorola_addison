@@ -9,17 +9,9 @@
 /(vendor|system/vendor)/bin/wlan_carrier_bin\.sh                                        u:object_r:init_wifi_exec:s0
 /(vendor|system/vendor)/bin/motosh                                                      u:object_r:sensor_hub_exec:s0
 
-# Camera
-/sys/kernel/range(/.*)?                                                                 u:object_r:sysfs_mmi_laser:s0
-/sys/devices/soc/1b00000\.qcom,msm-cam/video4linux/video([0-9])+(/.*)?                  u:object_r:sysfs_mods_camd:s0
-
 # Fingerprint
 /data/\.fps(/.*)?                                                                       u:object_r:fingerprintd_data_file:s0
 /data/fpc(/.*)?                                                                         u:object_r:fingerprintd_data_file:s0
-/sys/devices/soc/7af8000.spi/spi_master/spi8/spi8.0(/.*)?                               u:object_r:sysfs_mmi_fp:s0
-
-# mmi_touch related /sys files
-/sys/devices/soc/78b7000\.i2c/i2c-3/3-0020(/.*)?         u:object_r:sysfs_mmi_touch:s0
 
 # NFC
 /data/vendor/nfc(/.*)?                                                                  u:object_r:nfc_data_file:s0
@@ -43,10 +35,3 @@
 # Sockets
 /dev/socket/adspdsock                                    u:object_r:adspd_socket:s0
 /dev/socket/cutback                                      u:object_r:cutback_socket:s0
-
-# Vibrator
-/sys/devices/virtual/timed_output/vibrator/voltage_level u:object_r:sysfs_vibrator:s0
-/sys/devices/virtual/motosh/motosh_as/tabletop_mode      u:object_r:sysfs_vibrator:s0
-
-# WCNSS
-/sys/module/wcnsscore/parameters(/.*)?                   u:object_r:sysfs_wcnsscore:s0

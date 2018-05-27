@@ -1,2 +1,11 @@
+# sysfs
+genfscon sysfs /devices/soc/1b00000.qcom,msm-cam/video4linux/video0   u:object_r:sysfs_mods_camd:s0
+genfscon sysfs /devices/soc/78b7000.i2c/i2c-3/3-0020                  u:object_r:sysfs_mmi_touch:s0
+genfscon sysfs /devices/soc/7af8000.spi/spi_master/spi8/spi8.0        u:object_r:sysfs_mmi_fp:s0
+genfscon sysfs /devices/virtual/motosh/motosh_as/tabletop_mode        u:object_r:sysfs_vibrator:s0
+genfscon sysfs /devices/virtual/timed_output/vibrator/voltage_level   u:object_r:sysfs_vibrator:s0
+genfscon sysfs /kernel/range                                          u:object_r:sysfs_mmi_laser:s0
+genfscon sysfs /module/wcnsscore/parameters                           u:object_r:sysfs_wcnsscore:s0
+
 # debugfs
 genfscon debugfs /rmt_storage              u:object_r:debugfs_rmt_storage:s0
