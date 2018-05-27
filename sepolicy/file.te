@@ -16,4 +16,5 @@ type cutback_socket, file_type;
 type sysfs_mmi_fp, fs_type, sysfs_type;
 type sysfs_mmi_laser, fs_type, sysfs_type;
 type sysfs_mmi_touch, fs_type, sysfs_type;
+type sysfs_mods_camd, fs_type, sysfs_type;
 type sysfs_wcnsscore, fs_type, sysfs_type;

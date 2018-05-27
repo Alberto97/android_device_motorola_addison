@@ -11,6 +11,7 @@
 
 # Camera
 /sys/kernel/range(/.*)?                                                                 u:object_r:sysfs_mmi_laser:s0
+/sys/devices/soc/1b00000\.qcom,msm-cam/video4linux/video([0-9])+(/.*)?                  u:object_r:sysfs_mods_camd:s0
 
 # Fingerprint
 /data/\.fps(/.*)?                                                                       u:object_r:fingerprintd_data_file:s0
