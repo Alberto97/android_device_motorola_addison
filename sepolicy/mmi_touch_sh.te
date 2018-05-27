@@ -13,7 +13,7 @@ allow mmi_touch_sh kmsg_device:chr_file w_file_perms;
 # Read from /sys/path/to/firmware/poweron (and others)
 allow mmi_touch_sh sysfs_mmi_touch:file rw_file_perms;
 allow mmi_touch_sh sysfs_mmi_touch:file setattr;
-allow mmi_touch_sh sysfs_mmi_touch:dir search;
+allow mmi_touch_sh sysfs_mmi_touch:dir r_dir_perms;
 allow mmi_touch_sh system_file:dir r_file_perms;
 allow mmi_touch_sh self:capability chown;
 
