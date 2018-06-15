@@ -86,17 +86,63 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define NLMSG_TAIL(nmsg) \
     ((struct rtattr *) (((char *)(nmsg)) + NLMSG_ALIGN((nmsg)->nlmsg_len)))
 
+#define NLMSG_DATA_SIZE  500
+
+#define CHECK_MEMSCPY(x) ({if (x < 0 ){return RMNETCTL_LIB_ERR;}})
+
 struct nlmsg {
 	struct nlmsghdr nl_addr;
 	struct ifinfomsg ifmsg;
-	char data[500];
+	char data[NLMSG_DATA_SIZE];
 };
-
-
 
 /*===========================================================================
 			LOCAL FUNCTION DEFINITIONS
 ===========================================================================*/
+/* Helper functions
+ * @brief helper function to implement a secure memcpy
+ * @details take source and destination buffer size into
+ *          considerations before copying
+ * @param dst destination buffer
+ * @param dst_size size of destination buffer
+ * @param src source buffer
+ * @param src_size size of source buffer
+ * @return size of the smallest of two buffer
+ */
+
+static inline size_t memscpy(void *dst, size_t dst_size, const void *src,
+			     size_t src_size) {
+	size_t min_size = dst_size < src_size ? dst_size : src_size;
+	memcpy(dst, src, min_size);
+	return min_size;
+}
+
+/*
+* @brief helper function to implement a secure memcpy
+ * for a concatenating buffer where offset is kept
+ * track of
+ * @details take source and destination buffer size into
+ *          considerations before copying
+ * @param dst destination buffer
+ * @param dst_size pointer used to decrement
+ * @param src source buffer
+ * @param src_size size of source buffer
+ * @return size of the remaining buffer
+ */
+
+
+static inline int  memscpy_repeat(void* dst, size_t *dst_size,
+	const void* src, size_t src_size)
+{
+	if( !dst_size || *dst_size <= src_size || !dst || !src)
+		return RMNETCTL_LIB_ERR;
+	else {
+		*dst_size -= memscpy(dst, *dst_size, src, src_size);
+	}
+	return *dst_size;
+}
+
+
 /*!
 * @brief Synchronous method to send and receive messages to and from the kernel
 * using  netlink sockets
@@ -124,7 +170,7 @@ static uint16_t rmnetctl_transact(rmnetctl_hndl_t *hndl,
 	uint8_t *request_buf, *response_buf;
 	struct nlmsghdr *nlmsghdr_val;
 	struct rmnet_nl_msg_s *rmnet_nl_msg_s_val;
-	ssize_t bytes_read = -1;
+	ssize_t bytes_read = -1, buffsize = MAX_BUF_SIZE - sizeof(struct nlmsghdr);
 	uint16_t return_code = RMNETCTL_API_ERR_HNDL_INVALID;
 	struct sockaddr_nl* __attribute__((__may_alias__)) saddr_ptr;
 	request_buf = NULL;
@@ -165,7 +211,7 @@ static uint16_t rmnetctl_transact(rmnetctl_hndl_t *hndl,
 	nlmsghdr_val->nlmsg_pid = hndl->pid;
 	nlmsghdr_val->nlmsg_len = MAX_BUF_SIZE;
 
-	memcpy((void *)NLMSG_DATA(request_buf), request,
+	memscpy((void *)NLMSG_DATA(request_buf), buffsize, request,
 	sizeof(struct rmnet_nl_msg_s));
 
 	rmnet_nl_msg_s_val->crd = RMNET_NETLINK_MSG_COMMAND;
@@ -194,8 +240,8 @@ static uint16_t rmnetctl_transact(rmnetctl_hndl_t *hndl,
 		return_code = RMNETCTL_API_ERR_MESSAGE_RECEIVE;
 		break;
 	}
-
-	memcpy(response, (void *)NLMSG_DATA(response_buf),
+	buffsize = MAX_BUF_SIZE - sizeof(struct nlmsghdr);
+	memscpy(response, buffsize, (void *)NLMSG_DATA(response_buf),
 	sizeof(struct rmnet_nl_msg_s));
 	if (sizeof(*response) < sizeof(struct rmnet_nl_msg_s)) {
 		return_code = RMNETCTL_API_ERR_RESPONSE_NULL;
@@ -1081,11 +1127,14 @@ int rtrmnet_ctl_newvnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
 	char *kind = "rmnet";
 	struct nlmsg req;
 	short id;
+	size_t reqsize;
 
-	if (!hndl || !devname || !vndname || !error_code)
+	if (!hndl || !devname || !vndname || !error_code ||
+	   _rmnetctl_check_dev_name(vndname) || _rmnetctl_check_dev_name(devname))
 		return RMNETCTL_INVALID_ARG;
 
 	memset(&req, 0, sizeof(req));
+	reqsize = NLMSG_DATA_SIZE - sizeof(*attrinfo);
 	req.nl_addr.nlmsg_type = RTM_NEWLINK;
 	req.nl_addr.nlmsg_len = NLMSG_LENGTH(sizeof(struct ifinfomsg));
 	req.nl_addr.nlmsg_flags = NLM_F_REQUEST | NLM_F_CREATE | NLM_F_EXCL |
@@ -1104,9 +1153,10 @@ int rtrmnet_ctl_newvnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
 	val = devindex;
 	attrinfo = (struct rtattr *)(((char *)&req) +
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
+
 	attrinfo->rta_type = IFLA_LINK;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(sizeof(val)));
-	memcpy(RTA_DATA(attrinfo), &val, sizeof(val));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, &val, sizeof(val)));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(sizeof(val)));
 
@@ -1115,12 +1165,14 @@ int rtrmnet_ctl_newvnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_IFNAME;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
-	memcpy(RTA_DATA(attrinfo), vndname, strlen(vndname) + 1);
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, vndname, strlen(vndname) + 1));
+
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
 
 	linkinfo = (struct rtattr *)(((char *)&req) +
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
+
 	linkinfo->rta_type = IFLA_LINKINFO;
 	linkinfo->rta_len = RTA_ALIGN(RTA_LENGTH(0));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
@@ -1128,9 +1180,11 @@ int rtrmnet_ctl_newvnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
 
 	attrinfo = (struct rtattr *)(((char *)&req) +
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
+
 	attrinfo->rta_type =  IFLA_INFO_KIND;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(strlen(kind)));
-	memcpy(RTA_DATA(attrinfo), kind, strlen(kind));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, kind, strlen(kind)));
+
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(strlen(kind)));
 
@@ -1146,7 +1200,7 @@ int rtrmnet_ctl_newvnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_VLAN_ID;
 	attrinfo->rta_len = RTA_LENGTH(sizeof(id));
-	memcpy(RTA_DATA(attrinfo), &id, sizeof(id));
+	*(short *)RTA_DATA(attrinfo) = id;
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(sizeof(id)));
 
@@ -1158,7 +1212,8 @@ int rtrmnet_ctl_newvnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
 					     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 		attrinfo->rta_type =  IFLA_VLAN_FLAGS;
 		attrinfo->rta_len = RTA_LENGTH(sizeof(flags));
-		memcpy(RTA_DATA(attrinfo), &flags, sizeof(flags));
+		CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, &flags,
+			       sizeof(flags)));
 		req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 					RTA_ALIGN(RTA_LENGTH(sizeof(flags)));
 	}
@@ -1217,15 +1272,17 @@ int rtrmnet_ctl_changevnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
 	struct ifla_vlan_flags flags;
 	char *kind = "rmnet";
 	struct nlmsg req;
-	int devindex = 0;
-	int val = 0;
+	int devindex = 0, val = 0;
+	size_t reqsize;
 	short id;
 
 	memset(&req, 0, sizeof(req));
 
-	if (!hndl || !devname || !vndname || !error_code)
+	if (!hndl || !devname || !vndname || !error_code ||
+	    _rmnetctl_check_dev_name(vndname) || _rmnetctl_check_dev_name(devname))
 		return RMNETCTL_INVALID_ARG;
 
+	reqsize = NLMSG_DATA_SIZE - sizeof(*attrinfo);
 	req.nl_addr.nlmsg_type = RTM_NEWLINK;
 	req.nl_addr.nlmsg_len = NLMSG_LENGTH(sizeof(struct ifinfomsg));
 	req.nl_addr.nlmsg_flags = NLM_F_REQUEST | NLM_F_ACK;
@@ -1246,16 +1303,17 @@ int rtrmnet_ctl_changevnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
 
 	attrinfo->rta_type = IFLA_LINK;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(sizeof(val)));
-	memcpy(RTA_DATA(attrinfo), &val, sizeof(val));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, &val, sizeof(val)));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(sizeof(val)));
 
-	  /* Set up IFLA info kind  RMNET that has linkinfo and type */
+	/* Set up IFLA info kind  RMNET that has linkinfo and type */
 	attrinfo = (struct rtattr *)(((char *)&req) +
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_IFNAME;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
-	memcpy(RTA_DATA(attrinfo), vndname, strlen(vndname) + 1);
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, vndname, strlen(vndname) + 1));
+
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
 
@@ -1267,19 +1325,18 @@ int rtrmnet_ctl_changevnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(0));
 
-
 	attrinfo = (struct rtattr *)(((char *)&req) +
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 
 	attrinfo->rta_type =  IFLA_INFO_KIND;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(strlen(kind)));
-	memcpy(RTA_DATA(attrinfo), kind, strlen(kind));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, kind, strlen(kind)));
+
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(strlen(kind)));
 
 	datainfo = (struct rtattr *)(((char *)&req) +
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
-
 	datainfo->rta_type =  IFLA_INFO_DATA;
 	datainfo->rta_len = RTA_ALIGN(RTA_LENGTH(0));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
@@ -1290,7 +1347,7 @@ int rtrmnet_ctl_changevnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_VLAN_ID;
 	attrinfo->rta_len = RTA_LENGTH(sizeof(id));
-	memcpy(RTA_DATA(attrinfo), &id, sizeof(id));
+	*(short *)RTA_DATA(attrinfo) = id;
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(sizeof(id)));
 
@@ -1302,7 +1359,8 @@ int rtrmnet_ctl_changevnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
 					     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 		attrinfo->rta_type =  IFLA_VLAN_FLAGS;
 		attrinfo->rta_len = RTA_LENGTH(sizeof(flags));
-		memcpy(RTA_DATA(attrinfo), &flags, sizeof(flags));
+		CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, &flags,
+			       sizeof(flags)));
 		req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 					RTA_ALIGN(RTA_LENGTH(sizeof(flags)));
 	}
@@ -1325,11 +1383,13 @@ int rtrmnet_ctl_bridgevnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
 	int devindex = 0, vndindex = 0;
 	struct rtattr *masterinfo;
 	struct nlmsg req;
+	size_t reqsize;
 
-	if (!hndl || !vndname || !devname || !error_code)
+	if (!hndl || !vndname || !devname || !error_code || _rmnetctl_check_dev_name(vndname))
 		return RMNETCTL_INVALID_ARG;
 
 	memset(&req, 0, sizeof(req));
+	reqsize = NLMSG_DATA_SIZE - sizeof(*masterinfo);
 	req.nl_addr.nlmsg_type = RTM_NEWLINK;
 	req.nl_addr.nlmsg_len = NLMSG_LENGTH(sizeof(struct ifinfomsg));
 	req.nl_addr.nlmsg_flags = NLM_F_REQUEST | NLM_F_ACK;
@@ -1356,7 +1416,7 @@ int rtrmnet_ctl_bridgevnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
 
 	masterinfo->rta_type =  IFLA_MASTER;
 	masterinfo->rta_len = RTA_LENGTH(sizeof(vndindex));
-	memcpy(RTA_DATA(masterinfo), &vndindex, sizeof(vndindex));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(masterinfo), &reqsize, &vndindex, sizeof(vndindex)));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(sizeof(vndindex)));
 
@@ -1384,14 +1444,17 @@ int rtrmnet_activate_flow(rmnetctl_hndl_t *hndl,
 	struct nlmsg req;
 	int devindex = 0;
 	int val = 0;
+	size_t reqsize =0;
 
 	memset(&req, 0, sizeof(req));
 	memset(&flowinfo, 0, sizeof(flowinfo));
 
 
-	if (!hndl || !devname || !error_code)
+	if (!hndl || !devname || !error_code ||_rmnetctl_check_dev_name(devname) ||
+		_rmnetctl_check_dev_name(vndname))
 		return RMNETCTL_INVALID_ARG;
 
+	reqsize = NLMSG_DATA_SIZE - sizeof(*attrinfo);
 	req.nl_addr.nlmsg_type = RTM_NEWLINK;
 	req.nl_addr.nlmsg_len = NLMSG_LENGTH(sizeof(struct ifinfomsg));
 	req.nl_addr.nlmsg_flags = NLM_F_REQUEST | NLM_F_ACK;
@@ -1412,17 +1475,17 @@ int rtrmnet_activate_flow(rmnetctl_hndl_t *hndl,
 
 	attrinfo->rta_type = IFLA_LINK;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(sizeof(val)));
-	memcpy(RTA_DATA(attrinfo), &val, sizeof(val));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, &val, sizeof(val)));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(sizeof(val)));
 
 	/* Set up IFLA info kind  RMNET that has linkinfo and type */
-
 	attrinfo = (struct rtattr *)(((char *)&req) +
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_IFNAME;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
-	memcpy(RTA_DATA(attrinfo), vndname, strlen(vndname) + 1);
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, vndname, strlen(vndname) + 1));
+
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
 
@@ -1434,13 +1497,12 @@ int rtrmnet_activate_flow(rmnetctl_hndl_t *hndl,
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(0));
 
-
 	attrinfo = (struct rtattr *)(((char *)&req) +
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
-
 	attrinfo->rta_type =  IFLA_INFO_KIND;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(strlen(kind)));
-	memcpy(RTA_DATA(attrinfo), kind, strlen(kind));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, kind, strlen(kind)));
+
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(strlen(kind)));
 
@@ -1462,7 +1524,7 @@ int rtrmnet_activate_flow(rmnetctl_hndl_t *hndl,
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_VLAN_EGRESS_QOS;
 	attrinfo->rta_len = RTA_LENGTH(sizeof(flowinfo));
-	memcpy(RTA_DATA(attrinfo), &flowinfo, sizeof(flowinfo));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, &flowinfo, sizeof(flowinfo)));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(sizeof(flowinfo)));
 
@@ -1493,13 +1555,16 @@ int rtrmnet_delete_flow(rmnetctl_hndl_t *hndl,
 	struct nlmsg req;
 	int devindex = 0;
 	int val = 0;
+	size_t reqsize;
 
 	memset(&req, 0, sizeof(req));
 	memset(&flowinfo, 0, sizeof(flowinfo));
 
-	if (!hndl || !devname || !error_code)
+	if (!hndl || !devname || !error_code ||_rmnetctl_check_dev_name(devname) ||
+		_rmnetctl_check_dev_name(vndname))
 		return RMNETCTL_INVALID_ARG;
 
+	reqsize = NLMSG_DATA_SIZE - sizeof(*attrinfo);
 	req.nl_addr.nlmsg_type = RTM_NEWLINK;
 	req.nl_addr.nlmsg_len = NLMSG_LENGTH(sizeof(struct ifinfomsg));
 	req.nl_addr.nlmsg_flags = NLM_F_REQUEST | NLM_F_ACK;
@@ -1520,17 +1585,17 @@ int rtrmnet_delete_flow(rmnetctl_hndl_t *hndl,
 
 	attrinfo->rta_type = IFLA_LINK;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(sizeof(val)));
-	memcpy(RTA_DATA(attrinfo), &val, sizeof(val));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, &val, sizeof(val)));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(sizeof(val)));
 
-	  /* Set up IFLA info kind  RMNET that has linkinfo and type */
-
+	/* Set up IFLA info kind  RMNET that has linkinfo and type */
 	attrinfo = (struct rtattr *)(((char *)&req) +
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_IFNAME;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
-	memcpy(RTA_DATA(attrinfo), vndname, strlen(vndname) + 1);
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, vndname, strlen(vndname) + 1));
+
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
 
@@ -1542,13 +1607,12 @@ int rtrmnet_delete_flow(rmnetctl_hndl_t *hndl,
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(0));
 
-
 	attrinfo = (struct rtattr *)(((char *)&req) +
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
-
 	attrinfo->rta_type =  IFLA_INFO_KIND;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(strlen(kind)));
-	memcpy(RTA_DATA(attrinfo), kind, strlen(kind));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, kind, strlen(kind)));
+
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(strlen(kind)));
 
@@ -1569,7 +1633,7 @@ int rtrmnet_delete_flow(rmnetctl_hndl_t *hndl,
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_VLAN_EGRESS_QOS;
 	attrinfo->rta_len = RTA_LENGTH(sizeof(flowinfo));
-	memcpy(RTA_DATA(attrinfo), &flowinfo, sizeof(flowinfo));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, &flowinfo, sizeof(flowinfo)));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(sizeof(flowinfo)));
 
@@ -1601,14 +1665,16 @@ int rtrmnet_control_flow(rmnetctl_hndl_t *hndl,
 	struct nlmsg req;
 	int devindex = 0;
 	int val = 0;
+	size_t reqsize;
 
 	memset(&req, 0, sizeof(req));
 	memset(&flowinfo, 0, sizeof(flowinfo));
 
-
-	if (!hndl || !devname || !error_code)
+	if (!hndl || !devname || !error_code ||_rmnetctl_check_dev_name(devname) ||
+		_rmnetctl_check_dev_name(vndname))
 		return RMNETCTL_INVALID_ARG;
 
+	reqsize = NLMSG_DATA_SIZE - sizeof(*attrinfo);
 	req.nl_addr.nlmsg_type = RTM_NEWLINK;
 	req.nl_addr.nlmsg_len = NLMSG_LENGTH(sizeof(struct ifinfomsg));
 	req.nl_addr.nlmsg_flags = NLM_F_REQUEST | NLM_F_ACK;
@@ -1629,7 +1695,7 @@ int rtrmnet_control_flow(rmnetctl_hndl_t *hndl,
 
 	attrinfo->rta_type = IFLA_LINK;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(sizeof(val)));
-	memcpy(RTA_DATA(attrinfo), &val, sizeof(val));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, &val, sizeof(val)));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(sizeof(val)));
 
@@ -1638,7 +1704,8 @@ int rtrmnet_control_flow(rmnetctl_hndl_t *hndl,
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_IFNAME;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
-	memcpy(RTA_DATA(attrinfo), vndname, strlen(vndname) + 1);
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, vndname, strlen(vndname) + 1));
+
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
 
@@ -1650,13 +1717,12 @@ int rtrmnet_control_flow(rmnetctl_hndl_t *hndl,
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(0));
 
-
 	attrinfo = (struct rtattr *)(((char *)&req) +
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 
 	attrinfo->rta_type =  IFLA_INFO_KIND;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(strlen(kind)));
-	memcpy(RTA_DATA(attrinfo), kind, strlen(kind));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, kind, strlen(kind)));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(strlen(kind)));
 
@@ -1668,7 +1734,6 @@ int rtrmnet_control_flow(rmnetctl_hndl_t *hndl,
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(0));
 
-
 	flowinfo.tcm_family = 0x3;
 	flowinfo.tcm__pad1 = bearer_id;
 	flowinfo.tcm__pad2 = sequence;
@@ -1679,7 +1744,7 @@ int rtrmnet_control_flow(rmnetctl_hndl_t *hndl,
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_VLAN_EGRESS_QOS;
 	attrinfo->rta_len = RTA_LENGTH(sizeof(flowinfo));
-	memcpy(RTA_DATA(attrinfo), &flowinfo, sizeof(flowinfo));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, &flowinfo, sizeof(flowinfo)));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(sizeof(flowinfo)));
 
@@ -1710,14 +1775,16 @@ int rtrmnet_flow_state_up(rmnetctl_hndl_t *hndl,
 	struct nlmsg req;
 	int devindex = 0;
 	int val = 0;
+	size_t reqsize;
 
 	memset(&req, 0, sizeof(req));
 	memset(&flowinfo, 0, sizeof(flowinfo));
 
-
-	if (!hndl || !devname || !error_code)
+	if (!hndl || !devname || !error_code ||_rmnetctl_check_dev_name(devname) ||
+		_rmnetctl_check_dev_name(vndname))
 		return RMNETCTL_INVALID_ARG;
 
+	reqsize = NLMSG_DATA_SIZE - sizeof(*attrinfo);
 	req.nl_addr.nlmsg_type = RTM_NEWLINK;
 	req.nl_addr.nlmsg_len = NLMSG_LENGTH(sizeof(struct ifinfomsg));
 	req.nl_addr.nlmsg_flags = NLM_F_REQUEST | NLM_F_ACK;
@@ -1738,17 +1805,18 @@ int rtrmnet_flow_state_up(rmnetctl_hndl_t *hndl,
 
 	attrinfo->rta_type = IFLA_LINK;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(sizeof(val)));
-	memcpy(RTA_DATA(attrinfo), &val, sizeof(val));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, &val, sizeof(val)));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(sizeof(val)));
 
-	  /* Set up IFLA info kind  RMNET that has linkinfo and type */
+	/* Set up IFLA info kind  RMNET that has linkinfo and type */
 
 	attrinfo = (struct rtattr *)(((char *)&req) +
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_IFNAME;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
-	memcpy(RTA_DATA(attrinfo), vndname, strlen(vndname) + 1);
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, vndname, strlen(vndname) + 1));
+
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
 
@@ -1760,13 +1828,12 @@ int rtrmnet_flow_state_up(rmnetctl_hndl_t *hndl,
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(0));
 
-
 	attrinfo = (struct rtattr *)(((char *)&req) +
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
-
 	attrinfo->rta_type =  IFLA_INFO_KIND;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(strlen(kind)));
-	memcpy(RTA_DATA(attrinfo), kind, strlen(kind));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, kind, strlen(kind)));
+
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(strlen(kind)));
 
@@ -1787,7 +1854,7 @@ int rtrmnet_flow_state_up(rmnetctl_hndl_t *hndl,
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_VLAN_EGRESS_QOS;
 	attrinfo->rta_len = RTA_LENGTH(sizeof(flowinfo));
-	memcpy(RTA_DATA(attrinfo), &flowinfo, sizeof(flowinfo));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, &flowinfo, sizeof(flowinfo)));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(sizeof(flowinfo)));
 
@@ -1815,14 +1882,16 @@ int rtrmnet_flow_state_down(rmnetctl_hndl_t *hndl,
 	struct nlmsg req;
 	int devindex = 0;
 	int val = 0;
+	size_t reqsize;
 
 	memset(&req, 0, sizeof(req));
 	memset(&flowinfo, 0, sizeof(flowinfo));
 
-
-	if (!hndl || !devname || !error_code)
+	if (!hndl || !devname || !error_code ||_rmnetctl_check_dev_name(devname) ||
+		_rmnetctl_check_dev_name(vndname))
 		return RMNETCTL_INVALID_ARG;
 
+	reqsize = NLMSG_DATA_SIZE - sizeof(struct rtattr);
 	req.nl_addr.nlmsg_type = RTM_NEWLINK;
 	req.nl_addr.nlmsg_len = NLMSG_LENGTH(sizeof(struct ifinfomsg));
 	req.nl_addr.nlmsg_flags = NLM_F_REQUEST | NLM_F_ACK;
@@ -1843,17 +1912,18 @@ int rtrmnet_flow_state_down(rmnetctl_hndl_t *hndl,
 
 	attrinfo->rta_type = IFLA_LINK;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(sizeof(val)));
-	memcpy(RTA_DATA(attrinfo), &val, sizeof(val));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, &val, sizeof(val)));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(sizeof(val)));
 
-	  /* Set up IFLA info kind  RMNET that has linkinfo and type */
+	/* Set up IFLA info kind  RMNET that has linkinfo and type */
 
 	attrinfo = (struct rtattr *)(((char *)&req) +
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_IFNAME;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
-	memcpy(RTA_DATA(attrinfo), vndname, strlen(vndname) + 1);
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, vndname, strlen(vndname) + 1));
+
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
 
@@ -1865,13 +1935,13 @@ int rtrmnet_flow_state_down(rmnetctl_hndl_t *hndl,
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(0));
 
-
 	attrinfo = (struct rtattr *)(((char *)&req) +
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 
 	attrinfo->rta_type =  IFLA_INFO_KIND;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(strlen(kind)));
-	memcpy(RTA_DATA(attrinfo), kind, strlen(kind));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, kind, strlen(kind)));
+
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(strlen(kind)));
 
@@ -1890,7 +1960,7 @@ int rtrmnet_flow_state_down(rmnetctl_hndl_t *hndl,
 				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_VLAN_EGRESS_QOS;
 	attrinfo->rta_len = RTA_LENGTH(sizeof(flowinfo));
-	memcpy(RTA_DATA(attrinfo), &flowinfo, sizeof(flowinfo));
+	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, &flowinfo, sizeof(flowinfo)));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(sizeof(flowinfo)));
 
