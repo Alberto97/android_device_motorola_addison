@@ -35,7 +35,6 @@ import org.lineageos.settings.device.actions.LiftToSilence;
 import org.lineageos.settings.device.actions.ProximitySilencer;
 
 import org.lineageos.settings.device.doze.DozePulseAction;
-import org.lineageos.settings.device.doze.GlanceSensor;
 import org.lineageos.settings.device.doze.ProximitySensor;
 import org.lineageos.settings.device.doze.ScreenReceiver;
 import org.lineageos.settings.device.doze.ScreenStateNotifier;
@@ -70,7 +69,6 @@ public class LineageActionsService extends IntentService implements ScreenStateN
         mScreenStateNotifiers.add(mDozePulseAction);
 
         // Actionable sensors get screen on/off notifications
-        mScreenStateNotifiers.add(new GlanceSensor(lineageActionsSettings, mSensorHelper, mDozePulseAction));
         mScreenStateNotifiers.add(new ProximitySensor(lineageActionsSettings, mSensorHelper, mDozePulseAction));
 
         // Other actions that are always enabled
