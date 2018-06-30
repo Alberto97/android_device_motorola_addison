@@ -16,9 +16,12 @@
 
 package org.lineageos.settings.device;
 
+import android.content.ContentResolver;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.preference.PreferenceActivity;
+import android.provider.Settings;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v14.preference.PreferenceFragment;
 import android.view.MenuItem;
@@ -41,15 +44,24 @@ public class DozePreferenceActivity extends PreferenceActivity {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             addPreferencesFromResource(R.xml.doze_panel);
+
             AmbientDisplayConfiguration adConfig = new AmbientDisplayConfiguration(getActivity());
             boolean dozeEnabled = adConfig.pulseOnNotificationEnabled(UserHandle.USER_CURRENT);
             boolean aodEnabled = adConfig.alwaysOnEnabled(UserHandle.USER_CURRENT);
+            boolean pickupEnabled = isPulseOnPickupEnabled(getActivity()) && adConfig.pulseOnPickupAvailable();
+
+            boolean enable = (pickupEnabled || dozeEnabled) && !aodEnabled;
             PreferenceCategory ambientDisplayCat = (PreferenceCategory)
                     findPreference(CATEGORY_AMBIENT_DISPLAY);
             if (ambientDisplayCat != null) {
-                ambientDisplayCat.setEnabled(dozeEnabled && !aodEnabled);
+                ambientDisplayCat.setEnabled(enable);
             }
         }
+    }
+
+    private static boolean isPulseOnPickupEnabled(Context context) {
+        return Settings.Secure.getIntForUser(context.getContentResolver(),
+            Settings.Secure.DOZE_PULSE_ON_PICK_UP, 1, UserHandle.USER_CURRENT) != 0;
     }
 
     @Override

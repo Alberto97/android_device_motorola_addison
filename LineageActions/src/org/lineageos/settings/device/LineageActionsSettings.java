@@ -17,10 +17,12 @@
 
 package org.lineageos.settings.device;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.UserHandle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 
 import com.android.internal.hardware.AmbientDisplayConfiguration;
 
@@ -75,7 +77,7 @@ public class LineageActionsSettings {
     }
 
     public boolean isIrWakeupEnabled() {
-        return isDozeEnabled() && !isAODEnabled() && mIrWakeUpEnabled;
+        return (isPulseOnPickupEnabled() || isDozeEnabled()) && !isAODEnabled() && mIrWakeUpEnabled;
     }
 
     public boolean isIrSilencerEnabled() {
@@ -88,6 +90,12 @@ public class LineageActionsSettings {
 
     public boolean isLiftToSilenceEnabled() {
         return mLiftToSilenceEnabled;
+    }
+
+    public boolean isPulseOnPickupEnabled() {
+        return Settings.Secure.getIntForUser(mContext.getContentResolver(),
+            Settings.Secure.DOZE_PULSE_ON_PICK_UP, 1, UserHandle.USER_CURRENT) != 0
+                && mAmbientDisplayConfiguration.pulseOnPickupAvailable();
     }
 
     public void cameraAction() {
