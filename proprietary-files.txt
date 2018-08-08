@@ -389,7 +389,7 @@ vendor/lib/libOmxApeDecSw.so
 vendor/lib/libOmxWmaDec.so
 
 # NFC
-vendor/firmware/libpn548ad_fw.so
+vendor/firmware/libpn548ad_fw.so:vendor/lib/libpn548ad_fw.so
 
 # Qualcomm framework
 lib/libdiag_system.so
