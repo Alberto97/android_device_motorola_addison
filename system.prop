@@ -73,9 +73,6 @@ ro.sf.lcd_density=480
 # FRP
 ro.frp.pst=/dev/block/bootdevice/by-name/frp
 
-# NFC
-ro.hardware.nfc_nci=addison
-
 # Radio
 persist.data.qmi.adb_logmask=0
 persist.radio.apn_delay=5000
