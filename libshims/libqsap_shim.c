@@ -1,5 +1,6 @@
 #include "qsap_api.h"
 
+#include <string.h>
 #include <sys/socket.h>
 #include <linux/wireless.h>
 
