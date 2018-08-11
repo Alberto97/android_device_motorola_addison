@@ -18,9 +18,6 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
-#include <cutils/properties.h>
-#include <string.h>
-
 #define BTM_DEF_LOCAL_NAME "Moto Z Play"
 #define BLUETOOTH_QTI_SW TRUE
 #define MAX_ACL_CONNECTIONS   16
