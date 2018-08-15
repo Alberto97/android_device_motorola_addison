@@ -71,6 +71,7 @@ on init
 
 on init && property:ro.boot.hardware.sku=*
     setprop ro.product.model ${ro.boot.hardware.sku}
+    setprop ro.product.vendor.model ${ro.boot.hardware.sku}
 
 on property:ro.hw.revision=*
     setprop ro.boot.hardware.revision ${ro.hw.revision}
