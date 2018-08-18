@@ -264,6 +264,11 @@ vendor/lib/librpmb.so
 vendor/lib/libssd.so
 vendor/lib/vendor.qti.hardware.qteeconnector@1.0_vendor.so
 
+# DRM - Widevine
+# vendor/bin/hw/android.hardware.drm@1.0-service.widevine
+# vendor/etc/init/android.hardware.drm@1.0-service.widevine.rc
+vendor/lib/libwvhidl.so
+
 # Fingerprint
 lib/libcom_fingerprints_service.so
 lib/lib_fpc_tac_shared.so
