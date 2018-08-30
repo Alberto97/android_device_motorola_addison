@@ -96,6 +96,13 @@ struct nlmsg {
 	char data[NLMSG_DATA_SIZE];
 };
 
+#define RMNETCTL_NUM_TX_QUEUES 10
+
+/* This needs to be hardcoded here because some legacy linux systems
+ * do not have this definition
+ */
+#define RMNET_IFLA_NUM_TX_QUEUES 31
+
 /*===========================================================================
 			LOCAL FUNCTION DEFINITIONS
 ===========================================================================*/
@@ -1159,6 +1166,14 @@ int rtrmnet_ctl_newvnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
 	CHECK_MEMSCPY(memscpy_repeat(RTA_DATA(attrinfo), &reqsize, &val, sizeof(val)));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
 				RTA_ALIGN(RTA_LENGTH(sizeof(val)));
+
+	attrinfo = (struct rtattr *)(((char *)&req) +
+				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
+	attrinfo->rta_type = RMNET_IFLA_NUM_TX_QUEUES;
+	attrinfo->rta_len = RTA_LENGTH(4);
+	*(int *)RTA_DATA(attrinfo) = RMNETCTL_NUM_TX_QUEUES;
+	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
+				RTA_ALIGN(RTA_LENGTH((4)));
 
 	/* Set up IFLA info kind  RMNET that has linkinfo and type */
 	attrinfo = (struct rtattr *)(((char *)&req) +
