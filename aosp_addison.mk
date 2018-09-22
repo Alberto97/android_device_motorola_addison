@@ -27,7 +27,7 @@ PRODUCT_SYSTEM_PROPERTY_BLACKLIST := \
     ro.product.vendor.model
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="addison-user 8.0.0 OPN27.76-12-22 24 release-keys" \
+    PRIVATE_BUILD_DESC="addison-user 8.0.0 OPNS27.76-12-22-9 10 release-keys" \
     PRODUCT_NAME="Moto Z Play"
 
-BUILD_FINGERPRINT=motorola/addison/addison:8.0.0/OPN27.76-12-22/24:user/release-keys
+BUILD_FINGERPRINT=motorola/addison/addison:8.0.0/OPNS27.76-12-22-9/10:user/release-keys
