@@ -420,3 +420,4 @@
 /sys/class/graphics/fb0     modes                    0664    system  graphics
 /sys/class/graphics/fb0     mode                     0664    system  graphics
 /sys/class/graphics/fb0     msm_cmd_autorefresh_en   0664    system  graphics
+/sys/class/graphics/fb0     dynamic_bitclk           0664    system  graphics
