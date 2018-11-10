@@ -183,7 +183,7 @@ vendor/lib/libts_face_beautify_hal.so
 vendor/lib/libubifocus.so
 vendor/lib/motcamera.device@1.0-impl.so
 vendor/lib/motorola.hardware.camera.device@1.0_vendor.so
-vendor/lib/motorola.hardware.camera.provider@2.4_vendor.so
+vendor/lib/motorola.hardware.camera.provider@2.4_vendor.so|f48d16e1e3f777a4fb0897ff2f667d98542b15df
 
 # Chromatix
 vendor/lib/libchromatix_ov5693_common.so
