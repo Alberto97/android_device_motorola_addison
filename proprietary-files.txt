@@ -79,6 +79,7 @@ vendor/lib/libfastcvopt.so
 vendor/lib/libflash_pmic.so
 vendor/lib/libflash_sky81298.so
 vendor/lib/libgralloc1.so
+vendor/lib/libgui_vendor.so|2289516454cceae50bb3963f9255bc113a24b508
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegehw.so
 vendor/lib/libmmcamera2_c2d_module.so
@@ -169,7 +170,7 @@ vendor/lib/libmmqjpeg_codec.so
 vendor/lib/libmmqjpegdma.so
 vendor/lib/libmodmanager.so
 vendor/lib/libmot_afd.so
-vendor/lib/libmot_gpu_mapper.so
+vendor/lib/libmot_gpu_mapper.so|a7477c7604bf9ac8b7b2ead6283eb6ddb80051fa
 vendor/lib/libmotocalibration.so
 vendor/lib/liboptizoom.so
 vendor/lib/libqomx_core.so

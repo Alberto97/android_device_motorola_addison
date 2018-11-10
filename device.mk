@@ -106,7 +106,6 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
-    libgpu_mapper_shim \
     libjustshoot_shim
 
 PRODUCT_COPY_FILES += \
