@@ -53,6 +53,9 @@ on init
     # Change ownership for for ACL feature
     chown system system /sys/class/graphics/fb0/acl
 
+on fs
+    setprop ro.vendor.hw.device ${ro.boot.device}
+
 on post-fs
     mkdir /persist/camera 0755 oem_5004 oem_5004
     mkdir /persist/camera/focus 0775 camera oem_5004
