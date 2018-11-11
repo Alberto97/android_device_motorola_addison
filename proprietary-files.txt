@@ -531,10 +531,10 @@ vendor/lib/hw/thermal.msm8953.so
 vendor/lib/libthermalclient.so
 vendor/lib/libthermalioctl.so
 
-# Time services
--vendor/app/TimeService/TimeService.apk|22f13bcbac7b3cac6f6a2c6cc0e1069b3c728faa
+# Time services - from deen PPK29.68-16-3
+-vendor/app/TimeService/TimeService.apk|2cdac463ea1e295cf1c3ae08974c37cad2c9f784
 # vendor/bin/time_daemon
-vendor/lib/libtime_genoff.so|267516e23fe515013b6ef4e2f7edd0049fb75466
+vendor/lib/libtime_genoff.so|4ca1098498c00323d755af303d9a4382cefd5aff
 
 # Touchscreen
 etc/firmware/synaptics-s3508-16082601-255c40-addison.tdat
