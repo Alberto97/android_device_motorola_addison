@@ -39,13 +39,6 @@ on init
     chown system log /sys/fs/pstore/dmesg-ramoops-0
     chmod 0640 /sys/fs/pstore/dmesg-ramoops-0
 
-    # Setup kernel dropbox permissions so that dropboxd can utilize it
-    chown root diag /sys/kernel/dropbox/event
-    chown root diag /sys/kernel/dropbox/data
-
-    #ESDFS
-    chown mot_esdfs root /proc/fs/esdfs/packages
-
     # Change ownership for for HBM feature
     chown system system /sys/class/graphics/fb0/hbm
     # Change ownership for for ACL feature
@@ -152,66 +145,15 @@ on post-fs-data
     # Sensor Hub calibration data directory
     mkdir /data/misc/sensorhub 0770 system compass
 
-    # Setup folder for native to transfer data to NativeDropBoxAgent
-    mkdir /data/system/dropbox-add 0730 system diag
-
-    # Create panic dump dir.
-    mkdir /data/dontpanic 0750 root log
-
     # Create directory for cutback
     mkdir /data/misc/cutback 0770 radio wifi
-
-    # Create directory for fm_radio
-    mkdir /data/misc/fm_radio 0770 system system
-
-    #setup folder for WLAN WAPI
-    mkdir /data/wapi_certificate 0750 system wifi
-    chown system wifi /data/wapi_certificate
-
-    # Create greybus firmware folder
-    mkdir /data/gbfirmware 0770 oem_5020 oem_5020
-
-    # mkdir IPLog folder
-    mkdir /data/misc/iplog 0770 system system
-
-    # mkdir ModemStatsService folder
-    mkdir /data/misc/ps_recovery_iplog 0770 system system
-
-    # Create bug2go folder
-    mkdir /data/vendor/bug2go 0770 log log
-
-    # Setup folder for aplogd
-    mkdir /data/vendor/aplogd 0750 log log
-
-    # Subsystem RAM-dumps
-    mkdir /data/ss-ram-dumps 0750 system log
-    mkdir /data/ss-ram-dumps/bp-dumps 0750 system log
-    mkdir /data/ss-ram-dumps/riva-dumps 0750 system log
-
-    # folder for Blueooth ramdump
-    mkdir /data/bt-ram-dumps 0750 bluetooth log
-
-    # SD card encryption metadata
-    mkdir /data/misc/sds 0750 root root
 
     # Required by FingerPrint Cards (FPC) via init so we don't need to give qseecomd or fingerprintd permissions to create them
     mkdir /data/fpc 0700 system system
     mkdir /data/.fps 0770 system input
 
-    #Folder for hardware properties
-    mkdir /data/hardware_revisions 0755 system system
-
-    #Create directory for adspd
-    mkdir /data/adspd 0770 audio diag
-
     # Setup folder for camera dump subsystem
     mkdir /data/camera_dump 0750 media media
-
-    # Imager tuning data for camera subsystem
-    mkdir /data/vendor/misc/imager 0771 camera camera
-
-    # OTA Package directory
-    mkdir /data/misc_ne 0770 system cache
 
     # NFC vendor data
     mkdir /data/vendor/nfc 0770 nfc nfc
