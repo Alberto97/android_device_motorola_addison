@@ -29,9 +29,9 @@ vendor/lib/libadiertac.so
 vendor/lib/libaudcal.so
 
 # Audio firmware
-etc/firmware/marley-dsp1-ultrasound.wmfw
-etc/firmware/marley-dsp2-aov-frontend.wmfw
-etc/firmware/marley-dsp3-aov-control.wmfw
+etc/firmware/marley-dsp1-ultrasound.wmfw:vendor/firmware/marley-dsp1-ultrasound.wmfw
+etc/firmware/marley-dsp2-aov-frontend.wmfw:vendor/firmware/marley-dsp2-aov-frontend.wmfw
+etc/firmware/marley-dsp3-aov-control.wmfw:vendor/firmware/marley-dsp3-aov-control.wmfw
 
 # Bluetooth
 lib/vendor.qti.hardware.fm@1.0.so
