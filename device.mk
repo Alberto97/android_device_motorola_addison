@@ -159,7 +159,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libgnsspps \
     libgnss \
-    libgnss_shim \
     android.hardware.gnss@1.0-impl-qti
 
 # Health

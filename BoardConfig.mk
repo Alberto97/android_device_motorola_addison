@@ -144,9 +144,7 @@ BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 TARGET_LD_SHIM_LIBS := \
     /system/vendor/lib/libmdmcutback.so|libqsap_shim.so \
     /system/vendor/lib/libsensorndkbridge.so|libshim_ril.so \
-    /system/lib/libjustshoot.so|libjustshoot_shim.so \
-    /system/vendor/lib/vendor.qti.gnss@1.0_vendor.so|libgnss_shim.so \
-    /system/lib/vendor.qti.gnss@1.0.so|libgnss_shim.so
+    /system/lib/libjustshoot.so|libjustshoot_shim.so
 
 # Sensors
 BOARD_USES_MOT_SENSOR_HUB := true
