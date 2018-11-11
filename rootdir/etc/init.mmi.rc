@@ -30,8 +30,6 @@ on early-boot
     chmod 0660 /sys/devices/virtual/motosh/motosh_as/linear_accel_update_rate
 
 on early-init
-    # Create modem FSG mount point
-    mkdir /fsg 755 root root
 
 on init
     chown system log /sys/fs/pstore/console-ramoops-0
@@ -223,15 +221,6 @@ on post-fs-data
     # Enable relatime for /storage/emulated/xx/Download
     setfattr /data/media user.relatime /%s/Download:com.motorola.mya 0
 
-    #setup folder for WLAN WAPI
-    chmod 0770 /data/wapi_certificate
-
-    # This dir only for preinstall app so libs
-    mkdir /data/app-lib2 0771 system system
-
-    # OTA Package directory
-    mkdir /data/misc_ne 0770 system cache
-
 on boot
    # restore default console_loglevel to KERN_DEBUG
    # restore default_message_loglevel to KERN_WARNING
@@ -246,6 +235,24 @@ on boot
    chown system system /sys/class/timed_output/vibrator/enable
    chmod 0660 /sys/class/timed_output/vibrator/enable
 
+   # Change ownership of aov related sysfs entries
+   chown audio audio /sys/kernel/aov/trigger
+   chown audio audio /sys/kernel/aov/register
+   chown audio audio /sys/kernel/aov/event
+
+   # Allow RunIn (factory test app) to control charging state
+   chown system system /sys/class/power_supply/battery/charging_enabled
+   chown system system /sys/class/power_supply/battery/battery_charging_enabled
+
+   # Quiet binder logs
+   write /sys/module/binder/parameters/debug_mask 0x5
+
+   # Clear cooldown state
+   mkdir /persist/chargeonly 0770 system system
+   write /persist/chargeonly/cooldown n
+   chown system system /persist/chargeonly/cooldown
+   chmod 0660 /persist/chargeonly/cooldown
+
    # Change ownership and permission for laser_sensor
    chown system system /sys/kernel/range/enable_sar
    chmod 0660 /sys/kernel/range/enable_sar
@@ -258,11 +265,6 @@ on boot
    chown root oem_5004 /sys/class/graphics/fb0/te_test
    chown root oem_5004 /sys/class/graphics/fb0/te_enable
    chown root oem_5004 /sys/class/graphics/fb0/frame_counter
-
-   # Change ownership of aov related sysfs entries
-   chown audio audio /sys/kernel/aov/trigger
-   chown audio audio /sys/kernel/aov/register
-   chown audio audio /sys/kernel/aov/event
 
    # Change permission for type C params
    chown root oem_5004 /sys/devices/soc/78b6000.i2c/i2c-2/2-0022/CC_state
@@ -280,19 +282,6 @@ on boot
    chown system oem_5004 /sys/bus/spi/devices/spi8.0/irq
    chown system oem_5004 /sys/bus/spi/devices/spi8.0/irq_cnt
    chmod 0440 /sys/bus/spi/devices/spi8.0/irq_cnt
-
-   # Allow RunIn (factory test app) to control charging state
-   chown system system /sys/class/power_supply/battery/charging_enabled
-   chown system system /sys/class/power_supply/battery/battery_charging_enabled
-
-   # Quiet binder logs
-   write /sys/module/binder/parameters/debug_mask 0x5
-
-   # Clear cooldown state
-   mkdir /persist/chargeonly 0770 system system
-   write /persist/chargeonly/cooldown n
-   chown system system /persist/chargeonly/cooldown
-   chmod 0660 /persist/chargeonly/cooldown
 
 # Pass carrier to wlan
 service vendor.init_wifi /vendor/bin/wlan_carrier_bin.sh
@@ -358,6 +347,14 @@ on property:sys.wifi.tethering=true
 
 on property:sys.wifi.tethering=false
     write /sys/class/net/rmnet_data0/queues/rx-0/rps_cpus ${sys.rmnet_vnd.rps_mask}
+    write /sys/module/wlan/parameters/fwpath apdown
+
+#Override fwpath string when wpa_supplicant server was killed
+on property:init.svc.wpa_supplicant=running
+    write /sys/module/wlan/parameters/fwpath sta
+
+on property:init.svc.wpa_supplicant=stopped
+    write /sys/module/wlan/parameters/fwpath wpadown
 
 on property:sys.boot_completed=1
     # Enable ZRAM on boot_complete
