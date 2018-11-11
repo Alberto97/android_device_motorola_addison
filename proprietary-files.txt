@@ -537,8 +537,8 @@ vendor/lib/libthermalioctl.so
 vendor/lib/libtime_genoff.so|4ca1098498c00323d755af303d9a4382cefd5aff
 
 # Touchscreen
-etc/firmware/synaptics-s3508-16082601-255c40-addison.tdat
-etc/firmware/synaptics-s3508sga-16082601-255c40-addison.tdat
+etc/firmware/synaptics-s3508-16082601-255c40-addison.tdat:vendor/firmware/synaptics-s3508-16082601-255c40-addison.tdat
+etc/firmware/synaptics-s3508sga-16082601-255c40-addison.tdat:vendor/firmware/synaptics-s3508sga-16082601-255c40-addison.tdat
 
 # WCNSS
 vendor/etc/wifi/WCNSS_qcom_wlan_nv.bin:vendor/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
