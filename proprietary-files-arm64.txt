@@ -25,19 +25,17 @@ vendor/lib64/libaptXHD_encoder.so
 vendor/lib64/libbtnv.so
 vendor/lib64/vendor.qti.hardware.fm@1.0_vendor.so
 
-# Display
-lib64/libsd_sdk_display.so
-lib64/libsdm-disp-apis.so
-vendor/bin/hw/vendor.display.color@1.0-service
-vendor/etc/init/vendor.display.color@1.0-service.rc
-vendor/lib64/libscalar.so
-vendor/lib64/libsdm-color.so
-vendor/lib64/libsdm-diag.so
-vendor/lib64/libsdm-disp-vndapis.so
-vendor/lib64/libsdmextension.so
-vendor/lib64/libtinyxml2_1.so
-vendor/lib64/vendor.display.color@1.0_vendor.so
-vendor/lib64/vendor.display.postproc@1.0_vendor.so
+# Display - from deen PPK29.68-16-3
+vendor/bin/hw/vendor.display.color@1.0-service|9d4c72291f4b91014dcbc3d333d00865af5ed707
+vendor/etc/init/vendor.display.color@1.0-service.rc|5ad673f879b3685a0e79b5633437e5499cb94f48
+vendor/lib64/libscalar.so|61c059ca3b9da6a36bdf112e8fbe26a252ad1234
+vendor/lib64/libsdm-color.so|bca0a2a58c2c33e1dbed82de7446ebfcbc8250ff
+vendor/lib64/libsdm-diag.so|87a4f764e894f16246c9a0d6e3f5885df76b750b
+vendor/lib64/libsdm-disp-vndapis.so|fde2de5a3f031577edc39b49036435ef2607b134
+vendor/lib64/libsdmextension.so|5a0b546e1677767674b004f7407465bfc96a2e46
+vendor/lib64/libtinyxml2_1.so|b225b16e689e7e4c26fc6144637f6b0c416063f8
+vendor/lib64/vendor.display.color@1.0.so|8005dcc8eaebabaa103a36f8a4705298582f61e6
+vendor/lib64/vendor.display.postproc@1.0.so|a33452db7b8c9cd4a57234230b0b7cc7a31cbf3d
 
 # DRM
 lib64/vendor.qti.hardware.qteeconnector@1.0.so

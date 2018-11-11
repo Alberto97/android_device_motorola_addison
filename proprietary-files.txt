@@ -234,20 +234,18 @@ etc/firmware/cpp_firmware_v1_6_0.fw
 etc/firmware/cpp_firmware_v1_8_0.fw
 etc/firmware/cpp_firmware_v1_10_0.fw
 
-# Display
--framework/com.qti.snapdragon.sdk.display.jar
--vendor/app/colorservice/colorservice.apk
-etc/permissions/com.qti.snapdragon.sdk.display.xml
-lib/libsd_sdk_display.so
-lib/libsdm-disp-apis.so
-vendor/lib/libscalar.so
-vendor/lib/libsdm-color.so
-vendor/lib/libsdm-diag.so
-vendor/lib/libsdm-disp-vndapis.so
-vendor/lib/libsdmextension.so
-vendor/lib/libtinyxml2_1.so
-vendor/lib/vendor.display.color@1.0_vendor.so
-vendor/lib/vendor.display.postproc@1.0_vendor.so
+# Display - from deen PPK29.68-16-3
+-framework/com.qti.snapdragon.sdk.display.jar|a388dc1cf9f01c22d74cd84d76620aea4375dbfb
+-vendor/app/colorservice/colorservice.apk|8c1ccd666731cc766c63c577f1a62d63f6da6556
+etc/permissions/com.qti.snapdragon.sdk.display.xml|0bff16d681e75f203c1e11ff33afba82490e49b3
+vendor/lib/libscalar.so|cad128a6e71195b4ad38494bc0382bf80e1fb0b2
+vendor/lib/libsdm-color.so|9144f6d1e254fc6353fb91386eb1d0ee1964d8a2
+vendor/lib/libsdm-diag.so|e2e3a0fba39190c58bafa0568e8cd51b391b71b6
+vendor/lib/libsdm-disp-vndapis.so|55e2d71cb097a2af3310b112e086e919bd81656f
+vendor/lib/libsdmextension.so|7940547c3247f48fa328bc662a2c0fa4b84603af
+vendor/lib/libtinyxml2_1.so|3882fddae942997be6ad6af789cf209fa45e61b3
+vendor/lib/vendor.display.color@1.0.so|31bb91567aa997131be59c896c52caa3c49c7f17
+vendor/lib/vendor.display.postproc@1.0.so|9cc5304b70080be7fa6846dca24a727e974d0d7f
 
 # DRM
 lib/vendor.qti.hardware.qteeconnector@1.0.so
