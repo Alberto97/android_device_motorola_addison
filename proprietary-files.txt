@@ -279,17 +279,21 @@ lib/libcom_fingerprints_service.so
 lib/lib_fpc_tac_shared.so
 vendor/lib/hw/fingerprint.msm8953.so
 
-# GPS
-etc/permissions/com.qti.location.sdk.xml
-etc/permissions/com.qualcomm.location.xml
-etc/permissions/izat.xt.srv.xml
-etc/permissions/privapp-permissions-com.qualcomm.location.xml
--framework/com.qti.location.sdk.jar
--framework/izat.xt.srv.jar
-lib/liblocationservice_jni.so
-lib/libxt_native.so
-lib/vendor.qti.gnss@1.0.so
--priv-app/com.qualcomm.location/com.qualcomm.location.apk
+# GPS - from deen PPK29.68-16-3
+etc/permissions/com.qti.location.sdk.xml|cb68a566bd77dcc75bb7547199d528289fac01cb
+etc/permissions/com.qualcomm.location.xml|78b2c4d3f4d053f7d7b3e27a60a8d9e65ac583c3
+etc/permissions/izat.xt.srv.xml|a0f460056f27b5495a4d6e959eecf0e429c42a57
+etc/permissions/privapp-permissions-com.qualcomm.location.xml|055fb40299c0a2340bb1b2c9be218a4d2c0f8c72
+-framework/com.qti.location.sdk.jar|cb25606f1b8091b3fb2d134f3f1a4d8b24c94bb8
+-framework/izat.xt.srv.jar|dd43374a25e1318551de3dae2f7bbb418f2f0f48
+lib/liblocationservice_jni.so|24ed85c2366a82d1c772b44815a45eb7cfa6ce43
+lib/libxt_native.so|4eddcf02573675507c56226527b9c68f89fc0e2f
+lib/vendor.qti.gnss@1.0.so|77f52329dbce43d0049a773116f109affb584f4e
+lib/vendor.qti.gnss@1.1.so|5671826821fd698f72d3f6bd221b7131582296b0
+lib/vendor.qti.gnss@1.2.so|eb2e54a55269957a2c0abe8d45df93a1a5681b74
+lib/vendor.qti.gnss@2.0.so|0f4ea5b48072ae55009d79312be33acdd581007c
+lib/vendor.qti.gnss@2.1.so|b6838e088cf73740b56fbbf86a8dbe0a117e5d04
+-priv-app/com.qualcomm.location/com.qualcomm.location.apk|dfa98d940a43f71b9aaa42ad7df176f0f3168403
 # vendor/bin/hw/vendor.qti.gnss@1.0-service
 # vendor/bin/loc_launcher
 # vendor/bin/slim_daemon
@@ -297,38 +301,41 @@ lib/vendor.qti.gnss@1.0.so
 # vendor/bin/xtwifi-inet-agent
 # vendor/bin/xtra-daemon
 # vendor/etc/init/vendor.qti.gnss@1.0-service.rc
-vendor/etc/cacert_location.pem
-vendor/etc/flp.conf
-vendor/etc/gps.conf
-vendor/etc/izat.conf
-vendor/etc/lowi.conf
-vendor/etc/sap.conf
-vendor/etc/xtra_root_cert.pem
-vendor/etc/xtwifi.conf
-vendor/lib/hw/vendor.qti.gnss@1.0-impl.so
-vendor/lib/libalarmservice_jni.so
-vendor/lib/libdataitems.so
-vendor/lib/libDRPlugin.so
-vendor/lib/libdrplugin_client.so
-vendor/lib/libevent_observer.so
-vendor/lib/libflp.so
-vendor/lib/libgdtap.so
-vendor/lib/libgeofence.so
-vendor/lib/libizat_client_api.so
-vendor/lib/libizat_core.so
-vendor/lib/liblbs_core.so
-vendor/lib/libloc_api_v02.so
-vendor/lib/libloc_ds_api.so
-vendor/lib/libloc_externalDr.so
-vendor/lib/liblocationservice.so
-vendor/lib/liblocationservice_glue.so
-vendor/lib/liblowi_client.so
-vendor/lib/libquipc_os_api.so
-vendor/lib/libsensor1.so
-vendor/lib/libulp2.so
-vendor/lib/libxtadapter.so
-vendor/lib/libxtwifi_ulp_adaptor.so
-vendor/lib/vendor.qti.gnss@1.0_vendor.so
+vendor/etc/cacert_location.pem|0789bf799c7e45d352a83e2f79ddb0cea86db85b
+vendor/etc/flp.conf|fe685293b364fb6aac6131fd72198aca526f9bd4
+vendor/etc/gps.conf|ae6527c2cdedfe69ab9d0dc3ca43bfb311956850
+vendor/etc/izat.conf|91cdd1703cc3cd9978ee4cf99245d7352d8c1ab3
+vendor/etc/lowi.conf|78d2ce827a26f445bc4fbfa5bf1834f170e54b79
+vendor/etc/sap.conf|2ec5917eb12f6b59608c7b05fb627a0a895d351b
+vendor/etc/xtra_root_cert.pem|f55a31ec4d9cf8ce2724acadecf00c779f8767db
+vendor/etc/xtwifi.conf|62dcdde4a24a80ebd747cdafcf9fb71155740b61
+vendor/lib/hw/vendor.qti.gnss@1.0-impl.so|fca0e88395be3956c279b69e31ff950fa2da7179
+vendor/lib/libalarmservice_jni.so|c81f75c6647b298b6c53d07bb611a1df3b75853f
+vendor/lib/libdataitems.so|23163a2ab1fb19535ea11b1239d765b47725c98b
+vendor/lib/libDRPlugin.so|66ae4c621786a65404db4d9cfdfc3dc22fc5d7e3
+vendor/lib/libdrplugin_client.so|8599918bdb3ea37d9269d26dcb49a1bc9648d158
+vendor/lib/libevent_observer.so|413e8cecbe2eae9dd6f3fe2ccf81841686fcfbfd
+vendor/lib/libflp.so|82f7a40172ad095c53cdf3bc09791e10db6eb6ca
+vendor/lib/libgdtap.so|cd64839196da6aa46b57a068b852f5a2e6c7a7d7
+vendor/lib/libgeofence.so|c3657545326800b9cf9065235dbc972def75e8a8
+vendor/lib/libizat_client_api.so|b5a630317d1cf37a8afe593acfe81d310ef29965
+vendor/lib/libizat_core.so|b8042e392cac97165bb893da3db418341f33047c
+vendor/lib/liblbs_core.so|02d8632c3f26c4621da138db9f96a1a34cbf1b96
+vendor/lib/libloc_api_v02.so|e242260c2e44aa89432dfceb70fc7cf234ed38db
+vendor/lib/libloc_ds_api.so|b2123d1725b62789f62d093cef260387c96044a1
+vendor/lib/libloc_externalDr.so|4eab69e27e2ddbceaa6878baf54365b031a09fcd
+vendor/lib/liblocationservice.so|32824814e99816d2ffe72bbccbc50605a6831686
+vendor/lib/liblocationservice_glue.so|7ac5749bd8b80ef5fa7488af810b2b7be4aea9da
+vendor/lib/liblowi_client.so|d29df76952927beb9be71e853fa6603a334e77fe
+vendor/lib/libquipc_os_api.so|61dd61c6e93c7494e28986c071805d1c64ff9534
+vendor/lib/libulp2.so|fbdc95ad2bc6877fac46f116246fa18af89ecdc9
+vendor/lib/libxtadapter.so|330f9cb493ad3e067afd6acbcf10b21c5d4eb163
+vendor/lib/libxtwifi_ulp_adaptor.so|e06333bf71c587f8a6a14e06632c37ef0ac09c1f
+vendor/lib/vendor.qti.gnss@1.0.so|77f52329dbce43d0049a773116f109affb584f4e
+vendor/lib/vendor.qti.gnss@1.1.so|5671826821fd698f72d3f6bd221b7131582296b0
+vendor/lib/vendor.qti.gnss@1.2.so|eb2e54a55269957a2c0abe8d45df93a1a5681b74
+vendor/lib/vendor.qti.gnss@2.0.so|0f4ea5b48072ae55009d79312be33acdd581007c
+vendor/lib/vendor.qti.gnss@2.1.so|b6838e088cf73740b56fbbf86a8dbe0a117e5d04
 
 # Graphics
 vendor/lib/egl/eglSubDriverAndroid.so
