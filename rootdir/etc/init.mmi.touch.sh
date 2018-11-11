@@ -15,7 +15,7 @@ shift $(($OPTIND-1))
 scriptname=${0##*/}
 touch_class_path=/sys/class/touchscreen
 touch_product_string=$(ls $touch_class_path)
-touch_status_prop=hw.touch.status
+touch_status_prop=vendor.hw.touch.status
 
 debug()
 {
@@ -163,8 +163,8 @@ while true; do
 done
 unset readiness
 
-device_property=ro.hw.device
-hwrev_property=ro.hw.revision
+device_property=ro.vendor.hw.device
+hwrev_property=ro.vendor.hw.revision
 firmware_path=/vendor/firmware
 
 let dec_cfg_id_boot=0; dec_cfg_id_latest=0;
@@ -258,8 +258,13 @@ debug "hw revision: $hwrev_id"
 read_touch_property "panel_supplier"
 [ -z "$property" ] && read_panel_property "panel_supplier"
 supplier=$property
-[ -z "$supplier" ] && debug "driver does not report panel supplier"
-debug "panel supplier: $supplier"
+if [ "$supplier" ]; then
+	read_panel_property "controller_drv_ver"
+	panel_ver=${property#${property%?}}
+	debug "panel supplier: $supplier, ver $panel_ver"
+else
+	debug "driver does not report panel supplier"
+fi
 
 cd $firmware_path
 
@@ -304,14 +309,16 @@ hw_mask="-$hwrev_id"
 debug "hw_mask=$hw_mask"
 
 match_not_found=1
-if [ ! -z "$supplier" ];
-then
-	debug "search for best hw revision match with supplier"
-	find_best_match "-$hwrev_id" "$supplier"
-	match_not_found=$?
+if [ "$supplier" ]; then
+	for pattern in "$supplier$panel_ver" "$supplier"; do
+		debug "search for best hw revision match with supplier"
+		find_best_match "-$hwrev_id" "$pattern"
+		match_not_found=$?
+		[ "$match_not_found" == "0" ] && break
+	done
 fi
 
-if [ "$match_not_found" -ne "0" ];
+if [ "$match_not_found" != "0" ];
 then
 	debug "search for best hw revision match without supplier"
 	find_best_match "-$hwrev_id" || error_and_leave 3
@@ -355,7 +362,7 @@ notice "Touch firmware is up to date"
 setprop $touch_status_prop "ready"
 notice "property [$touch_status_prop] set to [`getprop $touch_status_prop`]"
 
-unset device_property hwrev_property supplier
+unset device_property hwrev_property supplier panel_ver
 unset str_cfg_id_boot str_cfg_id_latest str_cfg_id_new
 unset dec_cfg_id_boot dec_cfg_id_latest match_not_found
 unset hwrev_id product_id touch_product_id scriptname
