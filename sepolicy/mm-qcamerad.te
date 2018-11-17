@@ -1,6 +1,10 @@
 allow mm-qcamerad laser_device:chr_file rw_file_perms;
-allow mm-qcamerad persist_file:file r_file_perms;
+allow mm-qcamerad mnt_vendor_file:file r_file_perms;
 allow mm-qcamerad sysfs_graphics:file r_file_perms;
+allow mm-qcamerad sysfs_mods_camd:dir search;
 allow mm-qcamerad sysfs_mods_camd:file r_file_perms;
 allow mm-qcamerad system_data_file:dir read;
+
+allow mm-qcamerad sysfs_graphics:dir search;
+allow mm-qcamerad sysfs_graphics:file rw_file_perms;
 set_prop(mm-qcamerad, debug_prop);

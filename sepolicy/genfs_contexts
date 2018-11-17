@@ -1,5 +1,8 @@
 # sysfs
-genfscon sysfs /devices/soc/1b00000.qcom,msm-cam/video4linux/video0   u:object_r:sysfs_mods_camd:s0
+genfscon sysfs /devices/soc/1b00000.qcom,msm-cam                      u:object_r:sysfs_mods_camd:s0
+genfscon sysfs /devices/soc/1b0c000.qcom,cci/1b0c000.qcom,cci:qcom,camera@0  u:object_r:sysfs_graphics:s0
+genfscon sysfs /devices/soc/1b0c000.qcom,cci/1b0c000.qcom,cci:qcom,camera@1  u:object_r:sysfs_graphics:s0
+genfscon sysfs /devices/soc/1b0c000.qcom,cci/1b0c000.qcom,cci:qcom,camera@2  u:object_r:sysfs_graphics:s0
 genfscon sysfs /devices/soc/78b7000.i2c/i2c-3/3-0020                  u:object_r:sysfs_mmi_touch:s0
 genfscon sysfs /devices/soc/7af8000.spi/spi_master/spi8/spi8.0        u:object_r:sysfs_mmi_fp:s0
 genfscon sysfs /devices/virtual/motosh/motosh_as/tabletop_mode        u:object_r:sysfs_vibrator:s0
@@ -9,3 +12,18 @@ genfscon sysfs /module/wcnsscore/parameters                           u:object_r
 
 # debugfs
 genfscon debugfs /rmt_storage              u:object_r:debugfs_rmt_storage:s0
+
+# Needed for SSR
+genfscon sysfs /devices/soc/soc:qcom,kgsl-hyp/subsys0/name            u:object_r:sysfs_ssr:s0
+genfscon sysfs /devices/soc/1de0000.qcom,venus/subsys1/name           u:object_r:sysfs_ssr:s0
+genfscon sysfs /devices/soc/c200000.qcom,lpass/subsys2/name           u:object_r:sysfs_ssr:s0
+genfscon sysfs /devices/soc/a21b000.qcom,pronto/subsys3/name          u:object_r:sysfs_ssr:s0
+genfscon sysfs /devices/soc/4080000.qcom,mss/subsys4/name             u:object_r:sysfs_ssr:s0
+
+# Health
+genfscon sysfs /devices/soc/7000000.ssusb/power_supply                u:object_r:sysfs_batteryinfo:s0
+genfscon sysfs /devices/soc/78b6000.i2c/i2c-2/2-0022/power_supply     u:object_r:sysfs_batteryinfo:s0
+genfscon sysfs /devices/soc/msm-bcl-19/power_supply                   u:object_r:sysfs_batteryinfo:s0
+genfscon sysfs /devices/soc/soc:qcom,bcl/power_supply                 u:object_r:sysfs_batteryinfo:s0
+genfscon sysfs /devices/soc/qpnp-fg-18                                u:object_r:sysfs_batteryinfo:s0
+genfscon sysfs /devices/soc/qpnp-smbcharger-17/power_supply           u:object_r:sysfs_batteryinfo:s0

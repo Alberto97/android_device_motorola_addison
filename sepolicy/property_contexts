@@ -1,4 +1,6 @@
 hw.motosh.booted        u:object_r:motosh_prop:s0
 ro.hw.revision          u:object_r:hw_rev_prop:s0
-ro.sf.lcd_density       u:object_r:sf_lcd_density_prop:s0
-hw.touch.status         u:object_r:touch_prop:s0
+persist.camera.         u:object_r:camera_prop:s0
+persist.net.doxlat      u:object_r:vendor_xlat_prop:s0
+sys.listeners.registered  u:object_r:vendor_tee_listener_prop:s0
+vendor.hw.touch.status  u:object_r:touch_prop:s0
