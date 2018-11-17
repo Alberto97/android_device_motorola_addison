@@ -72,22 +72,18 @@ public class ProximitySilencer extends PhoneStateListener implements SensorEvent
         long now = System.currentTimeMillis();
 
         if (isNear){
-            if (mIsRinging && (now - mRingStartedMs >= SILENCE_DELAY_MS)){
-                mCoveredRinging = true;
-            } else {
-                mCoveredRinging = false;
-            }
+            mCoveredRinging = mIsRinging && (now - mRingStartedMs >= SILENCE_DELAY_MS);
             return;
         }
 
-        if (!isNear && mIsRinging) {
+        if (mIsRinging) {
             Log.d(TAG, "event: " + event.values[0] + ", " + " covered " + Boolean.toString(mCoveredRinging));
             if (mCoveredRinging) {
                 Log.d(TAG, "Silencing ringer");
                 mTelecomManager.silenceRinger();
             } else {
                 Log.d(TAG, "Ignoring silence gesture: " + now + " is too close to " +
-                        mRingStartedMs + ", delay=" + SILENCE_DELAY_MS + " or covered " + Boolean.toString(mCoveredRinging));
+                        mRingStartedMs + ", delay=" + SILENCE_DELAY_MS);
             }
             mCoveredRinging = false;
         }

@@ -18,6 +18,6 @@
 package org.lineageos.settings.device.doze;
 
 public interface ScreenStateNotifier {
-    public void screenTurnedOn();
-    public void screenTurnedOff();
+    void screenTurnedOn();
+    void screenTurnedOff();
 }

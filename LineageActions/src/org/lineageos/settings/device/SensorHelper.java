@@ -26,8 +26,6 @@ import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.hardware.TriggerEventListener;
-import android.util.Log;
 
 public class SensorHelper {
     private static final String TAG = "LineageActions";
@@ -45,7 +43,7 @@ public class SensorHelper {
 
     public SensorHelper(Context context) {
         mContext = context;
-        mSensorManager = (SensorManager) mContext .getSystemService(Context.SENSOR_SERVICE);
+        mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
         dumpSensorsList();
     }
 
@@ -81,10 +79,6 @@ public class SensorHelper {
         return mSensorManager.getDefaultSensor(SENSOR_TYPE_MMI_FLAT_DOWN, true);
     }
 
-    public Sensor getGlanceSensor() {
-        return mSensorManager.getDefaultSensor(Sensor.TYPE_GLANCE_GESTURE, true);
-    }
-
     public Sensor getProximitySensor() {
         return mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY, true);
     }
@@ -102,16 +96,5 @@ public class SensorHelper {
 
     public void unregisterListener(SensorEventListener listener) {
         mSensorManager.unregisterListener(listener);
-    }
-
-    /* TriggerSensor */
-    public void requestTriggerSensor(Sensor sensor, TriggerEventListener listener) {
-        if (!mSensorManager.requestTriggerSensor(listener, sensor)) {
-            throw new RuntimeException("Failed to requestTriggerSensor for sensor " + sensor);
-        }
-    }
-
-    public void cancelTriggerSensor(Sensor sensor, TriggerEventListener listener) {
-        mSensorManager.cancelTriggerSensor(listener, sensor);
     }
 }

@@ -17,12 +17,9 @@
 
 package org.lineageos.settings.device.actions;
 
-import java.util.List;
-
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.util.Log;
 
 import org.lineageos.settings.device.LineageActionsSettings;
@@ -31,20 +28,14 @@ import org.lineageos.settings.device.SensorHelper;
 public class CameraActivationSensor implements SensorEventListener, UpdatedStateNotifier {
     private static final String TAG = "LineageActions-CameraSensor";
 
-    private static final int TURN_SCREEN_ON_WAKE_LOCK_MS = 500;
-
     private final LineageActionsSettings mLineageActionsSettings;
-    private final SensorHelper mSensorHelper;
-
-    private final Sensor mSensor;
 
     private boolean mIsEnabled;
 
     public CameraActivationSensor(LineageActionsSettings lineageActionsSettings, SensorHelper sensorHelper) {
         mLineageActionsSettings = lineageActionsSettings;
-        mSensorHelper = sensorHelper;
-        mSensor = sensorHelper.getCameraActivationSensor();
-        mSensorHelper.registerListener(mSensor, this);
+        Sensor sensor = sensorHelper.getCameraActivationSensor();
+        sensorHelper.registerListener(sensor, this);
     }
 
     @Override
