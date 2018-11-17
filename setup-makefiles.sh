@@ -41,6 +41,7 @@ setup_vendor "$DEVICE" "$VENDOR" "$CM_ROOT"
 write_headers
 
 # The standard blobs
+write_makefiles "$MY_DIR"/proprietary-files-addison.txt true
 write_makefiles "$MY_DIR"/proprietary-files.txt true
 write_makefiles "$MY_DIR"/proprietary-files-arm64.txt true
 
