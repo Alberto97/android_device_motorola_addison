@@ -146,7 +146,7 @@ on post-fs-data
     mkdir /data/misc/sensorhub 0770 system compass
 
     # Create directory for cutback
-    mkdir /data/misc/cutback 0770 radio wifi
+    mkdir /data/vendor/misc/cutback 0770 radio wifi
 
     # Required by FingerPrint Cards (FPC) via init so we don't need to give qseecomd or fingerprintd permissions to create them
     mkdir /data/fpc 0700 system system
