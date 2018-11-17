@@ -512,8 +512,8 @@ vendor/lib/libscveBlobDescriptor.so
 vendor/lib/libscveBlobDescriptor_stub.so
 vendor/lib/libscveCommon.so
 vendor/lib/libscveCommon_stub.so
-vendor/lib/libscveImageCorrection.so
 vendor/lib/libscveObjectSegmentation.so
+vendor/lib/libscveObjectSegmentation_stub.so
 vendor/lib/libscveObjectTracker.so
 vendor/lib/libscveObjectTracker_stub.so
 vendor/lib/libscvePanorama.so
