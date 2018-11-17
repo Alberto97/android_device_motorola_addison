@@ -1,5 +1,3 @@
-typeattribute rild data_between_core_and_vendor_violators;
-
 allow rild cutback_data_file:dir rw_dir_perms;
 allow rild cutback_data_file:sock_file create_file_perms;
 allow rild mnt_vendor_file:dir search;
@@ -16,3 +14,4 @@ allow rild proc:file r_file_perms;
 allow rild vendor_file:file execute_no_trans;
 
 r_dir_file(rild, fsg_file)
+set_prop(rild, vendor_radio_prop)

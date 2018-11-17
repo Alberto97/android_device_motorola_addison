@@ -1,7 +1,0 @@
-allow cnd sysfs_ssr:dir search;
-allow cnd sysfs_ssr:file r_file_perms;
-
-# allow cnd to access cnd_legacy_data_file
-allow cnd cnd_legacy_data_file:file create_file_perms;
-allow cnd cnd_legacy_data_file:sock_file { unlink create setattr };
-allow cnd cnd_legacy_data_file:dir rw_dir_perms;
