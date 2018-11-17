@@ -366,7 +366,7 @@ vendor/firmware/a530v3_gpmu.fw2
 vendor/firmware/a530v3_seq.fw2
 
 # IMS
--app/ims/ims.apk|c8680c85ad787bf55206cee8332c057e
+-app/ims/ims.apk|93e69e1c8c1f00054e037fcd5f1100e839966cc4
 etc/permissions/qti_permissions.xml
 lib/libimscamera_jni.so
 lib/libimsmedia_jni.so
@@ -374,6 +374,7 @@ lib/vendor.qti.imsrtpservice@1.0.so
 # vendor/bin/imsdatadaemon
 # vendor/bin/imsqmidaemon
 # vendor/bin/ims_rtp_daemon
+vendor/lib/lib-dplmedia.so
 vendor/lib/lib-imsSDP.so
 vendor/lib/lib-imsdpl.so
 vendor/lib/lib-imsqimf.so
@@ -384,7 +385,6 @@ vendor/lib/lib-rtpdaemoninterface.so
 vendor/lib/lib-rtpsl.so
 vendor/lib/vendor.qti.ims.rcsconfig@1.0.so
 vendor/lib/vendor.qti.imsrtpservice@1.0-service-Impl.so
-vendor/lib/vendor.qti.imsrtpservice@1.0_vendor.so
 
 # Media
 vendor/lib/libAlacSwDec.so

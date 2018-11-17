@@ -138,6 +138,7 @@ lib64/vendor.qti.imsrtpservice@1.0.so
 vendor/bin/imsdatadaemon
 vendor/bin/imsqmidaemon
 vendor/bin/ims_rtp_daemon
+vendor/lib64/lib-dplmedia.so
 vendor/lib64/lib-imsSDP.so
 vendor/lib64/lib-imsdpl.so
 vendor/lib64/lib-imsqimf.so
@@ -148,7 +149,6 @@ vendor/lib64/lib-rtpdaemoninterface.so
 vendor/lib64/lib-rtpsl.so
 vendor/lib64/vendor.qti.ims.rcsconfig@1.0.so
 vendor/lib64/vendor.qti.imsrtpservice@1.0-service-Impl.so
-vendor/lib64/vendor.qti.imsrtpservice@1.0_vendor.so
 
 # Media
 vendor/lib64/libAlacSwDec.so
