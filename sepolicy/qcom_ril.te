@@ -7,4 +7,4 @@ allow qcom_ril vendor_shell_exec:file rx_file_perms;
 allow qcom_ril vendor_toolbox_exec:file rx_file_perms;
 
 get_prop(qcom_ril, radio_prop);
-set_prop(qcom_ril, ctl_rildaemon_prop);
+set_prop(qcom_ril, ctl_vendor_rild_prop);

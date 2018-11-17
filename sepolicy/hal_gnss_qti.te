@@ -12,3 +12,6 @@ binder_call(hal_gnss_qti, servicemanager);
 # libqdi and have all its clients use netlink route
 # sockets.
 dontaudit hal_gnss_qti self:udp_socket create;
+
+allow hal_gnss_qti sysfs_ssr:dir search;
+allow hal_gnss_qti sysfs_ssr:file r_file_perms;

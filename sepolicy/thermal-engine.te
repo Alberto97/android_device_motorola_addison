@@ -1,2 +1,8 @@
 allow thermal-engine sysfs_vadc_dev:dir search;
 allow thermal-engine sysfs_vadc_dev:lnk_file read;
+
+r_dir_file(thermal-engine, sysfs_batteryinfo)
+allow thermal-engine sysfs_batteryinfo:file w_file_perms;
+
+r_dir_file(thermal-engine, sysfs_uio)
+r_dir_file(thermal-engine, sysfs_uio_file)

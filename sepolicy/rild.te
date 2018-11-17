@@ -1,13 +1,17 @@
+typeattribute rild data_between_core_and_vendor_violators;
+
 allow rild cutback_data_file:dir rw_dir_perms;
 allow rild cutback_data_file:sock_file create_file_perms;
-allow rild persist_file:dir search;
-allow rild persist_file:file rw_file_perms;
+allow rild mnt_vendor_file:dir search;
+allow rild mnt_vendor_file:file rw_file_perms;
 allow rild system_data_file:dir w_dir_perms;
 allow rild system_data_file:sock_file create_file_perms;
 
 # allow rild to access radio data file
 allow rild radio_data_file:dir rw_dir_perms;
 allow rild radio_data_file:file create_file_perms;
+
+allow rild proc:file r_file_perms;
 
 allow rild vendor_file:file execute_no_trans;
 

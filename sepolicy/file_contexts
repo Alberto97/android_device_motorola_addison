@@ -1,4 +1,5 @@
 # Binaries
+/(vendor|system/vendor)/bin/hw/android\.hardware\.drm@1\.0-service\.widevine            u:object_r:hal_drm_widevine_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.vibrator@1\.0-service.addison         u:object_r:hal_vibrator_default_exec:s0
 /(vendor|system/vendor)/bin/hw/motorola\.hardware\.camera\.provider@2\.4-service        u:object_r:hal_camera_default_exec:s0
 /(vendor|system/vendor)/bin/hw/motorola\.hardware\.mods_camera\.provider@2\.4-service   u:object_r:hal_camera_default_exec:s0
@@ -9,20 +10,17 @@
 /(vendor|system/vendor)/bin/wlan_carrier_bin\.sh                                        u:object_r:init_wifi_exec:s0
 /(vendor|system/vendor)/bin/motosh                                                      u:object_r:sensor_hub_exec:s0
 
-# Fingerprint
-/data/\.fps(/.*)?                                                                       u:object_r:fingerprintd_data_file:s0
-/data/fpc(/.*)?                                                                         u:object_r:fingerprintd_data_file:s0
-
-# NFC
-/data/vendor/nfc(/.*)?                                                                  u:object_r:nfc_data_file:s0
-
 # Partitions
 /dev/block/platform/soc/7824900.sdhci/by-name/frp                                       u:object_r:frp_block_device:s0
 /dev/block/platform/soc/7824900.sdhci/by-name/metadata                                  u:object_r:metadata_block_device:s0
 /dev/block/platform/soc/7824900.sdhci/by-name/persist                                   u:object_r:persist_block_device:s0
 
-# RIL
-/data/misc/cutback(/.*)?                                 u:object_r:cutback_data_file:s0
+# data
+/data/\.fps(/.*)?                                                                       u:object_r:fingerprintd_data_file:s0
+/data/fpc(/.*)?                                                                         u:object_r:fingerprintd_data_file:s0
+/data/connectivity(/.*)?                                                                u:object_r:cnd_legacy_data_file:s0
+/data/misc/cutback(/.*)?                                                                u:object_r:cutback_data_file:s0
+/data/vendor/misc/audio(/.*)?                                                           u:object_r:vendor_audio_data_file:s0
 
 # Sensors
 /dev/laser                                               u:object_r:laser_device:s0
