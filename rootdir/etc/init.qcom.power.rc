@@ -15,7 +15,6 @@ on post-fs-data
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed"
-    setprop sys.io.scheduler bfq
 
     # init task load, restrict wakeups to preferred cluster
     write /proc/sys/kernel/sched_init_task_load 15
