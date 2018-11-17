@@ -17,8 +17,6 @@
 
 package org.lineageos.settings.device.doze;
 
-import java.util.List;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -37,6 +35,8 @@ public class ScreenReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        if (intent.getAction() == null) return;
+
         if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
             mNotifier.screenTurnedOff();
         } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {

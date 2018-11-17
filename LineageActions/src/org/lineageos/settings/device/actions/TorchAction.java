@@ -18,18 +18,17 @@
 package org.lineageos.settings.device.actions;
 
 import android.content.Context;
-import android.hardware.camera2.CameraManager;
-import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.CameraManager;
+import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.util.Log;
+import android.support.annotation.NonNull;
 
 import org.lineageos.settings.device.SensorAction;
 
 public class TorchAction implements SensorAction {
     private static final String TAG = "LineageActions";
-
-    private static final int TURN_SCREEN_ON_WAKE_LOCK_MS = 500;
 
     private CameraManager mCameraManager;
     private final Vibrator mVibrator;
@@ -50,17 +49,20 @@ public class TorchAction implements SensorAction {
                 }
             }
         } catch (CameraAccessException e) {
+            // Noop
         }
     }
 
     @Override
     public void action() {
-        mVibrator.vibrate(250);
+        VibrationEffect vibrationEffect = VibrationEffect.createOneShot(250, VibrationEffect.DEFAULT_AMPLITUDE);
+        mVibrator.vibrate(vibrationEffect);
         if (mRearCameraId != null) {
             try {
                 mCameraManager.setTorchMode(mRearCameraId, !mTorchEnabled);
                 mTorchEnabled = !mTorchEnabled;
             } catch (CameraAccessException e) {
+                // Noop
             }
         }
     }
@@ -68,14 +70,14 @@ public class TorchAction implements SensorAction {
     private class MyTorchCallback extends CameraManager.TorchCallback {
 
         @Override
-        public void onTorchModeChanged(String cameraId, boolean enabled) {
+        public void onTorchModeChanged(@NonNull String cameraId, boolean enabled) {
             if (!cameraId.equals(mRearCameraId))
                 return;
             mTorchEnabled = enabled;
         }
 
         @Override
-        public void onTorchModeUnavailable(String cameraId) {
+        public void onTorchModeUnavailable(@NonNull String cameraId) {
             if (!cameraId.equals(mRearCameraId))
                 return;
             mTorchEnabled = false;
