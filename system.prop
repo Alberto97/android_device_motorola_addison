@@ -32,12 +32,11 @@ ro.config.media_vol_steps=25
 
 # Bluetooth
 bluetooth.hfp.client=1
-qcom.bluetooth.soc=smd
 qcom.bt.le_dev_pwr_class=1
 ro.bluetooth.dun=true
 ro.bluetooth.hfp.ver=1.7
 ro.bluetooth.sap=true
-ro.qualcomm.bt.hci_transport=smd
+vendor.qcom.bluetooth.soc=smd
 
 # Camera
 camera.disable_zsl_mode=1

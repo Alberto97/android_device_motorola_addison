@@ -15,15 +15,14 @@ vendor/lib64/libadiertac.so
 vendor/lib64/libaudcal.so
 
 # Bluetooth
+lib64/libaptX_encoder.so
+lib64/libaptXHD_encoder.so
 lib64/vendor.qti.hardware.fm@1.0.so
 vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti
 vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc
 vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so
-vendor/lib64/com.qualcomm.qti.bluetooth_audio@1.0_vendor.so
-vendor/lib64/libaptX_encoder.so
-vendor/lib64/libaptXHD_encoder.so
-vendor/lib64/libbtnv.so
-vendor/lib64/vendor.qti.hardware.fm@1.0_vendor.so
+vendor/lib64/com.qualcomm.qti.bluetooth_audio@1.0.so
+vendor/lib64/vendor.qti.hardware.fm@1.0.so
 
 # Display - from deen PPK29.68-16-3
 vendor/bin/hw/vendor.display.color@1.0-service|9d4c72291f4b91014dcbc3d333d00865af5ed707
