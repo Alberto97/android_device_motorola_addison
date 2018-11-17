@@ -258,6 +258,7 @@ PRODUCT_PACKAGES += \
     init.mmi.rc \
     init.mmi.usb.rc \
     init.qcom.rc \
+    init.qcom.power.rc \
     init.qcom.ril.sh \
     ueventd.rc \
     wlan_carrier_bin.sh
