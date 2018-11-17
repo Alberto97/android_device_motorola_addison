@@ -26,6 +26,7 @@
 #
 
 import /vendor/etc/init/hw/init.mmi.rc
+import /vendor/etc/init/hw/init.qcom.power.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
@@ -138,15 +139,6 @@ on boot
     # Create directory used for display
     mkdir /persist/display 0770 system graphics
 
-    # Add a cpuset for the camera daemon
-    # We want all cores for camera
-    mkdir /dev/cpuset/camera-daemon
-    write /dev/cpuset/camera-daemon/cpus 0-3
-    write /dev/cpuset/camera-daemon/mems 0
-    chown cameraserver cameraserver /dev/cpuset/camera-daemon
-    chown cameraserver cameraserver /dev/cpuset/camera-daemon/tasks
-    chmod 0660 /dev/cpuset/camera-daemon/tasks
-
 on late-fs
     # Start bootanim and its dependencies
     start surfaceflinger
@@ -226,10 +218,6 @@ on post-fs-data
     # Create a folder for audio delta files
     mkdir /data/vendor/audio/acdbdata 0770 media audio
     mkdir /data/vendor/audio/acdbdata/delta 0770 media audio
-
-    # set aggressive read ahead for dm-0 and dm-1 during boot up
-    write /sys/block/dm-0/queue/read_ahead_kb 2048
-    write /sys/block/dm-1/queue/read_ahead_kb 2048
 
     # Force all SSR systems to 'related' so they attempt
     # self-recovery without rebooting the device
@@ -403,86 +391,3 @@ on charger
     setprop sys.usb.configfs 0
     setprop persist.sys.usb.config mass_storage
     write /sys/class/leds/white/trigger "battery-full"
-
-on property:sys.boot_completed=1
-    write /dev/kmsg "Boot completed "
-    setprop sys.io.scheduler bfq
-
-    # scheduler settings
-    write /proc/sys/kernel/sched_window_stats_policy 3
-    write /proc/sys/kernel/sched_ravg_hist_size 3
-
-    # task packing settings
-    write /sys/devices/system/cpu/cpu0/sched_static_cpu_pwr_cost 0
-    write /sys/devices/system/cpu/cpu1/sched_static_cpu_pwr_cost 0
-    write /sys/devices/system/cpu/cpu2/sched_static_cpu_pwr_cost 0
-    write /sys/devices/system/cpu/cpu3/sched_static_cpu_pwr_cost 0
-    write /sys/devices/system/cpu/cpu4/sched_static_cpu_pwr_cost 0
-    write /sys/devices/system/cpu/cpu5/sched_static_cpu_pwr_cost 0
-    write /sys/devices/system/cpu/cpu6/sched_static_cpu_pwr_cost 0
-    write /sys/devices/system/cpu/cpu7/sched_static_cpu_pwr_cost 0
-
-    # init task load, restrict wakeups to preferred cluster
-    write /proc/sys/kernel/sched_init_task_load 15
-
-    # spill load is set to 100% by default in the kernel
-    write /proc/sys/kernel/sched_spill_nr_run 3
-
-    # Apply inter-cluster load balancer restrictions
-    write /proc/sys/kernel/sched_restrict_cluster_spill 1
-
-    write /sys/class/devfreq/qcom,mincpubw/governor "cpufreq"
-
-    # disable thermal & BCL core_control to update interactive gov settings
-    write /sys/module/msm_thermal/core_control/enabled 0
-
-    # governor settings
-    write /sys/devices/system/cpu/cpu0/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay "19000 1401600:39000"
-    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 85
-    write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 20000
-    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1401600
-    write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 0
-    write /sys/devices/system/cpu/cpufreq/interactive/target_loads "85 1401600:80"
-    write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 39000
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 652800
-
-    # re-enable thermal & BCL core_control now
-    write /sys/module/msm_thermal/core_control/enabled 1
-
-    # Bring up all cores online
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu4/online 1
-    write /sys/devices/system/cpu/cpu5/online 1
-    write /sys/devices/system/cpu/cpu6/online 1
-    write /sys/devices/system/cpu/cpu7/online 1
-
-    # Enable low power modes
-    write /sys/module/lpm_levels/parameters/sleep_disabled 0
-
-    # SMP scheduler
-    write /proc/sys/kernel/sched_upmigrate 100
-    write /proc/sys/kernel/sched_downmigrate 100
-
-    # Enable sched guided freq control
-    write /sys/devices/system/cpu/cpufreq/interactive/use_sched_load 1
-    write /sys/devices/system/cpu/cpufreq/interactive/use_migration_notif 1
-    write /proc/sys/kernel/sched_freq_inc_notify 200000
-    write /proc/sys/kernel/sched_freq_dec_notify 200000
-
-    # Log kernel wake-up source
-    write /sys/module/msm_show_resume_irq/parameters/debug_mask 1
-
-    #Reset read ahead for dm-1 to 128KB
-    write /sys/block/dm-1/queue/read_ahead_kb 128
-    #Reset the "read ahead" setting for system patition
-    #result: ext4: 32KB, dm_verity:64KB, block layer: 128KB
-    write /sys/fs/ext4/dm-0/inode_readahead_blks 8
-    write /sys/module/dm_verity/parameters/prefetch_cluster 65536
-    write /sys/block/dm-0/queue/read_ahead_kb 128
-    #WDSP FW boot sysfs node used by STHAL
-    chown media audio /sys/kernel/wdsp0/boot
-    chown media audio /sys/kernel/wcd_cpe0/fw_name
