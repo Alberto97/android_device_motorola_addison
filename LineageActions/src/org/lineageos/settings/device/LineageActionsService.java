@@ -21,7 +21,6 @@ import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
-import android.provider.Settings;
 import android.util.Log;
 
 import java.util.List;
@@ -43,43 +42,37 @@ public class LineageActionsService extends IntentService implements ScreenStateN
         UpdatedStateNotifier {
     private static final String TAG = "LineageActions";
 
-    private final Context mContext;
-
-    private final DozePulseAction mDozePulseAction;
     private final PowerManager mPowerManager;
     private final PowerManager.WakeLock mWakeLock;
-    private final ScreenReceiver mScreenReceiver;
-    private final SensorHelper mSensorHelper;
 
-    private final List<ScreenStateNotifier> mScreenStateNotifiers = new LinkedList<ScreenStateNotifier>();
-    private final List<UpdatedStateNotifier> mUpdatedStateNotifiers =
-                        new LinkedList<UpdatedStateNotifier>();
+    private final List<ScreenStateNotifier> mScreenStateNotifiers = new LinkedList<>();
+    private final List<UpdatedStateNotifier> mUpdatedStateNotifiers = new LinkedList<>();
 
     public LineageActionsService(Context context) {
         super("LineageActionService");
-        mContext = context;
 
         Log.d(TAG, "Starting");
 
         LineageActionsSettings lineageActionsSettings = new LineageActionsSettings(context, this);
-        mSensorHelper = new SensorHelper(context);
-        mScreenReceiver = new ScreenReceiver(context, this);
+        SensorHelper sensorHelper = new SensorHelper(context);
+        new ScreenReceiver(context, this);
 
-        mDozePulseAction = new DozePulseAction(context);
+        DozePulseAction mDozePulseAction = new DozePulseAction(context);
         mScreenStateNotifiers.add(mDozePulseAction);
 
         // Actionable sensors get screen on/off notifications
-        mScreenStateNotifiers.add(new ProximitySensor(lineageActionsSettings, mSensorHelper, mDozePulseAction));
+        mScreenStateNotifiers.add(new ProximitySensor(lineageActionsSettings, sensorHelper, mDozePulseAction));
 
         // Other actions that are always enabled
-        mUpdatedStateNotifiers.add(new CameraActivationSensor(lineageActionsSettings, mSensorHelper));
-        mUpdatedStateNotifiers.add(new ChopChopSensor(lineageActionsSettings, mSensorHelper));
-        mUpdatedStateNotifiers.add(new ProximitySilencer(lineageActionsSettings, context, mSensorHelper));
-        mUpdatedStateNotifiers.add(new FlipToMute(lineageActionsSettings, context, mSensorHelper));
-        mUpdatedStateNotifiers.add(new LiftToSilence(lineageActionsSettings, context, mSensorHelper));
+        mUpdatedStateNotifiers.add(new CameraActivationSensor(lineageActionsSettings, sensorHelper));
+        mUpdatedStateNotifiers.add(new ChopChopSensor(lineageActionsSettings, sensorHelper));
+        mUpdatedStateNotifiers.add(new ProximitySilencer(lineageActionsSettings, context, sensorHelper));
+        mUpdatedStateNotifiers.add(new FlipToMute(lineageActionsSettings, context, sensorHelper));
+        mUpdatedStateNotifiers.add(new LiftToSilence(lineageActionsSettings, context, sensorHelper));
 
         mPowerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "LineageActionsWakeLock");
+        String tag = context.getPackageName() + ":ServiceWakeLock";
+        mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, tag);
         updateState();
     }
 

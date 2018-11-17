@@ -18,5 +18,5 @@
 package org.lineageos.settings.device.actions;
 
 public interface UpdatedStateNotifier {
-    public void updateState();
+    void updateState();
 }

@@ -25,6 +25,11 @@ public class ActionsPreferenceActivity extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (getActionBar() != null) {
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         getFragmentManager().beginTransaction()
             .replace(android.R.id.content, new ActionsPreferenceFragment()).commit();
     }
