@@ -1,4 +1,0 @@
-subdirs = [
-    "libhidl",
-    "vibrator",
-]
