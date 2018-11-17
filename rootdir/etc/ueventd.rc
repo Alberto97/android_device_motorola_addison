@@ -392,9 +392,9 @@
 /dev/mobicore-user        0666   system     system
 
 # USB role switch
-/sys/class/dual_role_usb/*	data_role	0660	system	system
-/sys/class/dual_role_usb/*	power_role	0660	system	system
-/sys/class/dual_role_usb/*	mode		0660	system	system
+/sys/class/dual_role_usb/*	data_role	0444	system	system
+/sys/class/dual_role_usb/*	power_role	0444	system	system
+/sys/class/dual_role_usb/*	mode		0444	system	system
 
 # sys-fs display
 /sys/class/graphics/fb*     hpd                      0664    system  graphics
