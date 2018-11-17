@@ -526,7 +526,6 @@ vendor/etc/firmware/sensorhubfw.bin
 # vendor/bin/thermal-engine
 vendor/lib/hw/thermal.msm8953.so
 vendor/lib/libthermalclient.so
-vendor/lib/libthermalioctl.so
 
 # Time services - from deen PPK29.68-16-3
 -vendor/app/TimeService/TimeService.apk|2cdac463ea1e295cf1c3ae08974c37cad2c9f784
