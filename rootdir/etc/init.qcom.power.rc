@@ -17,12 +17,9 @@ on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed"
     setprop sys.io.scheduler bfq
 
-    write /proc/sys/kernel/sched_boost 0
-
     # init task load, restrict wakeups to preferred cluster
     write /proc/sys/kernel/sched_init_task_load 15
 
-    write /sys/class/devfreq/soc:qcom,mincpubw/governor "cpufreq"
     write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/io_percent 34
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/guard_band_mbps 0
@@ -35,8 +32,6 @@ on property:sys.boot_completed=1
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/sample_ms 4
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/up_scale 250
     write /sys/class/devfreq/soc:qcom,cpubw/min_freq 1611
-    write /sys/class/devfreq/soc:qcom,gpubw/governor "bw_hwmon"
-    write /sys/class/devfreq/soc:qcom,gpubw/bw_hwmon/io_percent 40
 
     # disable thermal & BCL core_control to update interactive gov settings
     write /sys/module/msm_thermal/core_control/enabled 0
