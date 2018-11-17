@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2017 The LineageOS Project
- * Copyright (C) 2017 Alberto97
+ * Copyright (C) 2017-2018 Alberto97
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,9 +24,4 @@ using android::hardware::sensors::V1_0::SensorInfo;
 extern "C" int ASensor_getHandle(ASensor const* sensor)
 {
     return reinterpret_cast<const SensorInfo *>(sensor)->sensorHandle;
-}
-
-extern "C" bool ASensor_isWakeUpSensor(ASensor const* sensor)
-{
-    return (reinterpret_cast<const SensorInfo *>(sensor)->flags & SENSOR_FLAG_WAKE_UP) != 0;
 }
