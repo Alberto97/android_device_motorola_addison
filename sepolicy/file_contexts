@@ -20,7 +20,6 @@
 /data/fpc(/.*)?                                                                         u:object_r:fingerprintd_data_file:s0
 /data/connectivity(/.*)?                                                                u:object_r:cnd_legacy_data_file:s0
 /data/misc/cutback(/.*)?                                                                u:object_r:cutback_data_file:s0
-/data/vendor/misc/audio(/.*)?                                                           u:object_r:vendor_audio_data_file:s0
 
 # Sensors
 /dev/laser                                               u:object_r:laser_device:s0
