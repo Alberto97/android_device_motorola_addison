@@ -36,7 +36,7 @@ vendor/lib64/libtinyxml2_1.so
 vendor/lib64/vendor.display.color@1.0.so
 vendor/lib64/vendor.display.postproc@1.0.so
 
-# DRM - from griffin OPL27.76-51
+# DRM - from griffin OPL27.76-71-2-3
 lib64/vendor.qti.hardware.qteeconnector@1.0.so|01497a77c6028ced9e4a818838e7f80ed52c7a31
 vendor/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service|df83cbb77a69e9f14812ab63bf2d4257cf3e4512
 vendor/bin/qseecomd|1e2717b8e87c1674959e723f0b65ee1ed09822d7
@@ -59,7 +59,7 @@ vendor/etc/init/android.hardware.drm@1.1-service.widevine.rc
 vendor/lib64/libwvhidl.so
 vendor/lib64/mediadrm/libwvdrmengine.so
 
-# Fingerprint - from griffin OPL27.76-51
+# Fingerprint - from griffin OPL27.76-71-2-3
 lib64/libcom_fingerprints_service.so|b81271fcd1c76d2482af6b1adede2f593e92eebe
 lib64/lib_fpc_tac_shared.so|f63bf9b9f2a9b94637039e55bc1f2092eb3fc028
 vendor/lib64/hw/fingerprint.msm8996.so:vendor/lib64/hw/fingerprint.msm8953.so|e1dea396aa97ecf15668e9a69e54b2beff572bc7
@@ -107,7 +107,7 @@ vendor/lib64/vendor.qti.gnss@1.2.so
 vendor/lib64/vendor.qti.gnss@2.0.so
 vendor/lib64/vendor.qti.gnss@2.1.so
 
-# Graphics - from griffin OPL27.76-51
+# Graphics - from griffin OPL27.76-71-2-3
 vendor/lib64/egl/eglSubDriverAndroid.so|13952992a54300c02ba8302f899b4285bc231180
 vendor/lib64/egl/libEGL_adreno.so|60375ff06520aaee699771e2c5ce03943c665290
 vendor/lib64/egl/libGLESv1_CM_adreno.so|f82b3e4b5b13258654957328b7b8ad6a55270718
