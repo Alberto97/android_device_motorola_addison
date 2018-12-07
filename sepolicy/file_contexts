@@ -13,7 +13,6 @@
 
 # Partitions
 /dev/block/platform/soc/7824900.sdhci/by-name/frp                                       u:object_r:frp_block_device:s0
-/dev/block/platform/soc/7824900.sdhci/by-name/metadata                                  u:object_r:metadata_block_device:s0
 /dev/block/platform/soc/7824900.sdhci/by-name/persist                                   u:object_r:persist_block_device:s0
 
 # data
