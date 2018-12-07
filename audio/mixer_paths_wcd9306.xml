@@ -148,7 +148,7 @@
 	<ctl name="OSPL Ext TxConfig" value="NONE" />
 	<ctl name="OSPL Int RxConfig" value="NONE" />
 	<ctl name="OSPL Int TxConfig" value="NONE" />
-	<ctl name="OSPL Rx" value="Enable" />
+	<ctl name="OSPL Rx" value="Disable" />
 	<ctl name="OSPL Tx" value="Enable" />
 	<ctl name="AFE_PCM_RX_Voice Mixer VoiceMMode1" value="0" />
 	<ctl name="AFE_PCM_RX_Voice Mixer VoiceMMode2" value="0" />
@@ -792,6 +792,7 @@
 		<ctl name="SLIMTX5 Input 1" value="AIF1RX1" />
 		<ctl name="SLIMTX6 Input 1" value="AIF1RX2" />
 		<ctl name="AMP Gain" value="15dB" />
+		<ctl name="OSPL Rx" value="Enable" />
 	</path>
 
 	<path name="speaker-reverse">
