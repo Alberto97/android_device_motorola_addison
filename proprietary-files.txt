@@ -176,7 +176,7 @@ vendor/firmware/a530v3_gpmu.fw2|0a2f6f450231673d75ba39e5d28776db3becf810
 vendor/firmware/a530v3_seq.fw2|8963a53acc689725dee4b22881a4dd4b80e5def8
 
 # IMS
--app/ims/ims.apk|93e69e1c8c1f00054e037fcd5f1100e839966cc4
+-app/ims/ims.apk|bd8616428bc239b6d6da5665a8adf137edfcdc6b
 etc/permissions/qti_permissions.xml
 lib/libimscamera_jni.so
 lib/libimsmedia_jni.so
