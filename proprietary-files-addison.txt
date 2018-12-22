@@ -199,10 +199,6 @@ vendor/firmware/libpn548ad_fw.so:vendor/lib/libpn548ad_fw.so
 # Sensors
 vendor/etc/firmware/sensorhubfw.bin
 
-# Touchscreen
-etc/firmware/synaptics-s3508-16082601-255c40-addison.tdat:vendor/firmware/synaptics-s3508-16082601-255c40-addison.tdat
-etc/firmware/synaptics-s3508sga-16082601-255c40-addison.tdat:vendor/firmware/synaptics-s3508sga-16082601-255c40-addison.tdat
-
 # WCNSS
 vendor/etc/wifi/WCNSS_qcom_wlan_nv.bin:vendor/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
 vendor/etc/wifi/WCNSS_qcom_wlan_nv_Argentina.bin:vendor/firmware/wlan/prima/WCNSS_qcom_wlan_nv_Argentina.bin

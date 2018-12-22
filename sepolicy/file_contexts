@@ -6,7 +6,6 @@
 /(vendor|system/vendor)/bin/hw/motorola\.hardware\.mods_camera\.provider@2\.4-service   u:object_r:hal_camera_default_exec:s0
 /(vendor|system/vendor)/bin/init\.mmi\.boot\.sh                                         u:object_r:mmi_boot_exec:s0
 /(vendor|system/vendor)/bin/init\.mmi\.laser\.sh                                        u:object_r:mmi_laser_exec:s0
-/(vendor|system/vendor)/bin/init\.mmi\.touch\.sh                                        u:object_r:mmi_touch_sh_exec:s0
 /(vendor|system/vendor)/bin/init\.qcom\.ril\.sh                                         u:object_r:qcom_ril_exec:s0
 /(vendor|system/vendor)/bin/wlan_carrier_bin\.sh                                        u:object_r:init_wifi_exec:s0
 /(vendor|system/vendor)/bin/motosh                                                      u:object_r:sensor_hub_exec:s0
