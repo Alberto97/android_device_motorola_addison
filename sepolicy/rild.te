@@ -15,4 +15,7 @@ allow rild proc:file r_file_perms;
 
 allow rild vendor_file:file execute_no_trans;
 
+# qcril.so needs access to /vendor/radio/qcril_database/qcril.db
+allow rild vendor_file:file lock;
+
 r_dir_file(rild, fsg_file)
