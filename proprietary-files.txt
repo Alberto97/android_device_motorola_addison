@@ -284,7 +284,7 @@ etc/permissions/izat.xt.srv.xml
 etc/permissions/privapp-permissions-com.qualcomm.location.xml
 lib/liblocationservice_jni.so
 lib/libxt_native.so
-lib/vendor.qti.gnss@1.0.so
+lib/vendor.qti.gnss@1.0.so|77f52329dbce43d0049a773116f109affb584f4e
 vendor/bin/hw/vendor.qti.gnss@1.0-service
 vendor/bin/loc_launcher
 vendor/bin/slim_daemon
@@ -323,7 +323,7 @@ vendor/lib/libsensor1.so
 vendor/lib/libulp2.so
 vendor/lib/libxtadapter.so
 vendor/lib/libxtwifi_ulp_adaptor.so
-vendor/lib/vendor.qti.gnss@1.0_vendor.so
+vendor/lib/vendor.qti.gnss@1.0_vendor.so|77f52329dbce43d0049a773116f109affb584f4e
 
 # Graphics
 vendor/lib/egl/eglSubDriverAndroid.so
