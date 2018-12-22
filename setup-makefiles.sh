@@ -42,7 +42,6 @@ write_headers
 
 # The standard blobs
 write_makefiles "$MY_DIR"/proprietary-files.txt true
-write_makefiles "$MY_DIR"/proprietary-files-arm64.txt true
 
 # We are done!
 write_footers

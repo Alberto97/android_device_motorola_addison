@@ -1,7 +1,7 @@
 # Proprietary files for addison
 
 # ADSP
-# vendor/bin/adsprpcd
+vendor/bin/adsprpcd
 vendor/lib/libadsprpc.so
 vendor/lib/libadsp_default_listener.so
 vendor/lib/libmdsprpc.so
@@ -35,8 +35,8 @@ etc/firmware/marley-dsp3-aov-control.wmfw:vendor/firmware/marley-dsp3-aov-contro
 
 # Bluetooth
 lib/vendor.qti.hardware.fm@1.0.so
-# vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti
-# vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc
+vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti
+vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc
 vendor/lib/hw/android.hardware.bluetooth@1.0-impl-qti.so
 vendor/lib/com.qualcomm.qti.bluetooth_audio@1.0_vendor.so
 vendor/lib/libaptX_encoder.so
@@ -249,9 +249,9 @@ vendor/lib/vendor.display.postproc@1.0.so|9cc5304b70080be7fa6846dca24a727e974d0d
 
 # DRM
 lib/vendor.qti.hardware.qteeconnector@1.0.so
-# vendor/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service
-# vendor/bin/qseecomd
-# vendor/etc/init/vendor.qti.hardware.qteeconnector@1.0-service.rc
+vendor/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service
+vendor/bin/qseecomd
+vendor/etc/init/vendor.qti.hardware.qteeconnector@1.0-service.rc
 vendor/lib/hw/gatekeeper.msm8953.so
 vendor/lib/hw/keystore.msm8953.so
 vendor/lib/hw/vendor.qti.hardware.qteeconnector@1.0-impl.so
@@ -268,8 +268,8 @@ vendor/lib/libssd.so
 vendor/lib/vendor.qti.hardware.qteeconnector@1.0_vendor.so
 
 # DRM - Widevine
-# vendor/bin/hw/android.hardware.drm@1.0-service.widevine
-# vendor/etc/init/android.hardware.drm@1.0-service.widevine.rc
+vendor/bin/hw/android.hardware.drm@1.0-service.widevine
+vendor/etc/init/android.hardware.drm@1.0-service.widevine.rc
 vendor/lib/libwvhidl.so
 
 # Fingerprint
@@ -285,13 +285,13 @@ etc/permissions/privapp-permissions-com.qualcomm.location.xml
 lib/liblocationservice_jni.so
 lib/libxt_native.so
 lib/vendor.qti.gnss@1.0.so
-# vendor/bin/hw/vendor.qti.gnss@1.0-service
-# vendor/bin/loc_launcher
-# vendor/bin/slim_daemon
-# vendor/bin/xtwifi-client
-# vendor/bin/xtwifi-inet-agent
-# vendor/bin/xtra-daemon
-# vendor/etc/init/vendor.qti.gnss@1.0-service.rc
+vendor/bin/hw/vendor.qti.gnss@1.0-service
+vendor/bin/loc_launcher
+vendor/bin/slim_daemon
+vendor/bin/xtwifi-client
+vendor/bin/xtwifi-inet-agent
+vendor/bin/xtra-daemon
+vendor/etc/init/vendor.qti.gnss@1.0-service.rc
 vendor/etc/cacert_location.pem
 vendor/etc/flp.conf
 vendor/etc/gps.conf
@@ -366,9 +366,9 @@ etc/permissions/qti_permissions.xml
 lib/libimscamera_jni.so
 lib/libimsmedia_jni.so
 lib/vendor.qti.imsrtpservice@1.0.so
-# vendor/bin/imsdatadaemon
-# vendor/bin/imsqmidaemon
-# vendor/bin/ims_rtp_daemon
+vendor/bin/imsdatadaemon
+vendor/bin/imsqmidaemon
+vendor/bin/ims_rtp_daemon
 vendor/lib/lib-imsSDP.so
 vendor/lib/lib-imsdpl.so
 vendor/lib/lib-imsqimf.so
@@ -398,7 +398,7 @@ vendor/firmware/libpn548ad_fw.so:vendor/lib/libpn548ad_fw.so
 # Qualcomm framework
 lib/libdiag_system.so
 lib/libqmi_cci_system.so
-# vendor/bin/irsc_util
+vendor/bin/irsc_util
 vendor/lib/libdiag.so
 vendor/lib/libdsi_netctrl.so
 vendor/lib/libdsutils.so
@@ -425,13 +425,13 @@ etc/permissions/qcrilhook.xml
 -framework/qti-telephony-common.jar
 -framework/QtiTelephonyServicelibrary.jar
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
-# vendor/bin/netmgrd
-# vendor/bin/pm-proxy
-# vendor/bin/pm-service
-# vendor/bin/qmi_motext_hook
-# vendor/bin/qti
-# vendor/bin/rmt_storage
-# vendor/bin/tftp_server
+vendor/bin/netmgrd
+vendor/bin/pm-proxy
+vendor/bin/pm-service
+vendor/bin/qmi_motext_hook
+vendor/bin/qti
+vendor/bin/rmt_storage
+vendor/bin/tftp_server
 vendor/etc/data/dsi_config.xml
 vendor/etc/data/netmgr_config.xml
 vendor/lib/libadropbox.so
@@ -466,7 +466,7 @@ vendor/lib/vendor.qti.hardware.radio.uim_remote_server@1.0_vendor.so
 vendor/radio/qcril_database/qcril.db
 
 # CNE
-# bin/cnd
+vendor/bin/cnd
 etc/permissions/cneapiclient.xml
 etc/permissions/com.quicinc.cne.xml
 -framework/cneapiclient.jar
@@ -516,14 +516,14 @@ vendor/lib/libscvePanorama_lite.so
 vendor/etc/firmware/sensorhubfw.bin
 
 # Thermal
-# vendor/bin/thermal-engine
+vendor/bin/thermal-engine
 vendor/lib/hw/thermal.msm8953.so
 vendor/lib/libthermalclient.so
 vendor/lib/libthermalioctl.so
 
 # Time services
 -vendor/app/TimeService/TimeService.apk|22f13bcbac7b3cac6f6a2c6cc0e1069b3c728faa
-# vendor/bin/time_daemon
+vendor/bin/time_daemon
 vendor/lib/libtime_genoff.so|267516e23fe515013b6ef4e2f7edd0049fb75466
 
 # WCNSS
