@@ -258,11 +258,6 @@ service vendor.mmi-laser-sh /vendor/bin/init.mmi.laser.sh
     group root oem_5004
     oneshot
 
-service vendor.mmi-touch-sh /vendor/bin/init.mmi.touch.sh
-    class core
-    user root
-    oneshot
-
 # Start Sensor daemon
 service vendor.motosh /vendor/bin/motosh boot
     class late_start
