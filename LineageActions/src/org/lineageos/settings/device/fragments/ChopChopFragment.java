@@ -16,15 +16,20 @@
 
 package org.lineageos.settings.device.fragments;
 
-import android.os.Bundle;
-
 import org.lineageos.settings.device.ActionsFragment;
 import org.lineageos.settings.device.R;
 
 public class ChopChopFragment extends ActionsFragment {
 
+    private final String PREFERENCE_CHOP_CHOP = "gesture_chop_chop";
+
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.chop_chop_panel);
+    protected int getPreferenceScreenResId() {
+        return R.xml.chop_chop_panel;
+    }
+
+    @Override
+    protected String getPreferenceKey() {
+        return PREFERENCE_CHOP_CHOP;
     }
 }

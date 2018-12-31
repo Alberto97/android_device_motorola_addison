@@ -16,17 +16,49 @@
 
 package org.lineageos.settings.device.fragments;
 
-import android.os.Bundle;
+import android.text.TextUtils;
 
 import org.lineageos.settings.device.actions.Constants;
 import org.lineageos.settings.device.ActionsFragment;
+import org.lineageos.settings.device.FileUtils;
 import org.lineageos.settings.device.R;
+
+import java.io.File;
 
 public class FingerprintSleepFragment extends ActionsFragment {
 
+    private final String DISABLED = "0";
+    private final String ENABLED = "1";
+
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.fp_sleep_panel);
-        setupSysfsSwitch(Constants.FP_SLEEP_KEY);
+    protected int getPreferenceScreenResId() {
+        return R.xml.fp_sleep_panel;
+    }
+
+    @Override
+    protected String getPreferenceKey() {
+        return Constants.FP_SLEEP_KEY;
+    }
+
+    @Override
+    protected boolean isAvailable() {
+        File node = new File(Constants.FP_SLEEP_NODE);
+        return node.exists();
+    }
+
+    @Override
+    protected Boolean isChecked() {
+        String curNodeValue = FileUtils.readOneLine(Constants.FP_SLEEP_NODE);
+        return curNodeValue.equals(ENABLED);
+    }
+
+    @Override
+    protected boolean setChecked(boolean isChecked) {
+        if (!TextUtils.isEmpty(Constants.FP_SLEEP_NODE)) {
+            FileUtils.writeLine(Constants.FP_SLEEP_NODE,
+                isChecked ? ENABLED : DISABLED);
+            return true;
+        }
+        return false;
     }
 }

@@ -16,15 +16,20 @@
 
 package org.lineageos.settings.device.fragments;
 
-import android.os.Bundle;
-
 import org.lineageos.settings.device.ActionsFragment;
 import org.lineageos.settings.device.R;
 
 public class DoubleTwistFragment extends ActionsFragment {
 
+    private final String PREFERENCE_DOUBLE_TWIST = "gesture_camera_action";
+
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.double_twist_panel);
+    protected int getPreferenceScreenResId() {
+        return R.xml.double_twist_panel;
+    }
+
+    @Override
+    protected String getPreferenceKey() {
+        return PREFERENCE_DOUBLE_TWIST;
     }
 }

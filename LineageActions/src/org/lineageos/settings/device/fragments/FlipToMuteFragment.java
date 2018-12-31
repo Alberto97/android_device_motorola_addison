@@ -16,15 +16,20 @@
 
 package org.lineageos.settings.device.fragments;
 
-import android.os.Bundle;
-
 import org.lineageos.settings.device.ActionsFragment;
 import org.lineageos.settings.device.R;
 
 public class FlipToMuteFragment extends ActionsFragment {
 
+    private final String PREFERENCE_FLIP_TO_MUTE = "gesture_flip_to_mute";
+
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.flip_to_mute_panel);
+    protected int getPreferenceScreenResId() {
+        return R.xml.flip_to_mute_panel;
+    }
+
+    @Override
+    protected String getPreferenceKey() {
+        return PREFERENCE_FLIP_TO_MUTE;
     }
 }

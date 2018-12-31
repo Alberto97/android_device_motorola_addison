@@ -16,15 +16,20 @@
 
 package org.lineageos.settings.device.fragments;
 
-import android.os.Bundle;
-
 import org.lineageos.settings.device.ActionsFragment;
 import org.lineageos.settings.device.R;
 
 public class LiftToSilenceFragment extends ActionsFragment {
 
+    private final String PREFERENCE_LIFT_TO_SILENCE = "gesture_lift_to_silence";
+
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.lift_to_silence_panel);
+    protected int getPreferenceScreenResId() {
+        return R.xml.lift_to_silence_panel;
+    }
+
+    @Override
+    protected String getPreferenceKey() {
+        return PREFERENCE_LIFT_TO_SILENCE;
     }
 }

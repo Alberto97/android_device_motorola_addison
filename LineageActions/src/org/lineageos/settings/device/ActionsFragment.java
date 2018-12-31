@@ -17,6 +17,7 @@
 
 package org.lineageos.settings.device;
 
+import android.os.Bundle;
 import android.support.v7.preference.Preference;
 import android.support.v14.preference.PreferenceFragment;
 import android.support.v14.preference.SwitchPreference;
@@ -29,30 +30,40 @@ import java.io.File;
 
 public abstract class ActionsFragment extends PreferenceFragment {
 
-    public void setupSysfsSwitch(String key) {
-        SwitchPreference pref = (SwitchPreference) findPreference(key);
-        if (pref != null) {
+    @Override
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        addPreferencesFromResource(getPreferenceScreenResId());
 
-            // Set UI status
-            String node = Constants.sBooleanNodePreferenceMap.get(key);
-            if (node != null && new File(node).exists()) {
-                String curNodeValue = FileUtils.readOneLine(node);
-                pref.setChecked(curNodeValue.equals("1"));
-            } else {
-                pref.setEnabled(false);
+        SwitchPreference pref = (SwitchPreference) findPreference(getPreferenceKey());
+        if (pref != null) {
+            pref.setEnabled(isAvailable());
+
+            Boolean isChecked = isChecked();
+            if (isChecked != null) {
+                pref.setChecked(isChecked.booleanValue());
             }
 
-            // Enable/Disable behavior
             pref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    if (!TextUtils.isEmpty(node)) {
-                        Boolean value = (Boolean) newValue;
-                        FileUtils.writeLine(node, value ? "1" : "0");
-                        return true;
-                    }
-                    return false;
+                    return setChecked((boolean) newValue);
                 }
             });
         }
+    }
+
+    protected abstract int getPreferenceScreenResId();
+
+    protected abstract String getPreferenceKey();
+
+    protected boolean isAvailable() {
+        return true;
+    }
+
+    protected Boolean isChecked() {
+        return null;
+    }
+
+    protected boolean setChecked(boolean isChecked) {
+        return true;
     }
 }
