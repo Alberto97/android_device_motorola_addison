@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2017 The LineageOS Project
+ * Copyright (c) 2018 Alberto Pedron
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,23 +15,26 @@
  * limitations under the License.
  */
 
-package org.lineageos.settings.device;
+package org.lineageos.settings.device.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.provider.Settings;
-import android.support.v14.preference.PreferenceFragment;
-import android.support.v7.preference.PreferenceCategory;
+import android.support.v14.preference.SwitchPreference;
 
 import com.android.internal.hardware.AmbientDisplayConfiguration;
 
-public class DozePreferenceFragment extends PreferenceFragment {
-    private final String CATEGORY_AMBIENT_DISPLAY = "ambient_display_key";
+import org.lineageos.settings.device.ActionsFragment;
+import org.lineageos.settings.device.R;
+
+public class HandWaveFragment extends ActionsFragment {
+
+    private final String PREFERENCE_HAND_WAVE = "gesture_hand_wave";
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.doze_panel);
+        addPreferencesFromResource(R.xml.hand_wave_panel);
 
         AmbientDisplayConfiguration adConfig = new AmbientDisplayConfiguration(getActivity());
         boolean dozeEnabled = adConfig.pulseOnNotificationEnabled(UserHandle.USER_CURRENT);
@@ -38,10 +42,10 @@ public class DozePreferenceFragment extends PreferenceFragment {
         boolean pickupEnabled = isPulseOnPickupEnabled(getActivity()) && adConfig.pulseOnPickupAvailable();
 
         boolean enable = (pickupEnabled || dozeEnabled) && !aodEnabled;
-        PreferenceCategory ambientDisplayCat = (PreferenceCategory)
-                findPreference(CATEGORY_AMBIENT_DISPLAY);
-        if (ambientDisplayCat != null) {
-            ambientDisplayCat.setEnabled(enable);
+
+        SwitchPreference pref = (SwitchPreference) findPreference(PREFERENCE_HAND_WAVE);
+        if (pref != null) {
+            pref.setEnabled(enable);
         }
     }
 

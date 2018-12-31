@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 The LineageOS Project
+ * Copyright (c) 2018 Alberto Pedron
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,17 @@
  * limitations under the License.
  */
 
-package org.lineageos.settings.device;
+package org.lineageos.settings.device.fragments;
 
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 
-public class DozePreferenceActivity extends PreferenceActivity {
+import org.lineageos.settings.device.ActionsFragment;
+import org.lineageos.settings.device.R;
+
+public class ChopChopFragment extends ActionsFragment {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        if (getActionBar() != null) {
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-
-        getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new DozePreferenceFragment()).commit();
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        addPreferencesFromResource(R.xml.chop_chop_panel);
     }
 }
