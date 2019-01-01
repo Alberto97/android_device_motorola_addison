@@ -16,15 +16,3 @@ else
 $(INSTALLED_DTIMAGE_TARGET): $(TARGET_PREBUILT_DTB)
 	cp $(TARGET_PREBUILT_DTB) $(INSTALLED_DTIMAGE_TARGET)
 endif
-
-## Overload bootimg generation: Same as the original, + --dt arg
-$(INSTALLED_BOOTIMAGE_TARGET): $(MKBOOTIMG) $(INTERNAL_BOOTIMAGE_FILES) $(BOOTIMAGE_EXTRA_DEPS)
-	$(call pretty,"Target boot image: $@")
-	$(hide) $(MKBOOTIMG) $(INTERNAL_BOOTIMAGE_ARGS) $(INTERNAL_MKBOOTIMG_VERSION_ARGS) $(BOARD_MKBOOTIMG_ARGS) --output $@
-	$(hide) $(call assert-max-image-size,$@,$(BOARD_BOOTIMAGE_PARTITION_SIZE))
-
-## Overload recoveryimg generation: Same as the original, + --dt arg
-$(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(recovery_ramdisk) $(recovery_kernel) \
-	$(RECOVERYIMAGE_EXTRA_DEPS)
-	@echo ----- Making recovery image ------
-	$(call build-recoveryimage-target, $@)
