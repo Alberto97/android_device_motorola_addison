@@ -430,7 +430,7 @@ vendor/bin/pm-proxy
 vendor/bin/pm-service
 vendor/bin/qmi_motext_hook
 vendor/bin/qti
-vendor/bin/rmt_storage
+vendor/bin/rmt_storage|9b9b2bdbf60473f94df3424b14ee93112760c111
 vendor/bin/tftp_server
 vendor/etc/data/dsi_config.xml
 vendor/etc/data/netmgr_config.xml
