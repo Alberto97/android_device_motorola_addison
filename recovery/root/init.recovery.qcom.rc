@@ -7,6 +7,8 @@ on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
+    setprop ro.board.platform msm8953
+
 # separate copy needed to use /sbin/linker instead of /system/bin/linker
 service sbinqseecomd /sbin/qseecomd
     oneshot
