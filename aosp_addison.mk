@@ -14,7 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, device/motorola/addison/full_addison.mk)
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+
+# Inherit from addison device
+$(call inherit-product, device/motorola/addison/device.mk)
+$(call inherit-product-if-exists, vendor/motorola/addison/addison-vendor.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := addison
