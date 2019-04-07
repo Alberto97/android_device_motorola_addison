@@ -249,82 +249,37 @@ Return<Result> Sensors::flush(int32_t sensor_handle) {
 }
 
 Return<Result> Sensors::injectSensorData(const Event& event) {
-    if (getHalDeviceVersion() < SENSORS_DEVICE_API_VERSION_1_4
-            || mSensorDevice->inject_sensor_data == nullptr) {
-        return Result::INVALID_OPERATION;
-    }
+    (void)event;
 
-    sensors_event_t out;
-    convertToSensorEvent(event, &out);
-
-    return ResultFromStatus(
-            mSensorDevice->inject_sensor_data(mSensorDevice, &out));
+    // HAL does not support
+    return Result::INVALID_OPERATION;
 }
 
 Return<void> Sensors::registerDirectChannel(
         const SharedMemInfo& mem, registerDirectChannel_cb _hidl_cb) {
-    if (mSensorDevice->register_direct_channel == nullptr
-            || mSensorDevice->config_direct_report == nullptr) {
-        // HAL does not support
-        _hidl_cb(Result::INVALID_OPERATION, -1);
-        return Void();
-    }
+    (void)mem;
 
-    sensors_direct_mem_t m;
-    if (!convertFromSharedMemInfo(mem, &m)) {
-      _hidl_cb(Result::BAD_VALUE, -1);
-      return Void();
-    }
-
-    int err = mSensorDevice->register_direct_channel(mSensorDevice, &m, -1);
-
-    if (err < 0) {
-        _hidl_cb(ResultFromStatus(err), -1);
-    } else {
-        int32_t channelHandle = static_cast<int32_t>(err);
-        _hidl_cb(Result::OK, channelHandle);
-    }
+    // HAL does not support
+    _hidl_cb(Result::INVALID_OPERATION, -1);
     return Void();
 }
 
 Return<Result> Sensors::unregisterDirectChannel(int32_t channelHandle) {
-    if (mSensorDevice->register_direct_channel == nullptr
-            || mSensorDevice->config_direct_report == nullptr) {
-        // HAL does not support
-        return Result::INVALID_OPERATION;
-    }
+    (void)channelHandle;
 
-    mSensorDevice->register_direct_channel(mSensorDevice, nullptr, channelHandle);
-
-    return Result::OK;
+    // HAL does not support
+    return Result::INVALID_OPERATION;
 }
 
 Return<void> Sensors::configDirectReport(
         int32_t sensorHandle, int32_t channelHandle, RateLevel rate,
         configDirectReport_cb _hidl_cb) {
-    if (mSensorDevice->register_direct_channel == nullptr
-            || mSensorDevice->config_direct_report == nullptr) {
-        // HAL does not support
-        _hidl_cb(Result::INVALID_OPERATION, -1);
-        return Void();
-    }
+    (void)sensorHandle;
+    (void)channelHandle;
+    (void)rate;
 
-    sensors_direct_cfg_t cfg = {
-        .rate_level = convertFromRateLevel(rate)
-    };
-    if (cfg.rate_level < 0) {
-        _hidl_cb(Result::BAD_VALUE, -1);
-        return Void();
-    }
-
-    int err = mSensorDevice->config_direct_report(mSensorDevice,
-            sensorHandle, channelHandle, &cfg);
-
-    if (rate == RateLevel::STOP) {
-        _hidl_cb(ResultFromStatus(err), -1);
-    } else {
-        _hidl_cb(err > 0 ? Result::OK : ResultFromStatus(err), err);
-    }
+    // HAL does not support
+    _hidl_cb(Result::INVALID_OPERATION, -1);
     return Void();
 }
 
