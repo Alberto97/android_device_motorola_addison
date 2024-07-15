@@ -102,7 +102,8 @@ PRODUCT_COPY_FILES += \
 # Camera
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
-    libjustshoot_shim
+    libjustshoot_shim \
+    Snap
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/camera/msm8953_mot_camera.xml:system/etc/camera/msm8953_mot_camera.xml \
@@ -271,11 +272,18 @@ PRODUCT_COPY_FILES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl.motosh \
+    android.hardware.sensors@1.0-impl \
     libsensorhub \
     motosh \
     sensorhub.msm8953 \
     sensors.msm8953
+
+# Telephony
+PRODUCT_PACKAGES += \
+    telephony-ext
+
+PRODUCT_BOOT_JARS += \
+    telephony-ext
 
 # Thermal
 PRODUCT_COPY_FILES += \
@@ -315,4 +323,5 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 PRODUCT_GMS_CLIENTID_BASE := android-motorola
 
-include $(LOCAL_PATH)/device_prop.mk
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)

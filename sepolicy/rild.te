@@ -19,3 +19,12 @@ allow rild vendor_file:file execute_no_trans;
 allow rild vendor_file:file lock;
 
 r_dir_file(rild, fsg_file)
+
+allow rild fsg_file:file { getattr open read };
+allow rild fsg_file:dir { search open read };
+allow rild fsg_file:lnk_file read;
+allow rild rild_exec:file execute_no_trans;
+allow rild fwk_sensor_hwservice:hwservice_manager find;
+
+allow rild persist_file:dir r_dir_perms;
+allow rild persist_file:file rw_file_perms;

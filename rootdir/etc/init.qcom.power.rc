@@ -16,8 +16,11 @@ on late-fs
     write /sys/block/mmcblk0/queue/nr_requests 256
     write /sys/block/dm-0/queue/read_ahead_kb 2048
 
-on property:sys.boot_completed=1
+on property:service.bootanim.exit=1
     write /dev/kmsg "Boot completed"
+    # Enable ZRAM on boot_complete
+    swapon_all /vendor/etc/fstab.qcom
+    write /proc/sys/vm/swappiness 40
 
     # init task load, restrict wakeups to preferred cluster
     write /proc/sys/kernel/sched_init_task_load 15
@@ -68,13 +71,13 @@ on property:sys.boot_completed=1
     # governor settings
     write /sys/devices/system/cpu/cpu0/online 1
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay "19000 1401600:39000"
-    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 85
-    write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 20000
+    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay "30000 1401600:30000 1804800:60000 1958400:60000"
+    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 93
+    write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 30000
     write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1401600
     write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 0
-    write /sys/devices/system/cpu/cpufreq/interactive/target_loads "85 1401600:80"
-    write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 39000
+    write /sys/devices/system/cpu/cpufreq/interactive/target_loads "75 1401600:83 1689600:90 1804800:96 1958400:98"
+    write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 60000
     #write /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor 40000
     write /proc/sys/kernel/sched_upmigrate_min_nice 19
 
@@ -83,7 +86,6 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpufreq/interactive/use_migration_notif 1
     write /proc/sys/kernel/sched_freq_inc_notify 200000
     write /proc/sys/kernel/sched_freq_dec_notify 200000
-
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 652800
 
     # Bring up all cores online
@@ -110,7 +112,8 @@ on property:sys.boot_completed=1
     write /proc/sys/kernel/sched_downmigrate 85
 
     # Run time fs tune
-    write /sys/block/mmcblk0/queue/read_ahead_kb 128
+    write /sys/block/mmcblk0/queue/scheduler "cfq"
+    write /sys/block/mmcblk0/queue/read_ahead_kb 256
     write /sys/block/mmcblk0/queue/nr_requests 128
     write /sys/block/dm-0/queue/read_ahead_kb 128
     write /sys/block/mmcblk0/queue/iostats 1
