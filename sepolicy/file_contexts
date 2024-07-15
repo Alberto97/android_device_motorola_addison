@@ -11,7 +11,6 @@
 
 # Partitions
 /dev/block/platform/soc/7824900.sdhci/by-name/frp                                       u:object_r:frp_block_device:s0
-/dev/block/platform/soc/7824900.sdhci/by-name/persist                                   u:object_r:persist_block_device:s0
 
 # data
 /data/\.fps(/.*)?                                                                       u:object_r:fingerprintd_data_file:s0

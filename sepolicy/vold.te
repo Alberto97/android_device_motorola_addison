@@ -1,1 +1,8 @@
 allow vold vendor_tee_listener_prop:file r_file_perms;
+allow vold mnt_vendor_file:dir read;
+allow vold mnt_vendor_file:dir search;
+
+allow vold mnt_vendor_file:dir open;
+allow vold persist_file:dir { ioctl open read };
+allow vold metadata_block_device:blk_file { rw_file_perms };
+allow vold mnt_vendor_file:dir ioctl;

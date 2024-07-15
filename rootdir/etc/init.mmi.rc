@@ -289,7 +289,3 @@ on property:init.svc.wpa_supplicant=running
 
 on property:init.svc.wpa_supplicant=stopped
     write /sys/module/wlan/parameters/fwpath wpadown
-
-on property:sys.boot_completed=1
-    # Enable ZRAM on boot_complete
-    swapon_all /vendor/etc/fstab.qcom

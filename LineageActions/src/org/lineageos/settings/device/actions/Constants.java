@@ -44,7 +44,7 @@ public class Constants {
 
     static {
         sBooleanNodePreferenceMap.put(FP_SLEEP_KEY, FP_SLEEP_NODE);
-        sNodeDefaultMap.put(FP_SLEEP_KEY, false);
+        sNodeDefaultMap.put(FP_SLEEP_KEY, true);
     }
 
     public static boolean isPreferenceEnabled(Context context, String key) {

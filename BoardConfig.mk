@@ -50,7 +50,6 @@ TARGET_USES_64_BIT_BINDER := true
 TARGET_OTA_ASSERT_DEVICE := addison,addison_retail
 
 # Kernel
-BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=30 msm_rtb.filter=0x237
 BOARD_KERNEL_CMDLINE += ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 vmalloc=350M
 BOARD_KERNEL_BASE := 0x80000000
@@ -58,8 +57,7 @@ BOARD_KERNEL_IMAGE_NAME := zImage
 BOARD_KERNEL_LZ4C_DT := true
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
-BOARD_MKBOOTIMG_ARGS := --qcdt
-TARGET_CUSTOM_DTBTOOL := dtbtool
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 TARGET_KERNEL_CONFIG := addison_defconfig
 TARGET_KERNEL_SOURCE := kernel/motorola/msm8953
 LZMA_RAMDISK_TARGETS := recovery
@@ -96,6 +94,11 @@ BOARD_NO_CHARGER_LED := true
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
+
+# Dexpreopt
+WITH_DEXPREOPT := true
+WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
+PRODUCT_DEXPREOPT_SPEED_APPS += SystemUI
 
 # Display
 BOARD_USES_ADRENO := true
@@ -137,10 +140,14 @@ TARGET_USERIMAGES_USE_F2FS := true
 # Release Tools
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
+# QTI
+TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
+TARGET_RIL_VARIANT := caf
+
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
-
+SELINUX_IGNORE_NEVERALLOWS := true
 # Shim
 TARGET_LD_SHIM_LIBS := \
     /system/vendor/lib/libmdmcutback.so|libqsap_shim.so \

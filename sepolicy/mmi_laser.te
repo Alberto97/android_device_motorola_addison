@@ -5,6 +5,7 @@ init_daemon_domain(mmi_laser)
 # shell scripts need to execute /vendor/bin/sh
 allow mmi_laser vendor_shell_exec:file rx_file_perms;
 allow mmi_laser vendor_toolbox_exec:file rx_file_perms;
+allow mmi_laser vendor_shell_exec:file entrypoint;
 
 # Logs to /dev/kmsg
 allow mmi_laser kmsg_device:chr_file w_file_perms;
@@ -12,3 +13,6 @@ allow mmi_laser kmsg_device:chr_file w_file_perms;
 allow mmi_laser sysfs_mmi_laser:file rw_file_perms;
 allow mmi_laser sysfs_mmi_laser:dir search;
 r_dir_file(mmi_laser, mnt_vendor_file)
+
+allow mmi_laser persist_file:dir search;
+allow mmi_laser persist_file:file r_file_perms;
